@@ -1,0 +1,725 @@
+/* Root Variables */
+:root {
+  --font-family: 'Red Hat Text', 'DM Mono', 'Noto Serif SC','DM Sans', serif;
+  --font-weight-regular: 380;
+  --font-weight-bold: 700;
+  --color-primary: #333;
+  --color-secondary: #999;
+  --color-link: #428bca;
+  --max-width: 55rem;
+  --spacing-unit: 1rem;
+}
+
+/* Base Reset */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 18px;
+  margin-left: calc(100vw - 100%); /* 防止滚动条导致的页面偏移 */
+  overflow-y: scroll; /* 始终显示滚动条 */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  font-family: var(--font-family), sans-serif;
+  color: var(--color-primary);
+  line-height: 1.6;
+  text-rendering: optimizeLegibility !important;
+}
+
+/* Typography - Use these as primary styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-family: 'DM Sans', monospace;
+  letter-spacing: 0.05rem;
+  margin: 2.7rem 0 0.7em; /* top, left=right=0, bottom */
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 2rem 0 0.8em; /* top, left=right=0, bottom */
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin: 1em 0 0.5em;
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.35rem; }
+  h3 { font-size: 1.15rem; }
+}
+
+/* Paragraphs */
+p {
+  font-weight: var(--font-weight-regular);
+  font-size: 1.1rem;
+  letter-spacing: 0.005rem;
+  word-spacing: 0.04rem;
+  line-height: 1.9rem;
+  hyphens: auto;
+  text-align: justify;
+  word-wrap: break-word;
+  hyphenate-limit-chars: 6 3 3;
+}
+
+[lang] {
+  hyphens: auto;
+}
+
+/* Links */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+
+a:hover {
+  color: #2a6496;
+}
+
+/* Layout */
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-unit);
+}
+
+section.header {
+  background-color: #f7f7f7;
+}
+
+@media (min-width: 600px) {
+  section.header {
+    background-color: transparent;
+    padding-top: 1.5rem;
+    /* padding-bottom: 2rem; */
+  }
+}
+
+section.header .container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+section.header .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* section.header .avatar {
+  border-radius: 50%;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  max-width: 10rem;
+} */
+
+section.header nav {
+  text-transform: uppercase;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.05rem;
+}
+
+section.header nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+section.header .social-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;  /* 减小间距 */
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+section.header .social-icons a {
+  color: #919191;
+  text-decoration: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;  /* 减小容器尺寸 */
+  height: 1.5em;
+  transition: color 0.2s ease,
+             transform 0.2s ease;  /* 简化过渡效果 */
+}
+
+section.header .social-icons a::after {
+  display: none;
+}
+
+
+/* 为每个图标保留独特的悬停颜色 */
+section.header .social-icons a[title="Email"]:hover {
+  background: linear-gradient(0deg, #2a0af8 , #4285f4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Add transition delay for fade effect */
+  transition: all 0.5s ease-in-out;
+  opacity: 0.9;
+}
+
+section.header .social-icons a[title="Google Scholar"]:hover {
+  background: linear-gradient(0deg, #4285f4, #e3e7f8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Add transition delay for fade effect */
+  transition: all 0.5s ease-in-out;
+  opacity: 0.9;
+}
+
+section.header .social-icons a[title="LinkedIn"]:hover {
+  color: #0066cc;
+}
+
+section.header .social-icons a[title="GitHub"]:hover {
+  color: #000;
+}
+
+section.header .social-icons a i,
+section.header .social-icons a svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+}
+
+section.header nav ul li a {
+  color: var(--color-secondary);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+section.header nav ul li a:hover,
+section.header nav ul li.active a {
+  color: var(--color-primary);
+}
+
+section.header nav ul .nav-item a {
+  color: var(--color-secondary);
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+  padding-bottom: 1px;
+}
+
+section.header nav ul .nav-item a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-primary);
+  transform-origin: center;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-out;
+}
+
+section.header nav ul .nav-item a:hover::after {
+  transform: scaleX(1);
+}
+
+section.header nav ul .nav-item.active a {
+  color: var(--color-primary);
+}
+
+section.header nav ul .nav-item.active a::after {
+  transform: scaleX(1);
+}
+
+@media (min-width: 600px) {
+  section.header .container {
+    justify-content: flex-start;
+  }
+  section.header .content {
+    align-items: flex-start;
+  }
+  section.header .name {
+    color: var(--color-primary);
+  }
+  section.header nav {
+    margin-bottom: 0;
+  }
+  section.header nav ul {
+    text-align: left;
+  }
+  section.header nav ul a {
+    color: #666;
+  }
+  section.header nav ul a:hover {
+    color: var(--color-primary);
+  }
+}
+
+section.main .container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+section.main .content {
+  color: var(--color-primary);
+  font-size: 18px;
+  padding: 0.5rem 3rem;
+}
+
+@media (min-width: 48rem) {
+  .content {
+    padding: 0.5rem 2rem;
+  }
+}
+
+@media (min-width: 600px) {
+  section.main .container .content .post-item {
+    display: flex;
+    list-style: none;
+  }
+  section.main .container .content .post-item .meta {
+    display: block;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+img.profile {
+  min-width: 100%;
+}
+
+@media (min-width: 600px) {
+  img.profile {
+    min-width: 300px;
+    max-width: 300px !important;
+  }
+}
+
+/* Lists - Base styles */
+ul, ol {
+  margin: 1rem 0 1.5rem;
+}
+
+ul li {
+  list-style-type: disc;
+  margin-bottom: 0.2em;
+  font-size: 1.05rem;
+  margin-left: 1.5rem;
+}
+
+ul ul {
+  margin: 0.2em 0;
+}
+
+ul ul li {
+  list-style-type: circle;
+  font-size: 0.95rem;
+  margin-left: 2.8rem;
+  color: #666;
+}
+
+/* Special list styles */
+li.education {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 1.2em;
+  position: relative;
+}
+
+li.education::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+}
+
+li.education .duration {
+  color: #666;
+  font-size: 0.95em;
+  white-space: nowrap;
+  padding-right: 1.5rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+img.profile {
+  min-width: 100%;
+}
+
+@media (min-width: 600px) {
+  img.profile {
+    min-width: 300px;
+    max-width: 300px !important;
+  }
+}
+
+/* Profile Container */
+.profile-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 5rem;
+  padding: 1rem 0rem 0rem 2rem;
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    gap: 4rem;
+    padding: 0 1rem;
+  }
+}
+
+.avatar-container {
+  flex: 0 0 auto;
+}
+
+.avatar {
+  border-radius: 50%;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  max-width: 10rem;
+}
+
+.personal-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
+.personal-info .name {
+  font-family: 'DM Sans', monospace;  /* Changed from font: to font-family: */
+  font-size: 2.1rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  padding: 0rem 0rem 0 0;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.1rem;
+  /* text-transform: uppercase; */
+}
+
+.personal-info .name-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* gap: 0.2rem; */
+}
+
+.personal-info .chinese-name {
+  font-family: 'DM Sans', serif;
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-secondary);
+  letter-spacing: 0.1rem;
+}
+
+@media (max-width: 768px) {
+  .personal-info .chinese-name {
+    font-size: 1rem;
+  }
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  section.main .content .markdown h1 { font-size: 1.75rem; }
+  section.main .content .markdown h2 { font-size: 1.35rem; }
+  section.main .content .markdown h3 { font-size: 1.15rem; }
+  
+  section.main .content .markdown p,
+  section.main .content .markdown ul li { font-size: 1rem; }
+}
+
+/* Navigation specific styles */
+.nav-links li {
+  list-style: none;  /* Remove bullets */
+  margin-left: 0;    /* Remove default list margin */
+}
+
+section.header nav ul li {
+  list-style: none;  /* Ensure no bullets in header nav */
+  margin-left: 0;
+}
+
+/* Override general list styles for navigation */
+nav ul, 
+nav ul li {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;  /* 控制图标之间的间距 */
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 0.1rem 0;
+}
+
+.social-icons .email-text {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-primary);
+  letter-spacing: 0.25px;
+  padding-right: 1rem;  /* 改用padding控制与图标的距离 */
+  border-right: 1px solid #eee;  /* 添加分隔线 */
+  margin-right: 0.6rem;  /* 分隔线右侧的空间 */
+}
+
+@media (max-width: 768px) {
+  .social-icons .email-text {
+    display: none;  /* 在小屏幕上隐藏邮箱文本 */
+  }
+}
+
+/* Publications List Styling */
+.publications-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.publication {
+  position: relative;
+  margin-bottom: 1.2rem;
+  padding-left: 0.5rem;
+}
+
+
+/* Title hover changes color instead of showing an underline */
+.title {
+  font-size: 1.1rem;
+  color: #3b81d7;
+  font-weight: 500;
+  margin: 0;
+}
+.title:hover {
+  color: #073c97;
+  font-weight: 500;
+}
+
+.authors {
+  order: 2; /* Authors second */
+  margin: 0;
+  font-size: 1rem;
+  color: var(--color-primary);
+}
+
+
+/* Venue text with a bit closer spacing */
+.venue {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;  /* 控制标签和全称之间的距离 */
+  color: #4a5568;
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+}
+
+/* Conference abbreviation tag styling */
+.venue[data-conference]::before {
+  content: attr(data-conference);
+  display: inline-block !important;
+  padding: 0.15rem 0.5rem;
+  background-color: #f0f5ff;  /* 浅蓝色背景 */
+  border: 1px solid #c7d2fe;
+  border-radius: 4px;
+  color: #3b82f6;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase; /* 确保大写显示 */
+  line-height: 1;
+  min-width: 4rem;  /* 确保最小宽度 */
+  max-width: 7rem;  /* 添加最大宽度限制 */
+  text-align: center;
+  white-space: nowrap;  /* 防止文字换行 */
+  overflow: hidden;     /* 超出部分隐藏 */
+  text-overflow: ellipsis; /* 超出显示省略号 */
+}
+
+/* 针对较长的会议名缩小字体 */
+.venue[data-conference="miccai"]::before,
+.venue[data-conference="tpami"]::before,
+.venue[data-conference="neurips"]::before {
+  font-size: 0.75rem;  /* 较长的会议名使用更小的字体 */
+  padding: 0.2rem 0.5rem;  /* 适当调整内边距 */
+}
+
+/* 移动端的响应式调整 */
+@media (max-width: 768px) {
+  .venue[data-conference]::before {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.4rem;
+    min-width: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .paper-header {
+    flex-direction: column;
+  }
+  
+}
+
+/* 添加一个简单的JavaScript helper用于conference名称展开 */
+.venue[data-conference]::before {
+  content: attr(data-conference);
+  display: inline-block !important;
+}
+
+
+
+.paper-link-icons a {
+  color: #718096;
+  font-size: 1.05rem;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 4px;
+}
+
+.paper-link-icons a:hover {
+  color: #2c5282;
+  background-color: #f7fafc;
+}
+
+.authors {
+  font-size: 1rem;
+  color: var(--color-primary);
+}
+
+/* Venue styling */
+.venue {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #4a5568;
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+}
+
+.venue[data-conference="arxiv"]::before {
+  content: "ArXiv";
+  display: inline-block;
+  text-transform: initial;
+  padding: 0.15rem 0.5rem;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  color: #666;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* Remove any conflicting styles */
+.venue[data-conference]::before {
+  display: inline-block !important;
+}
+
+/* Authors styling */
+.authors strong {
+  font-weight: 650;
+}
+
+/* General strong tag styling */
+strong {
+  font-weight: 600;
+}
+
+/* Paper header styling */
+.paper-header {
+  display: flex;
+  justify-content: space-between; /* 改为两端对齐 */
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 0.4rem;
+  position: relative; /* 添加相对定位 */
+}
+
+/* Title styling */
+.title {
+  font-size: 1.1rem;
+  color: #3b81d7;
+  font-weight: 500;
+  margin: 0;
+  margin-right: 3rem; /* 为图标预留空间 */
+}
+
+/* Paper icons styling */
+.paper-link-icons {
+  display: flex;
+  gap: 0.3rem;
+  position: absolute; /* 绝对定位 */
+  right: 0;         /* 靠右对齐 */
+  top: 0.2rem;      /* 微调垂直位置 */
+}
+
+.paper-link-icons a {
+  color: #718096;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 4px;
+}
+
+.paper-link-icons a:hover {
+  color: #2c5282;
+  background-color: #f7fafc;
+}
+
+
+
+

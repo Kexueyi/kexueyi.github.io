@@ -392,11 +392,11 @@ async function processImages() {
       IFD0: {
         Copyright: '© 2025 Xueyi Ke. All rights reserved.',
         Artist: 'Xueyi Ke',
-        WebStatement: 'https://kexueyi.com/gallery.html, https://kexueyi.netlify.app/gallery.html'
+        WebStatement: 'https://kexueyi.com/gallery.html, https://kexueyi.github.io/gallery.html'
       },
       IPTC: {
         CopyrightNotice: '© 2025 Xueyi Ke. All rights reserved.',
-        WebStatement: 'https://kexueyi.com/gallery.html, https://kexueyi.netlify.app/gallery.html'
+        WebStatement: 'https://kexueyi.com/gallery.html, https://kexueyi.github.io/gallery.html'
       }
     };
 

@@ -32,6 +32,6 @@ Disallow: /
 Crawl-delay: 10
 
 # Primary domain
-Host: https://kexueyi.com
+Host: https://kexueyi.github.io
 # Alternative domain
-# Host: https://kexueyi.netlify.app
+# Host: https://kexueyi.github.io

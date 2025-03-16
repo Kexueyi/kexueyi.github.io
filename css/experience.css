@@ -7,14 +7,14 @@
 
 .experience-logo {
     flex: 0 0 55px;
-    margin-right: 1.5rem;
+    margin-right: 1.75rem;
     /* 增加间距到 1.5rem */
 }
 
 .experience-logo img {
-    width: 55px;
+    width: 60px;
     /* 设置图片宽度 */
-    height: 55px;
+    height: 60px;
     /* 设置图片高度 */
     object-fit: contain;
 }
@@ -38,8 +38,8 @@
 .experience-content h3 {
     margin: 0;
     color: var(--text-primary);
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .experience-info {
@@ -52,24 +52,24 @@
     margin: 0;
     color: var(--text-primary);
     font-size: 13px;
-    font-weight: 600; /* 增加权重使其更突出 */
+    font-weight: 500; /* 增加权重使其更突出 */
 }
 
 .experience-duration {
     margin: 0;
     color: var(--text-tertiary);
-    font-size: 12px;
+    font-size: 12.5px;
     font-style: italic;
 }
 
 .experience-location {
     margin: 0;
     color: var(--text-tertiary);
-    font-size: 12px;
+    font-size: 12.5px;
 }
 
 /* 移动端响应式设计 */
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
     .experience-item {
         flex-direction: column;
     }
@@ -78,4 +78,4 @@
         width: 60px;
         margin: 0 0 0.5rem 0;
     }
-} */
+}

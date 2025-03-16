@@ -7,9 +7,9 @@
   --font-size-paperlink: 12px;
   --font-size-linkicon: 10px;
 
-  --font-size-papertitle: 14px;
-  --font-size-author: 13px;
-  --font-size-venue: 12px;
+  --font-size-papertitle: 14.5px;
+  --font-size-author: 13.5px;
+  --font-size-venue: 12.5px;
 }
 
 
@@ -22,7 +22,7 @@
 
 .publication-image {
   flex-shrink: 0;
-  width: 180px; /* Fixed width */
+  width: 230px; /* Fixed width */
 }
 
 .publication-image img {

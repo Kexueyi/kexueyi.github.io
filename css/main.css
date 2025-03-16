@@ -1,0 +1,68 @@
+@import 'text.css';
+@import 'header.css';
+@import 'navbar.css';
+@import 'theme.css';
+@import 'gallery.css';
+@import 'social_icons.css';
+
+body {
+  margin: 0;
+  padding-top: 50px;  /* for nav bar */
+  min-height: 100vh;  
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: 60px auto 0;
+  padding: 0 20px;
+  background-color: var(--bg-primary);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-header h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  font-size: 16px;
+}
+
+.footer-bar {
+  background-color: var(--contrast-bg-color);
+  color: var(--contrast-text-color);
+  padding: 12px 0;
+  text-align: center;
+  position: fixed;
+  bottom: -60px; /* Start hidden below viewport */
+  width: 100%;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.footer-bar.visible {
+  bottom: 0;
+  opacity: 1;
+}
+
+.footer-bar span {
+  transition: color 0.3s ease;
+}
+
+/* Ensure content doesn't get hidden behind footer */
+body {
+  margin-bottom: 50px;
+}

@@ -1,0 +1,327 @@
+.section-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.page-footer {
+  text-align: center;
+  padding: 0px 8px;
+  opacity: 0.7;
+  font-size: 12px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 12px 15px;
+  min-height: calc(100vh - 60px); 
+  will-change: transform;
+}
+
+.gallery-column {
+  flex-grow: 1;
+  width: calc(33.333% - 14px); /* 3 cols*/
+}
+
+.gallery-item {
+  width: 100%;
+  margin-bottom: 20px;
+  break-inside: avoid;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
+  background: #f0f0f000; 
+  transform: translateZ(0);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto; /* 改为 auto 以保持图片原始比例 */
+  display: block;
+  transition: opacity 0.5s ease, transform 0.3s ease;
+  opacity: 0;  
+  animation: fadeIn 0.3s ease forwards; 
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+}
+
+/* 加强图片保护 */
+.gallery-item img, .modal-content {
+  /* 现有属性 */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+  
+  /* 添加新的保护属性 */
+  pointer-events: none; /* 禁止鼠标事件 */
+  -webkit-touch-callout: none; /* 禁止iOS长按菜单 */
+
+  /* 添加更多保护属性 */
+  -khtml-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  
+  /* 防止长按保存 */
+  pointer-events: none;
+  
+  /* 添加subtle的视觉保护层 */
+  filter: drop-shadow(0 0 0 transparent);
+  will-change: filter;
+}
+
+/* 添加保护层 */
+.gallery-item::before, .modal-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* 添加初始加载时的最小高度占位 */
+.gallery-item:not(:has(img[complete])) {
+  min-height: 100px;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #f8f8f8 50%,
+    #f0f0f0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* transpaerent DIV cover */
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 98%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.5s ease, transform 0.3s ease;
+  opacity: 0;  
+  animation: fadeIn 0.3s ease forwards; 
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+}
+
+.gallery-item img.loaded { 
+  opacity: 1;
+}
+
+@keyframes fadeIn { 
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: white;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item-info {
+  opacity: 1;
+}
+
+.gallery-item-title {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.gallery-item-location {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* 修改 Modal 相关样式 */
+.modal {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0);
+  z-index: 1000;
+  cursor: zoom-out;
+  opacity: 0;
+  visibility: hidden;
+  transition: 
+    opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 0.35s, /* 延迟visibility变化直到淡出完成 */
+    background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.1s; /* 背景最后退出 */
+  justify-content: center;
+  align-items: center;
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
+  will-change: opacity, background-color;
+}
+
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+  background: rgba(0,0,0,0.9);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  transition: 
+    opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear, /* 立即改变visibility */
+    background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  cursor: zoom-out; /* 添加这行 */
+}
+
+.modal-content {
+  cursor: default; /* 添加这行 */
+  display: block;
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: 
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.05s, /* 图片稍微延迟退出 */
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.05s;
+  transform-origin: center;
+  -webkit-transform-origin: center;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+  will-change: transform, opacity;
+  /* ...existing code... */
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.modal-content-active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-wrapper::after {
+  content: "© 2025 Xueyi Ke. All rights reserved. Unauthorized use prohibited.";
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);  /* 设置初始颜色 */
+  opacity: 0;
+  transition: opacity 0.2s ease-out; /* 水印最快退出 */
+  z-index: 2;
+  pointer-events: none;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  background: none;
+  will-change: opacity;
+}
+
+.modal.active .modal-wrapper::after {
+  opacity: 1;
+  color: rgba(255, 255, 255, 0.943);
+  transition: opacity 0.3s ease 0.05s; 
+}
+
+
+
+
+
+/* 添加动画效果 */
+@keyframes watermarkFloat {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.dynamic-watermark {
+  animation: watermarkFloat 4s ease-in-out infinite;
+}
+@media (max-width: 768px) {
+  .gallery {
+    columns: 2 200px;
+  }
+  .gallery-column {
+    width: calc(50% - 10px); /* 2 col */
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    columns: 1;
+  }
+  .gallery-column {
+    width: 100%; /* 1 col */
+  }
+}

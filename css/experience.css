@@ -1,0 +1,81 @@
+.experience-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding: 0.7rem;
+}
+
+.experience-logo {
+    flex: 0 0 55px;
+    margin-right: 1.5rem;
+    /* 增加间距到 1.5rem */
+}
+
+.experience-logo img {
+    width: 55px;
+    /* 设置图片宽度 */
+    height: 55px;
+    /* 设置图片高度 */
+    object-fit: contain;
+}
+
+.experience-content {
+    flex: 1;
+    min-width: 0;
+    /* 防止内容溢出 */
+    padding-right: 5rem;
+    /* 添加右边距 */
+}
+
+/* 机构名称和时间在同一行 */
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.3rem;
+}
+
+.experience-content h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.experience-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.experience-title {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 600; /* 增加权重使其更突出 */
+}
+
+.experience-duration {
+    margin: 0;
+    color: var(--text-tertiary);
+    font-size: 12px;
+    font-style: italic;
+}
+
+.experience-location {
+    margin: 0;
+    color: var(--text-tertiary);
+    font-size: 12px;
+}
+
+/* 移动端响应式设计 */
+/* @media (max-width: 768px) {
+    .experience-item {
+        flex-direction: column;
+    }
+
+    .experience-logo {
+        width: 60px;
+        margin: 0 0 0.5rem 0;
+    }
+} */

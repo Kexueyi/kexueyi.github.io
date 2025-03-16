@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Iansui&family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap');
+
+:root {
+  --font-primary: 'Nunito', system-ui, -apple-system, sans-serif;
+  --font-size-base: 14px;
+  --font-size-h2: 20px;
+  --font-size-small: 10px;
+  --chinese-font-primary: 'Zen Maru Gothic', system-ui, -apple-system, sans-serif;
+
+  --color-link: #2070e0;
+  --color-link-hover: #1822b4;
+  --color-highlight: #ffffd0;
+}
+
+/* Base Elements */
+body,
+td,
+th,
+tr,
+p,
+a {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+}
+
+strong {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+}
+
+h2 {
+  margin: 0;
+  font-weight: 700;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h2);
+}
+
+/* Links */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+a:focus,
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration: none;
+}
+
+/* Components */
+
+
+/* Image Hover Effects */
+.one {
+  width: 160px;
+  height: 160px;
+  position: relative;
+}
+
+.two {
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
+}
+
+.fade {
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
+}
+
+/* Utilities */
+span.highlight {
+  background-color: var(--color-highlight);
+}
+
+.colored-box {
+  color: black;
+  padding: 20px;
+  display: inline-block;
+  border-radius: 10px;
+}

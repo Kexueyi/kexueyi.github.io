@@ -1,0 +1,102 @@
+:root {
+    /* Light theme variables */
+    --bg-primary: #ffffff;
+    --text-primary: #1a202c;
+    --text-secondary: #3c4452;
+    --text-tertiary: #718096;
+    --border-color: #e5e7eb;
+    --card-bg: #ffffff;
+    --nav-bg: rgba(255, 255, 255, 0.95);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --contrast-bg-color: #3c73e8;  /* Blue background for light mode */
+    --contrast-text-color: #ffffff; /* White text for light mode */
+}
+
+[data-theme="dark"] {
+    /* Dark theme variables - 调整为更适合阅读的颜色 */
+    --bg-primary: #1a1b1e;
+    --text-primary: #e8e8e8;  /* 更白 */
+    --text-secondary: #dae1e9f7; /* 更亮 */
+    --text-tertiary: #9dadc3;
+    --border-color: #2d2d2d;
+    --card-bg: #2d2d2d;
+    --nav-bg: rgba(26, 27, 30, 0.95);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --contrast-bg-color: #ffffff;  /* White background for dark mode */
+    --contrast-text-color: #1a1b1e; /* Dark text for dark mode */
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    background-color: var(--bg-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar {
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-logo {
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+    display: none;
+}
+
+.theme-toggle .sun-icon {
+    display: none;
+}
+
+.theme-toggle .moon-icon {
+    display: block;
+}

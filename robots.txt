@@ -1,0 +1,37 @@
+# robots.txt for personal website
+
+User-agent: *
+Disallow: /images/gallery/
+Allow: /images/favicon/
+Allow: /images/logo/
+Allow: /css/
+Allow: /js/
+
+# Block Netlify preview deployments from being indexed
+User-agent: *
+Disallow: /deploy-preview/*
+Disallow: /*?preview=*
+
+# Block common bots
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: Scrapy
+Disallow: /
+
+User-agent: archive.org_bot
+Disallow: /
+
+# Rate limiting
+Crawl-delay: 10
+
+# Primary domain
+Host: https://kexueyi.com
+# Alternative domain
+# Host: https://kexueyi.netlify.app

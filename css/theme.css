@@ -14,7 +14,7 @@
 
 [data-theme="dark"] {
     /* Dark theme variables - 调整为更适合阅读的颜色 */
-    --bg-primary: #1a1b1e;
+    --bg-primary: #2a2b32;
     --text-primary: #e8e8e8;  /* 更白 */
     --text-secondary: #dae1e9f7; /* 更亮 */
     --text-tertiary: #9dadc3;
@@ -22,7 +22,7 @@
     --card-bg: #2d2d2d;
     --nav-bg: rgba(26, 27, 30, 0.95);
     --shadow-color: rgba(0, 0, 0, 0.3);
-    --contrast-bg-color: #ffffff;  /* White background for dark mode */
+    --contrast-bg-color: #ffffffc0;  /* White background for dark mode */
     --contrast-text-color: #1a1b1e; /* Dark text for dark mode */
 }
 
@@ -99,4 +99,9 @@ body {
 
 .theme-toggle .moon-icon {
     display: block;
+}
+
+/* Style for Tsinghua Logo in dark mode */
+[data-theme="dark"] .experience-logo img[alt="Tsinghua Logo"] {
+    filter: brightness(1.8); /* Increase brightness to make it more bright */
 }

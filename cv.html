@@ -5,6 +5,9 @@
     <title>Ke Xueyi - CV</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/text.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <style>
         html, body {
             margin: 0;
@@ -44,9 +47,11 @@
             display: block;
         }
 
+        /* 修改cv-update-date的样式 */
         #cv-update-date {
-            color: var(--text-tertiary);
+            color: var(--text-primary);
             font-size: 13px;
+            font-family: var(--font-primary); /* 使用主页面的字体 */
         }
     </style>
 </head>
@@ -67,14 +72,18 @@
                 const lastModified = response.headers.get('last-modified');
                 const date = new Date(lastModified);
                 
-                const formatted = date.toLocaleDateString('en-GB', {
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric'
-                });
+                // 使用与主页面相同的日期格式化函数
+                const formatDate = (date) => {
+                    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    const day = date.getDate().toString().padStart(2, '0');
+                    const month = months[date.getMonth()];
+                    const year = date.getFullYear();
+                    return `${day}/${month}/${year}`;
+                };
                 
                 document.getElementById('cv-update-date').textContent = 
-                    `Last Updated: ${formatted}`;
+                    `Last Updated: ${formatDate(date)}`;
                 
             } catch (error) {
                 console.error('Error fetching CV metadata:', error);

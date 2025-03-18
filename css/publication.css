@@ -99,18 +99,19 @@
 }
 
 .author-link:hover {
-  color: #2268ae;
+  color: #0f6bd5;
 }
 
 .author-link:hover::after {
   width: 95%; 
+  background-color: #3b82f6; 
 }
 
 .author-self {
   color: var(--text-primary);
   font-weight: 525;
   text-decoration: underline;
-  text-underline-offset: 2.7px; 
+  text-underline-offset: 3px; 
   text-decoration-thickness: 1.2px;
   transition: none; 
   font-size: var(--font-size-author);

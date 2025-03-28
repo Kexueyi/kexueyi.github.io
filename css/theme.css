@@ -56,52 +56,145 @@ body {
 
 
 /* Theme toggle button */
-.theme-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    cursor: pointer;
+.theme-toggle-container {
     display: flex;
     align-items: center;
+    margin-right: 15px;
+}
+
+.theme-toggle {
+    position: fixed;
+    right: 80px; /* 向左移动一些，更靠近页面中心 */
+    bottom: 20px;
+    display: flex;
     justify-content: center;
-    box-shadow: 0 2px 8px var(--shadow-color);
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
     z-index: 1000;
-    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, bottom 0.3s ease;
+}
+
+[data-theme="light"] .theme-toggle {
+    background-color: rgba(40, 44, 52, 0.85);
+}
+
+[data-theme="light"] .theme-toggle:hover {
+    background-color: rgba(30, 33, 40, 0.95);
+}
+
+[data-theme="dark"] .theme-toggle {
+    background-color: rgba(240, 240, 245, 0.85);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background-color: rgba(250, 250, 255, 0.95);
 }
 
 .theme-toggle:hover {
-    transform: scale(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .theme-toggle svg {
     width: 20px;
     height: 20px;
-    transition: transform 0.3s ease;
+    stroke-width: 2px;
+}
+
+/* 图标颜色 */
+[data-theme="light"] .theme-toggle .moon-icon {
+    display: block;
+    color: #f8f8f8;
+}
+
+[data-theme="light"] .theme-toggle .sun-icon {
+    display: none;
 }
 
 [data-theme="dark"] .theme-toggle .sun-icon {
     display: block;
+    color: #222;
 }
 
 [data-theme="dark"] .theme-toggle .moon-icon {
     display: none;
 }
 
-.theme-toggle .sun-icon {
-    display: none;
-}
-
-.theme-toggle .moon-icon {
-    display: block;
+/* Dark theme styling for footer bar and button */
+.footer-bar {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
 }
 
 /* Style for Tsinghua Logo in dark mode */
 [data-theme="dark"] .experience-logo img[alt="Tsinghua Logo"] {
     filter: brightness(1.8); /* Increase brightness to make it more bright */
+}
+
+/* 为论文标题添加主题颜色变化 */
+.paper-title {
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .paper-title {
+    color: var(--text-primary); /* 在深色模式下使用主文本颜色（白色） */
+}
+
+[data-theme="dark"] .paper-title:hover {
+    color: #63a7ff; /* 深色模式下悬停时使用更亮的蓝色 */
+}
+
+/* 深色模式下链接的样式调整 */
+[data-theme="dark"] a {
+    color: #6ba5ff; /* 更亮的蓝色链接 */
+    transition: color 0.25s ease;
+}
+
+[data-theme="dark"] a:hover {
+    color: #8bbaff; /* 悬停时更亮 */
+}
+
+/* 深色模式下作者链接样式 */
+[data-theme="dark"] .author-link {
+    color: #b8c7e0; /* 更亮的作者链接颜色 */
+}
+
+[data-theme="dark"] .author-link:hover {
+    color: #d7e3f7; /* 悬停时甚至更亮 */
+}
+
+[data-theme="dark"] .author-link::after {
+    background-color: #6ba5ff; /* 下划线颜色更亮 */
+}
+
+[data-theme="dark"] .author-link:hover::after {
+    background-color: #8bbaff; /* 悬停时下划线颜色也更亮 */
+}
+
+/* 深色模式下引用按钮 */
+[data-theme="dark"] .paper-link {
+    color: #b8c7e0;
+    border-color: #4a5568;
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .paper-link:hover {
+    color: #d2e0f7; /* 较亮但不过亮的颜色 */
+    background: linear-gradient(135deg, #2d3748 0%, #3a4a69 100%);
+    border-color: #5a6c8f;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* 深色模式下 venue-info 颜色调整 */
+[data-theme="dark"] .venue-info {
+    color: #b8c7e0; /* 更亮的会议信息颜色 */
 }

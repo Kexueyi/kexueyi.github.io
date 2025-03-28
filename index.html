@@ -43,24 +43,26 @@
             style="width:100%;max-width:860px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
             <tbody>
               <tr style="padding:0px">
-                <td style="padding:2.5%;width:63%;vertical-align:middle">
+                <td style="padding:2.5%;width:63%;vertical-align:middle" class="intro-cell">
                   <p class="name-container">
                     <span class="name">Xueyi Ke</span>
                     <span class="chinese-name">(柯学奕)</span>
 
                   </p>
-                  <p>Hello! I am a master student from
-                    <a href="https://www.ntu.edu.sg">Nanyang Technological University</a>,
-                    supervised by Prof. <a href="https://personal.ntu.edu.sg/bihan.wen/">Bihan Wen</a>.
-                    My research focuses on enhancing model transparency and performance through interdisciplinary
-                    approaches.
-                  </p>
-                  <p>Previously, I earned my undergraduate degree in Electrical Engineering from
-                    <a href="https://en.whu.edu.cn">Wuhan University</a>.
-                    I have also worked as a research intern at <a href="https://www.tsinghua.edu.cn">Tsinghua
-                      University</a>.
-                  </p>
-                  <p style="text-align:center">
+                  <div class="intro-text">
+                    <p>Hello! I am a master student from
+                      <a href="https://www.ntu.edu.sg">Nanyang Technological University</a>,
+                      supervised by Prof. <a href="https://personal.ntu.edu.sg/bihan.wen/">Bihan Wen</a>.
+                      My research focuses on enhancing model transparency and performance through interdisciplinary
+                      approaches.
+                    </p>
+                    <p>Previously, I earned my undergraduate degree in Electrical Engineering from
+                      <a href="https://en.whu.edu.cn">Wuhan University</a>.
+                      I have also worked as a research intern at <a href="https://www.tsinghua.edu.cn">Tsinghua
+                        University</a>.
+                    </p>
+                  </div>
+                  <p style="text-align:center" class="contact-links">
                     <!-- TODO: Add icons -->
                     <a href="mailto:xke001@e.ntu.edu.sg">Email</a> &nbsp;/&nbsp;
                     <a href="https://scholar.google.com/citations?user=D5G__TwAAAAJ&hl=en">Scholar</a> &nbsp;/&nbsp;
@@ -69,7 +71,7 @@
                     <a href="cv.html" id="cv-link">CV</a>
                   </p>
                 </td>
-                <td style="padding:2.5%;width:37%;max-width:37%">
+                <td style="padding:2.5%;width:37%;max-width:37%" class="avatar-cell">
                   <div class="avatar-container">
                     <img src="images/KeXueyi.png" alt="Xueyi Ke" class="avatar" draggable="false"
                       oncontextmenu="return false;" loading="lazy" decoding="async">
@@ -111,8 +113,9 @@
                           image: 'images/publications/cvpr25infant.png',
 
                           links: {
+                            // project: './discover_vis/index.html',
                             paper: 'https://arxiv.org/abs/2501.05205',
-                            code: ''
+                            code: 'https://github.com/Kexueyi/discover_infant_vis'
                           },
                           bibtex: 
                           `@inproceedings{ke2025discovering,
@@ -131,9 +134,9 @@
                           image: 'images/publications/miccai24cbm.png',
 
                           links: {
+                            project: '',
                             paper: 'https://arxiv.org/abs/2407.06600',
                             code: 'https://github.com/PangWinnie0219/align_concept_cbm',
-                            project: '',
                           },
                           bibtex:
                             `@inproceedings{pang2024integrating,
@@ -220,8 +223,9 @@
   </table>
 
   <div class="footer-bar">
-    <span>© 2025 Xueyi Ke. All rights reserved. </span>
-    <span id="last-updated"></span>
+    <span>© Xueyi Ke</span>
+    <span id="last-updated">  </span>
+    <span>*Adapted from this <a href="https://jonbarron.info" style="text-decoration: none; color: inherit; font-size: 1em;"  onmouseout="this.style.color='inherit'">template</a></span>
   </div>
 
   <script src="js/navbar.js"></script>

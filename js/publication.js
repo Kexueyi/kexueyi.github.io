@@ -71,10 +71,11 @@ export class Publication {
     `;
   }
   
+  //  define icons with captions
   static createLinks({ links, bibtex }) {
     return `
       <div class="paper-links">
-        ${links.project ? `<a href="${links.project}" class="paper-link" data-type="project">Page</a>` : ''}
+        ${links.project ? `<a href="${links.project}" class="paper-link" data-type="project">Project</a>` : ''}
         ${links.code ? `<a href="${links.code}" class="paper-link" data-type="code">Code</a>` : ''}
         ${links.paper ? `<a href="${links.paper}" class="paper-link" data-type="paper">Paper</a>` : ''}
         ${bibtex ? `<button class="paper-link cite-button" data-type="cite" data-bibtex='${bibtex.replace(/'/g, "\\'")}'>Cite</button>` : ''}

@@ -1,7 +1,7 @@
 function initTheme() {
-    const themeToggle = document.createElement('button');
-    themeToggle.className = 'theme-toggle';
-    themeToggle.innerHTML = `
+  const themeToggle = document.createElement('button');
+  themeToggle.className = 'theme-toggle';
+  themeToggle.innerHTML = `
       <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
       </svg>
@@ -18,21 +18,55 @@ function initTheme() {
       </svg>
     `;
 
-    // Get theme from localStorage or system preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const savedTheme = localStorage.getItem('theme');
-    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', theme);
+  // Get theme from localStorage or system preference
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const savedTheme = localStorage.getItem('theme');
+  const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+  
+  // // 设置初始主题
+  document.documentElement.setAttribute('data-theme', theme);
+  
+  // 确保在初始化时显示正确的图标
+  if (theme === 'dark') {
+    themeToggle.querySelector('.moon-icon').style.display = 'none';
+    themeToggle.querySelector('.sun-icon').style.display = 'block';
+  } else {
+    themeToggle.querySelector('.sun-icon').style.display = 'none';
+    themeToggle.querySelector('.moon-icon').style.display = 'block';
+  }
 
-    // Toggle theme
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
+  // Toggle theme
+  themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+  });
 
-    document.body.appendChild(themeToggle);
+  // Add the toggle to the body for fixed positioning
+  document.body.appendChild(themeToggle);
+  
+  // Function to update the toggle position when footer visibility changes
+  function updateTogglePosition() {
+    const footerBar = document.querySelector('.footer-bar');
+    if (footerBar) {
+      const footerHeight = footerBar.offsetHeight;
+      const footerVisible = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 10;
+      
+      if (footerVisible) {
+        themeToggle.style.bottom = `${footerHeight + 10}px`;
+      } else {
+        themeToggle.style.bottom = '20px';
+      }
+    }
+  }
+  
+  // Update position on scroll and resize
+  window.addEventListener('scroll', updateTogglePosition);
+  window.addEventListener('resize', updateTogglePosition);
+  
+  // Initial position update
+  updateTogglePosition();
 }
 
 document.addEventListener('DOMContentLoaded', initTheme);

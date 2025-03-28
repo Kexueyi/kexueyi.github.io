@@ -1,4 +1,4 @@
-# robots.txt for personal website
+# robots.txt for xueyi's personal website
 
 User-agent: *
 Disallow: /images/gallery/
@@ -6,6 +6,7 @@ Allow: /images/favicon/
 Allow: /images/logo/
 Allow: /css/
 Allow: /js/
+Sitemap: https://kexueyi.github.io/sitemap.xml
 
 # Block Netlify preview deployments from being indexed
 User-agent: *

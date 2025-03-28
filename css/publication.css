@@ -40,8 +40,9 @@
 
 /* Header: Conference Tag + Title */
 .paper-header {
-  display: inline; /* Changed from flex to inline */
+  display: block; /* Changed from inline to block */
   line-height: 1.4;
+  margin-bottom: 0.3rem;
 }
 
 .venue-tag {
@@ -58,16 +59,18 @@
 }
 
 .paper-title {
-  display: inline; /* Changed to inline */
   font-size: var(--font-size-papertitle);
   font-weight: 500;
-  color: var(--text-primary);
+  /* color: #3676dc; */
+  color: #000000;
+
   text-decoration: none;
   transition: color 0.25s;
 }
 
 .paper-title:hover {
   color: #0f6bd5;
+  /*   color: #0e38ab; */
 }
 
 /* Authors Section */
@@ -176,22 +179,27 @@
 }
 
 /* Icon styles for different link types */
-.paper-link[data-type="project"]::before {
+.paper-link[data-type="project"]::before, 
+.paper-link[data-type="code"]::before, 
+.paper-link[data-type="paper"]::before, 
+.paper-link[data-type="cite"]::before {
   margin-right: 4px;
+  font-size: var(--font-size-linkicon);
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.paper-link[data-type="project"]::before {
   content: var(--icon-project);
-  font-size:  var(--font-size-linkicon);
 }
 
 .paper-link[data-type="code"]::before {
-  margin-right: 4px;
   content: var(--icon-code);
-  font-size: var(--font-size-linkicon);
 }
 
 .paper-link[data-type="paper"]::before {
-  margin-right: 4px;
   content: var(--icon-paper);
-  font-size:  var(--font-size-linkicon);
 }
 
 .paper-link[data-type="cite"]::before {

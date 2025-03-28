@@ -391,3 +391,66 @@
     visibility: hidden; /* Add this line */
   }
 }
+
+/* 添加深色主题下引用弹出窗口的样式 */
+[data-theme="dark"] .citation-popup {
+  background: #272a36;
+  color: #e3e7ef;
+  border: 1px solid #3a3f4b;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  opacity: 1; /* 确保初始状态是完全显示的 */
+  transition: opacity 0.15s ease-out; /* 添加过渡效果 */
+}
+
+[data-theme="dark"] .popup-backdrop.show {
+  background: rgba(0, 0, 0, 0.6);
+  transition: background-color 0.3s ease-out; /* 添加过渡效果 */
+}
+
+[data-theme="dark"] .citation-content {
+  background: #1e2129;
+  color: #b8c7e0;
+  border: 1px solid #383c4a;
+}
+
+[data-theme="dark"] .popup-close {
+  background: #383c4a;
+  color: #e3e7ef;
+}
+
+[data-theme="dark"] .popup-close:hover {
+  background: #4a4f5e;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .popup-button {
+  background: #2d3039;
+  color: #b8c7e0;
+  border: 1px solid #3a3f4b;
+}
+
+[data-theme="dark"] .popup-button:hover {
+  background: linear-gradient(135deg, #2d3748 0%, #3a4a69 100%);
+  border-color: #5a6c8f;
+  color: #d2e0f7;
+}
+
+[data-theme="dark"] .popup-copy[data-copied]::after {
+  background: #4a5568;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .popup-header h3 {
+  color: #d2e0f7;
+}
+
+/* 添加深色主题下引用弹出窗口退出动画的样式 */
+[data-theme="dark"] .citation-popup.hide {
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+
+[data-theme="dark"] .popup-backdrop.hide {
+  background: rgba(0, 0, 0, 0);
+  transition: background-color 0.3s ease-out;
+}

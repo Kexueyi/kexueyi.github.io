@@ -64,7 +64,7 @@ body {
 
 .theme-toggle {
     position: fixed;
-    right: 80px; /* 向左移动一些，更靠近页面中心 */
+    right: 30px; /* 向左移动一些，更靠近页面中心 */
     bottom: 20px;
     display: flex;
     justify-content: center;
@@ -168,7 +168,7 @@ body {
 }
 
 [data-theme="dark"] .author-link:hover {
-    color: #d7e3f7; /* 悬停时甚至更亮 */
+    color: #6ba5ff; /* 悬停时甚至更亮 */
 }
 
 [data-theme="dark"] .author-link::after {
@@ -176,7 +176,7 @@ body {
 }
 
 [data-theme="dark"] .author-link:hover::after {
-    background-color: #8bbaff; /* 悬停时下划线颜色也更亮 */
+    background-color: #6ba5ff; /* 悬停时下划线颜色也更亮 */
 }
 
 /* 深色模式下引用按钮 */
@@ -188,7 +188,7 @@ body {
 
 [data-theme="dark"] .paper-link:hover {
     color: #d2e0f7; /* 较亮但不过亮的颜色 */
-    background: linear-gradient(135deg, #2d3748 0%, #3a4a69 100%);
+    background: linear-gradient(135deg, #2d3748 0%, #3a4a69 10%);
     border-color: #5a6c8f;
     transform: translateY(-1px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
@@ -196,5 +196,5 @@ body {
 
 /* 深色模式下 venue-info 颜色调整 */
 [data-theme="dark"] .venue-info {
-    color: #b8c7e0; /* 更亮的会议信息颜色 */
+    color: #b8c7e0e2; /* 更亮的会议信息颜色 */
 }

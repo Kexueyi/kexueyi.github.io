@@ -23,24 +23,37 @@ function initTheme() {
   const savedTheme = localStorage.getItem('theme');
   const theme = savedTheme || (prefersDark ? 'dark' : 'light');
   
-  // // 设置初始主题
+  // 设置初始主题
   document.documentElement.setAttribute('data-theme', theme);
   
   // 确保在初始化时显示正确的图标
   if (theme === 'dark') {
+    // 深色模式下显示太阳图标（表示可切换到亮色模式）
     themeToggle.querySelector('.moon-icon').style.display = 'none';
     themeToggle.querySelector('.sun-icon').style.display = 'block';
   } else {
+    // 亮色模式下显示月亮图标（表示可切换到深色模式）
     themeToggle.querySelector('.sun-icon').style.display = 'none';
     themeToggle.querySelector('.moon-icon').style.display = 'block';
   }
 
   // Toggle theme
   themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    // 更新主题
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    // 切换图标显示
+    if (newTheme === 'dark') {
+      themeToggle.querySelector('.moon-icon').style.display = 'none';
+      themeToggle.querySelector('.sun-icon').style.display = 'block';
+    } else {
+      themeToggle.querySelector('.sun-icon').style.display = 'none';
+      themeToggle.querySelector('.moon-icon').style.display = 'block';
+    }
   });
 
   // Add the toggle to the body for fixed positioning

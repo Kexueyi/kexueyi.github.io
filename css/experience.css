@@ -1,7 +1,14 @@
+.experience-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+}
+
 .experience-item {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     padding: 0.7rem;
 }
 
@@ -18,6 +25,15 @@
     /* 设置图片高度 */
     object-fit: contain;
 }
+
+/* 为阿里巴巴logo添加特定样式 */
+/* .experience-logo img[alt="Alibaba Logo"] {
+    object-fit: cover;
+    object-position: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+} */
 
 .experience-content {
     flex: 1;
@@ -70,12 +86,25 @@
 
 /* 移动端响应式设计 */
 @media (max-width: 768px) {
+    .experience-container {
+        grid-template-columns: 1fr;
+    }
+
     .experience-item {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .experience-logo {
         width: 60px;
-        margin: 0 0 0.5rem 0;
+        margin: 0 1.75rem 0 0;
     }
+}
+
+.experience-section-title {
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
 }

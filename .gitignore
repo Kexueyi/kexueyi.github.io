@@ -3,4 +3,5 @@ gallery.html
 netlify.toml
 .DS_Store
 .vscode
-discover_vis
+webpage-discover-hidden-visual-concepts/*
+!webpage-discover-hidden-visual-concepts/index.html

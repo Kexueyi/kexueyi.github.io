@@ -1,38 +1,30 @@
 # robots.txt for xueyi's personal website
 
 User-agent: *
+Allow: /
 Disallow: /images/gallery/
+
+# Allow important resources
 Allow: /images/favicon/
 Allow: /images/logo/
 Allow: /css/
 Allow: /js/
-Sitemap: https://kexueyi.github.io/sitemap.xml
 
-# Block Netlify preview deployments from being indexed
-User-agent: *
-Disallow: /deploy-preview/*
-Disallow: /*?preview=*
-
-# Block common bots
+# Block AI training bots only
 User-agent: GPTBot
 Disallow: /
 
 User-agent: CCBot
 Disallow: /
 
+# Allow Google to index images (important for SEO)
 User-agent: Googlebot-Image
-Disallow: /
+Allow: /images/favicon/
+Allow: /images/logo/
+Disallow: /images/gallery/
 
-User-agent: Scrapy
-Disallow: /
+# Reasonable crawl delay
+Crawl-delay: 1
 
-User-agent: archive.org_bot
-Disallow: /
-
-# Rate limiting
-Crawl-delay: 10
-
-# Primary domain
-Host: https://kexueyi.github.io
-# Alternative domain
-# Host: https://kexueyi.github.io
+# Sitemap
+Sitemap: https://kexueyi.github.io/sitemap.xml

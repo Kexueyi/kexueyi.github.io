@@ -83,15 +83,75 @@ export class Publication {
     `;
   }
   
+  static formatBibtex(bibtex) {
+    // Remove leading/trailing whitespace
+    let formatted = bibtex.trim();
+    
+    // Split into lines and clean each line
+    let lines = formatted.split('\n').map(line => line.trim()).filter(line => line);
+    
+    if (lines.length === 0) return bibtex;
+    
+    let result = [];
+    let indentLevel = 0;
+    const indent = '  '; // 2 spaces for indentation
+    
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i];
+      
+      // Handle opening brace (entry start)
+      if (line.match(/^@\w+\s*\{/)) {
+        result.push(line);
+        indentLevel = 1;
+        continue;
+      }
+      
+      // Handle closing brace (entry end)
+      if (line === '}' || line === '},') {
+        indentLevel = 0;
+        result.push(line);
+        continue;
+      }
+      
+      // Handle field lines
+      if (line.includes('=')) {
+        // Split on first '=' to handle cases like "title = {A = B}"
+        let [key, ...valueParts] = line.split('=');
+        let value = valueParts.join('=');
+        
+        // Clean up key and value
+        key = key.trim();
+        value = value.trim();
+        
+        // Remove trailing comma if present
+        if (value.endsWith(',')) {
+          value = value.slice(0, -1).trim();
+        }
+        
+        // Format the line with proper spacing
+        let formattedLine = `${indent.repeat(indentLevel)}${key} = ${value}`;
+        
+        // Add comma for all lines except the last field
+        if (i < lines.length - 1 && !lines[i + 1].match(/^\s*\}/) && lines[i + 1] !== '}') {
+          formattedLine += ',';
+        }
+        
+        result.push(formattedLine);
+      } else {
+        // Handle other lines (shouldn't normally happen in well-formed bibtex)
+        result.push(`${indent.repeat(indentLevel)}${line}`);
+      }
+    }
+    
+    return result.join('\n');
+  }
+  
   static showCitationPopup(bibtex) {
     const popup = document.createElement('div');
     popup.className = 'citation-popup';
     
-    // Format the bibtex string to preserve indentation
-    const formattedBibtex = bibtex
-      .split('\n')
-      .map(line => line.trim())  // Remove extra spaces
-      .join('\n');  // Rejoin with newlines
+    // Format the bibtex with proper indentation and structure
+    const formattedBibtex = this.formatBibtex(bibtex);
     
     // Escape HTML but preserve whitespace
     const escapedBibtex = formattedBibtex
@@ -125,7 +185,8 @@ export class Publication {
   
     popup.querySelector('.popup-copy').addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText(bibtex);
+        // Copy the formatted version
+        await navigator.clipboard.writeText(formattedBibtex);
         const copyBtn = popup.querySelector('.popup-copy');
         copyBtn.setAttribute('data-copied', 'true');
         
@@ -140,9 +201,9 @@ export class Publication {
     });
   
     popup.querySelector('.popup-download').addEventListener('click', () => {
-      Publication.downloadBibtex(bibtex);
+      Publication.downloadBibtex(formattedBibtex);
     });
-  
+
     // Create and append backdrop with click handler
     const backdrop = document.createElement('div');
     backdrop.className = 'popup-backdrop';

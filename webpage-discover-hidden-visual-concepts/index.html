@@ -2,134 +2,521 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpage Discover Hidden Visual Concepts - TBD</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        .container {
-            text-align: center;
-            max-width: 600px;
-            padding: 3rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.3s forwards;
-        }
-
-        .tbd {
-            font-size: 4rem;
-            font-weight: 800;
-            margin: 2rem 0;
-            letter-spacing: 0.1em;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        }
-
-        .description {
-            font-size: 1.1rem;
-            opacity: 0.8;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.9s forwards;
-        }
-
-        .status {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            font-weight: 600;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            opacity: 0;
-            animation: fadeInUp 1s ease 1.2s forwards;
-        }
-
-        .footer {
-            margin-top: 3rem;
-            font-size: 0.9rem;
-            opacity: 0.7;
-            opacity: 0;
-            animation: fadeInUp 1s ease 1.5s forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Discovering Hidden Visual Concepts in Infant Learning - CVPR 2025</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Inter:wght@300;400;500;600;700" rel="stylesheet">
+    
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="./static/css/citations.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Webpage Discover Hidden Visual Concepts</h1>
-        <p class="subtitle">by Kexueyi</p>
-        
-        <div class="tbd pulse">TBD</div>
-        
-        <p class="description">
-            This page is currently under development. The project webpage will be available soon.
-        </p>
-        
-        <div class="status">🚧 Coming Soon</div>
-        
-        <div class="footer">
-            URL verification successful ✓
+    <!-- Navigation -->
+    <nav class="navbar is-transparent" role="navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
-    </div>
+        <div class="navbar-menu">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                <a class="navbar-item" href="#abstract">Abstract</a>
+                <a class="navbar-item" href="#research-question">Motivation</a>
+                <a class="navbar-item" href="#method">Method</a>
+                <a class="navbar-item" href="#contributions">Contributions</a>
+                <a class="navbar-item" href="#bibtex">BibTeX</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <div class="glass-container">
+                            <h1 class="publication-title">
+                                Discovering Hidden Visual Concepts Beyond Linguistic Input in Infant Learning
+                            </h1>
+                            <div class="publication-venue">
+                                CVPR 2025 
+                            </div>
+                            <div class="publication-authors">
+                                <span class="author-block">
+                                    <a href="https://kexueyi.github.io">Xueyi Ke</a><sup>1</sup>,
+                                </span>
+                                <span class="author-block">
+                                    <a href="https://hellosatoshi.github.io">Satoshi Tsutsui</a><sup>1</sup>,
+                                </span>
+                                <span class="author-block">
+                                    <a href="https://yayzhang.github.io/mypage/">Yayun Zhang</a><sup>2</sup>,
+                                </span>
+                                <span class="author-block">
+                                    <a href="https://personal.ntu.edu.sg/bihan.wen/">Bihan Wen</a><sup>1</sup>
+                                </span>
+                            </div>
+                            <div class="publication-authors">
+                                <span class="author-block"><sup>1</sup>Nanyang Technological University</span>
+                                <span class="author-block"><sup>2</sup>The Max Planck Institute for Psycholinguistics</span>
+                            </div>
+
+                            
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="./resources/2501.05205v4.pdf" class="button is-normal is-rounded">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/abs/2501.05205" class="button is-normal is-rounded">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://github.com/Kexueyi/discover-hidden-visual-concepts" class="button is-normal is-rounded">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="./resources/poster_infant_cvpr25.pdf" class="button is-normal is-rounded">
+                                        <span class="icon">
+                                            <i class="far fa-images"></i>
+                                        </span>
+                                        <span>Poster</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Abstract Section -->
+    <section class="section" id="abstract">
+        <div class="container is-max-desktop">
+            <div class="content-section fade-in" style="padding: 3rem;">
+                <h2 class="section-title">Abstract</h2>
+                <div class="abstract-content">
+                    <p>
+                        How do infants learn to understand the world around them? This fundamental question drives our research into discovering hidden visual concepts in infant behavior that go beyond what we can easily describe with words.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        We present a novel computational approach that automatically discovers meaningful behavioral patterns in infant-object interactions without requiring predefined labels or linguistic descriptions. Our method analyzes video data of infants playing with toys and uncovers subtle but important behavioral concepts—like different ways of grasping, exploring, or manipulating objects—that traditional analysis methods might miss.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        Through extensive experiments on real infant behavior datasets, we demonstrate that our approach can identify previously unknown patterns in how infants learn and interact with their environment. These discoveries provide new insights into early cognitive development and open exciting possibilities for understanding infant learning mechanisms.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Question Section -->
+    <section class="section" id="research-question">
+        <div class="container is-max-desktop">
+            <div class="content-section fade-in" style="padding: 3rem;">
+                <h2 class="section-title">Motivation</h2>
+                <div class="research-question-content">
+                    <div class="columns is-vcentered">
+                        <div class="column is-5">
+                            <div style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 12px;">
+                                <img src="./resources/computational_model_placeholder.png" alt="Computational Model" style="max-width: 100%; height: auto; border-radius: 8px;">
+                                <h4 style="margin-top: 1rem; font-weight: 600; color: #333;">Computational Model</h4>
+                            </div>
+                        </div>
+                        <div class="column is-2" style="text-align: center;">
+                            <div style="font-size: 2rem; color: #667eea; font-weight: bold;">vs</div>
+                        </div>
+                        <div class="column is-5">
+                            <div style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 12px;">
+                                <img src="./resources/biological_infant_placeholder.png" alt="Biological Infant" style="max-width: 100%; height: auto; border-radius: 8px;">
+                                <h4 style="margin-top: 1rem; font-weight: 600; color: #333;">Biological Infant</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin: 2rem 0; padding: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; color: white;">
+                        <h3 style="font-size: 1.4rem; margin-bottom: 1rem; font-weight: 600;">🔬 Our Research Question</h3>
+                        <p style="font-size: 1.1rem; line-height: 1.6; margin: 0;">
+                            When a multimodality model, trained on infant daily experience, will its vision encoder develop representations beyond its linguistic input, like real infants?
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; border-left: 4px solid #4ecdc4;">
+                        <p style="margin-bottom: 1rem;">
+                            In this paper, we investigated such an infant model<sup><span class="citation" data-ref="vong2024">[1]<div class="citation-hover"><strong>Wai Keen Vong et al.</strong> "Grounded language acquisition through the eyes and ears of a single child." <em>Science</em> 383, 504-511 (2024). DOI:10.1126/science.adi1374<div class="return-icon" onclick="scrollToReference('reference-vong2024')"></div></div></span></sup> based on cognitive science that infants develop visual understanding earlier than language acquisition. We believe similar phenomenon will also happen in this computational model.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contributions Section -->
+    <section class="section" id="contributions">
+        <div class="container is-max-desktop">
+            <div class="content-section fade-in" style="padding: 3rem;">
+                <h2 class="section-title">Key Contributions</h2>
+                <div class="contributions-content">
+                    <div class="columns is-multiline">
+                        <div class="column is-4">
+                            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); height: 100%; border-left: 4px solid #ff6b6b;">
+                                <div style="background: #ff6b6b; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 1rem;">1</div>
+                                <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; color: #ff6b6b;">Visual Beyond Text</h4>
+                                <p style="color: #666; line-height: 1.6;">
+                                    Computational models' visual understanding develops beyond text, similar to real infants.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="column is-4">
+                            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); height: 100%; border-left: 4px solid #4ecdc4;">
+                                <div style="background: #4ecdc4; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 1rem;">2</div>
+                                <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; color: #4ecdc4;">Training-Free Classification</h4>
+                                <p style="color: #666; line-height: 1.6;">
+                                    Single neurons can be utilized for training-free classification and reach satisfactory performance.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="column is-4">
+                            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); height: 100%; border-left: 4px solid #45b7d1;">
+                                <div style="background: #45b7d1; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 1rem;">3</div>
+                                <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; color: #45b7d1;">Representation Analysis</h4>
+                                <p style="color: #666; line-height: 1.6;">
+                                    General representations (CLIP, ResNet) show differences in abstract concepts but share similar low-level patterns.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method Section -->
+    <section class="section" id="method">
+        <div class="container is-max-desktop">
+            <div class="content-section fade-in" style="padding: 3rem;">
+                <h2 class="section-title">Methodology</h2>
+                <div class="method-content">
+                    
+                    <!-- Method 1: Discover Visual Concepts -->
+                    <div style="margin-bottom: 3rem;">
+                        <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--primary-color);">
+                            1. Discover Visual Concepts from Visual Representations
+                        </h3>
+                        
+                        <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                            <p style="margin-bottom: 1rem;">
+                                We leverage CLIP-Dissect<sup><span class="citation" data-ref="oikarinen2023">[2]<div class="citation-hover"><strong>Oikarinen, Tuomas, and Tsui-Wei Weng.</strong> "CLIP-Dissect: Automatic Description of Neuron Representations in Deep Vision Networks." <em>ICLR 2023 Spotlight</em>.<div class="return-icon" onclick="scrollToReference('reference-oikarinen2023')"></div></div></span></sup> to 'label' each neuron with corresponding semantic concepts.
+                            </p>
+                            <p style="margin-bottom: 1rem;">
+                                Discovered visual concepts from visual representation are categorized as <strong>in-vocabulary</strong> or <strong>out-of-vocabulary</strong>.
+                            </p>
+                            <p style="margin-bottom: 1rem;">
+                                Many <em>out-of-vocabulary</em> visual concepts emerge in specific neurons.
+                            </p>
+                            <p>
+                                We rate visual concepts from a cognitive perspective using <strong>Age of Acquisition (AoA)</strong><sup><span class="citation" data-ref="kuperman2012">[3]<div class="citation-hover"><strong>Kuperman, V., Stadthagen-Gonzalez, H., & Brysbaert, M.</strong> (2012). Age-of-acquisition ratings for 30,000 English words. <em>Behavior research methods</em>, 44, 978-990.<div class="return-icon" onclick="scrollToReference('reference-kuperman2012')"></div></div></span></sup>.
+                            </p>
+                        </div>
+
+                        <div style="text-align: center; margin: 2rem 0;">
+                            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                                <img src="./resources/aoa_figure_placeholder.png" alt="AoA Analysis" style="max-width: 100%; height: auto; border-radius: 8px;">
+                                <p style="margin-top: 1rem; font-style: italic; color: #666; font-size: 0.95rem;">
+                                    <strong>Figure:</strong> Complex patterns in out-of-vocabulary concepts suggest visual learning beyond text supervision.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Method 2: Training-Free Classification -->
+                    <div style="margin-bottom: 3rem;">
+                        <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--primary-color);">
+                            2. A Training-Free Neuron-Based Classification Framework
+                        </h3>
+                        
+                        <div style="text-align: center; margin: 2rem 0;">
+                            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                                <img src="./resources/classification_framework_placeholder.png" alt="Classification Framework" style="max-width: 100%; height: auto; border-radius: 8px;">
+                                <p style="margin-top: 1rem; font-style: italic; color: #666; font-size: 0.95rem;">
+                                    <strong>Figure:</strong> Our training-free neuron-based classification framework leverages discovered visual concepts for zero-shot classification tasks.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Method 3: Representation Analysis -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--primary-color);">
+                            3. Representation Difference Analysis
+                        </h3>
+                        
+                        <div class="columns">
+                            <div class="column is-6">
+                                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+                                    <img src="./resources/net_dissect_placeholder.png" alt="Net Dissect Analysis" style="max-width: 100%; height: auto; border-radius: 8px;">
+                                    <p style="margin-top: 1rem; font-weight: 600; color: #333;">Net Dissect Analysis</p>
+                                </div>
+                            </div>
+                            <div class="column is-6">
+                                <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+                                    <img src="./resources/cka_matrix_placeholder.png" alt="CKA Matrix Analysis" style="max-width: 100%; height: auto; border-radius: 8px;">
+                                    <p style="margin-top: 1rem; font-weight: 600; color: #333;">CKA Matrix Analysis</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; margin-top: 2rem; border-left: 4px solid #45b7d1;">
+                            <p style="margin: 0; line-height: 1.6;">
+                                Our analysis reveals that general representations (CLIP, ResNet) show significant differences in the last few layers (abstract concepts), while sharing similar representations in lower layers (simple patterns). This suggests that high-level visual understanding develops differently across models, while basic visual processing remains consistent.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BibTeX Section -->
+    <section class="section" id="bibtex">
+        <div class="container is-max-desktop">
+            <div class="content-section fade-in" style="padding: 3rem;">
+                <h2 class="section-title">BibTeX</h2>
+                <div class="bibtex-container">
+                    <pre style="background: transparent; padding: 0; margin: 0; font-size: 0.9rem; overflow-x: auto;"><code>@inproceedings{ke2025discovering,
+  author    = {Xueyi Ke and Satoshi Tsutsui and Yayun Zhang and Bihan Wen},
+  title     = {Discovering Hidden Visual Concepts Beyond Linguistic Input in Infant Learning},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2025},
+  note      = {To appear}
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section class="references-section" id="references">
+        <div class="container is-max-desktop">
+            <h2>References</h2>
+            <div class="references-content">
+                <div class="reference-item" id="reference-vong2024">
+                    <div class="reference-id">[1]</div>
+                    <div class="back-to-text" onclick="scrollBackToText('vong2024')"></div>
+                    <p class="reference-text">
+                        <strong>Wai Keen Vong et al.</strong> "Grounded language acquisition through the eyes and ears of a single child." <em>Science</em> 383, 504-511 (2024). DOI:10.1126/science.adi1374
+                    </p>
+                </div>
+                
+                <div class="reference-item" id="reference-oikarinen2023">
+                    <div class="reference-id">[2]</div>
+                    <div class="back-to-text" onclick="scrollBackToText('oikarinen2023')"></div>
+                    <p class="reference-text">
+                        <strong>Oikarinen, Tuomas, and Tsui-Wei Weng.</strong> "CLIP-Dissect: Automatic Description of Neuron Representations in Deep Vision Networks." <em>ICLR 2023 Spotlight</em>.
+                    </p>
+                </div>
+                
+                <div class="reference-item" id="reference-kuperman2012">
+                    <div class="reference-id">[3]</div>
+                    <div class="back-to-text" onclick="scrollBackToText('kuperman2012')"></div>
+                    <p class="reference-text">
+                        <strong>Kuperman, V., Stadthagen-Gonzalez, H., & Brysbaert, M.</strong> (2012). Age-of-acquisition ratings for 30,000 English words. <em>Behavior research methods</em>, 44, 978-990.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Copyright section without extra border -->
+            <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem;">
+                <p style="color: #888; font-size: 0.9rem;">
+                    This website is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+                </p>
+                <p style="margin-top: 0.5rem; color: #888; font-size: 0.9rem;">
+                    © 2025 Xueyi Ke. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar burger toggle
+        document.querySelector('.navbar-burger').addEventListener('click', function() {
+            this.classList.toggle('is-active');
+            document.querySelector('.navbar-menu').classList.toggle('is-active');
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .content-section').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize carousel if bulmaCarousel is available
+        $(document).ready(function() {
+            if (typeof bulmaCarousel !== 'undefined') {
+                var carousels = bulmaCarousel.attach('.carousel', {
+                    slidesToScroll: 1,
+                    slidesToShow: 3,
+                    loop: true,
+                    infinite: true,
+                    autoplay: false,
+                    autoplaySpeed: 3000,
+                });
+            }
+        });
+
+        // Citation navigation functions
+        function scrollToReference(referenceId) {
+            console.log('scrollToReference called with:', referenceId);
+            const element = document.getElementById(referenceId);
+            if (element) {
+                console.log('Found element:', element);
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                // Add highlight effect
+                element.classList.add('highlight');
+                setTimeout(() => {
+                    element.classList.remove('highlight');
+                }, 2000);
+            } else {
+                console.log('Element not found:', referenceId);
+            }
+        }
+
+        function scrollBackToText(citationRef) {
+            console.log('scrollBackToText called with:', citationRef);
+            const citation = document.querySelector(`[data-ref="${citationRef}"]`);
+            if (citation) {
+                console.log('Found citation:', citation);
+                citation.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                // Add highlight effect
+                citation.classList.add('highlight');
+                setTimeout(() => {
+                    citation.classList.remove('highlight');
+                }, 2000);
+            } else {
+                console.log('Citation not found:', citationRef);
+            }
+        }
+
+        // Test hover functionality on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded, testing citation elements...');
+            
+            // Find all citation elements
+            const citations = document.querySelectorAll('.citation');
+            console.log('Found citations:', citations.length);
+            
+            citations.forEach((citation, index) => {
+                console.log(`Citation ${index}:`, citation);
+                const hoverBox = citation.querySelector('.citation-hover');
+                console.log(`Hover box ${index}:`, hoverBox);
+                
+                // Add click event to citation span itself
+                citation.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Citation clicked:', citation.getAttribute('data-ref'));
+                    const referenceId = 'reference-' + citation.getAttribute('data-ref');
+                    scrollToReference(referenceId);
+                });
+
+                // Add hover events for proper positioning
+                citation.addEventListener('mouseenter', function() {
+                    if (hoverBox) {
+                        const rect = citation.getBoundingClientRect();
+                        const hoverBoxRect = hoverBox.getBoundingClientRect();
+                        
+                        // Position above the citation
+                        const left = rect.left + (rect.width / 2) - (300 / 2); // 300px is min-width
+                        const top = rect.top - hoverBoxRect.height - 10; // 10px gap
+                        
+                        // Ensure it doesn't go off screen
+                        const adjustedLeft = Math.max(10, Math.min(left, window.innerWidth - 320));
+                        const adjustedTop = Math.max(10, top);
+                        
+                        hoverBox.style.left = adjustedLeft + 'px';
+                        hoverBox.style.top = adjustedTop + 'px';
+                    }
+                });
+            });
+            
+            // Add click events to all return icons
+            const returnIcons = document.querySelectorAll('.return-icon');
+            console.log('Found return icons:', returnIcons.length);
+            
+            returnIcons.forEach((icon, index) => {
+                console.log(`Return icon ${index}:`, icon);
+                icon.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    console.log('Return icon clicked');
+                    // Get the citation ref from the onclick attribute or parent structure
+                    const citationHover = icon.closest('.citation-hover');
+                    const citation = citationHover ? citationHover.closest('.citation') : null;
+                    if (citation) {
+                        const ref = citation.getAttribute('data-ref');
+                        console.log('Scrolling back to citation:', ref);
+                        scrollBackToText(ref);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

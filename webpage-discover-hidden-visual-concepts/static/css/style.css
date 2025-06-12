@@ -498,10 +498,10 @@ p {
 .references-section h2 {
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     color: #333;
     border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 
 .reference-item {

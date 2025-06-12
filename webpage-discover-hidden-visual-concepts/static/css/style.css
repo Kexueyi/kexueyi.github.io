@@ -284,13 +284,32 @@ p {
 
 /* BibTeX Section */
 .bibtex-container {
-    background: #f6f6f3;
-    border: 1px solid #b8b6ae;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px 0;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 15px 0;
     font-family: 'Roboto Mono', monospace;
     position: relative;
+}
+
+.bibtex-container pre {
+    margin: 0;
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #333;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+.bibtex-container code {
+    background: transparent;
+    color: #333;
+    padding: 0;
+    font-family: inherit;
 }
 
 /* .bibtex-container::before {
@@ -306,14 +325,50 @@ p {
     font-family: system-ui;
 } */
 
-.bibtex-container pre {
+/* .bibtex-container pre {
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
     color: #333;
     white-space: pre-wrap;
     word-wrap: break-word;
+} */
+
+/* BibTeX Copy Button */
+.copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--background);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: var(--shadow-light);
 }
+
+.copy-button:hover {
+    background: var(--background-secondary);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium);
+}
+
+.copy-button:active {
+    transform: translateY(0);
+}
+
+.copy-button.copied {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
 
 /* Navigation */
 .navbar {
@@ -740,8 +795,8 @@ p {
 }
 
 .contribution-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    /* transform: translateY(-8px); */
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
 }
 
 .contribution-number {
@@ -1169,5 +1224,37 @@ p {
     .model-comparison-box h4 {
         font-size: 0.9rem;
     }
+}
+
+/* Copyright Section */
+.copyright-section {
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.copyright-section p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.copyright-section .attribution {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+}
+
+.copyright-section .attribution p {
+    margin-bottom: 0;
+}
+
+.copyright-section a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.copyright-section a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
 }
 

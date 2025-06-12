@@ -145,7 +145,7 @@
                         <h3 class="research-question-title">✨ Our Research Question</h3>
                         <div class="question-content">
                             <p class="research-question-text">
-                                When a multimodality model, trained on infant daily experience, will its vision encoder develop representations beyond its linguistic input, like real infants?
+                                When a multimodality model, trained on infant daily experience, will its vision encoder develop representations beyond its linguistic input, <b>like real infant</b>?
                             </p>
                         </div>
                     </div>
@@ -327,7 +327,7 @@
 
                                     
                                     <p>
-                                        Our <strong>NeuronClassifier</strong> approach leverages neurons discovered in the representation to enable 
+                                        Our <strong>NeuronClassifier</strong> framework leverages neurons discovered in the representation to enable 
                                         broader recognition capabilities, particularly demonstrating significant improvements in CVCL performance 
                                         (in  <strong>bold</strong>). 
                                     </p>
@@ -376,7 +376,7 @@
                                 <div class="contribution-content">
                                     <h4>CKA Similarity Analysis</h4>
                                     <p>
-                                        We first employ <strong>Centered Kernel Alignment (CKA)</strong> to measure layer-wise representational similarity 
+                                        We first employ <strong>Centered Kernel Alignment (CKA)</strong> <span class="citation" data-ref="kornblith2019" style="font-size: 0.7em;">[4]</span>  to measure layer-wise representational similarity 
                                         between different models. Using the ImageNet validation set as input, we quantitatively analyze how similar 
                                         the learned representations are across different architectures. The results show that CVCL exhibits similarity 
                                         to CLIP-RN50 and ResNeXt50 in the shallow layers (lower-level features) but diverges significantly in the final 
@@ -397,7 +397,7 @@
                                 <div class="contribution-content">
                                     <h4>Net Dissect Analysis</h4>
                                     <p>
-                                        Next, we apply <strong>Net Dissect Analysis</strong> to quantify the emergence of interpretable 
+                                        Next, we apply <strong>Net Dissect</strong> <span class="citation" data-ref="bau2017" style="font-size: 0.7em;">[5]</span>  to quantify the emergence of interpretable 
                                         visual concepts across different layers. The number of unique concepts indicates the richness of encoded representation.
                                         Our analysis reveals that neurons in deeper model layers capture increasingly complex concepts. Early layers primarily 
                                         detect lower-level features like color and texture, while higher-level concepts such as objects and scenes emerge 
@@ -425,10 +425,12 @@
         <div class="container is-max-desktop">
             <div class="content-section fade-in fade-in-on-scroll">
                 <h2 class="section-title">BibTeX</h2>
-                🥳 Thank you for your interest in our work! For more details, please check our paper. If our work is helpful, please considering cite the following:
+                🥳 Thank you for your interest in our work! For more details, please check our paper. If our work is helpful, please consider citing the following:
                 <div class="bibtex-container">
-                   
-                    <pre><code>@InProceedings{Ke_2025_CVPR,
+                    <button class="copy-button" onclick="copyBibtex()" title="Copy to clipboard">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <pre><code id="bibtex-code">@InProceedings{Ke_2025_CVPR,
     author    = {Ke, Xueyi and Tsutsui, Satoshi and Zhang, Yayun and Wen, Bihan},
     title     = {Discovering Hidden Visual Concepts Beyond Linguistic Input in Infant Learning},
     booktitle = {Proceedings of the Computer Vision and Pattern Recognition Conference (CVPR)},
@@ -472,34 +474,35 @@
                     </p>
                 </div>
 
-                <div class="reference-item" id="reference-bau2017">
+                <div class="reference-item" id="reference-kornblith2019">
                     <div class="reference-id">[4]</div>
+                    <div class="back-to-text" onclick="scrollBackToText('kornblith2019')"></div>
+                    <p class="reference-text">
+                        Kornblith, Simon, Norouzi, Mohammad, Lee, Honglak, & Hinton, Geoffrey. <strong>"Similarity of neural network representations revisited."</strong> <em>International Conference on Machine Learning</em>, pages 3519-3529, 2019. PMLR.
+                    </p>
+                </div>
+                <div class="reference-item" id="reference-bau2017">
+                    <div class="reference-id">[5]</div>
                     <div class="back-to-text" onclick="scrollBackToText('bau2017')"></div>
                     <p class="reference-text">
                         Bau, David, Zhou, Bolei, Khosla, Aditya, Oliva, Aude, & Torralba, Antonio. <strong>"Network Dissection: Quantifying Interpretability of Deep Visual Representations."</strong> <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</em>, July 2017.
                     </p>
                 </div>
 
-                <div class="reference-item" id="reference-kornblith2019">
-                    <div class="reference-id">[5]</div>
-                    <div class="back-to-text" onclick="scrollBackToText('kornblith2019')"></div>
-                    <p class="reference-text">
-                        Kornblith, Simon, Norouzi, Mohammad, Lee, Honglak, & Hinton, Geoffrey. <strong>"Similarity of neural network representations revisited."</strong> <em>International Conference on Machine Learning</em>, pages 3519-3529, 2019. PMLR.
-                    </p>
-                </div>
+
             </div>
             
             <!-- Copyright section -->
             <div class="copyright-section">
-                <p>
+                <!-- <p>
                     This website is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
-                </p>
+                </p> -->
                 <p>
                     © 2025 Xueyi Ke. All rights reserved.
                 </p>
                 <div class="attribution">
                     <p>
-                        Design elements inspired by <a href="https://transformer-circuits.pub/" target="_blank">Transformer Circuits Thread</a>.
+                        Design elements inspired by <a href="https://transformer-circuits.pub/" target="_blank">Transformer Circuits Thread</a> and <a href="https://nerfies.github.io/" target="_blank">Nerfies</a> .
                     </p>
                 </div>
             </div>
@@ -736,6 +739,48 @@
                 firstResultIcon.classList.add('rotated');
             }
         });
+
+        // BibTeX copy functionality
+        function copyBibtex() {
+            const bibtexElement = document.getElementById('bibtex-code');
+            const copyButton = document.querySelector('.copy-button');
+            const bibtexText = bibtexElement.textContent;
+
+            navigator.clipboard.writeText(bibtexText).then(function() {
+                // Success feedback
+                const originalHTML = copyButton.innerHTML;
+                copyButton.classList.add('copied');
+                copyButton.innerHTML = '<i class="fas fa-check"></i>';
+                
+                setTimeout(function() {
+                    copyButton.classList.remove('copied');
+                    copyButton.innerHTML = originalHTML;
+                }, 2000);
+            }).catch(function(err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = bibtexText;
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    const originalHTML = copyButton.innerHTML;
+                    copyButton.classList.add('copied');
+                    copyButton.innerHTML = '<i class="fas fa-check"></i>';
+                    
+                    setTimeout(function() {
+                        copyButton.classList.remove('copied');
+                        copyButton.innerHTML = originalHTML;
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                }
+                
+                document.body.removeChild(textArea);
+            });
+        }
     </script>
 </body>
 </html>

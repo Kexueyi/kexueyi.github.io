@@ -120,8 +120,11 @@ span.citation:hover .citation-hover {
 .back-to-text::after {
     content: '↑';
     color: white;
-    font-size: 9px;
+    font-size: 10px;
     font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    display: block;
 }
 
 /* Smooth scroll behavior */

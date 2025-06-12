@@ -293,7 +293,7 @@ p {
     position: relative;
 }
 
-.bibtex-container::before {
+/* .bibtex-container::before {
     content: "BibTeX";
     position: absolute;
     top: 0px;
@@ -304,7 +304,7 @@ p {
     font-weight: 600;
     color: #666;
     font-family: system-ui;
-}
+} */
 
 .bibtex-container pre {
     margin: 0;

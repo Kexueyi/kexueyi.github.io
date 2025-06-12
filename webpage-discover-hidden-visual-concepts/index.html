@@ -69,7 +69,7 @@
                             
                             <div class="publication-links">
                                 <span class="link-block">
-                                    <a href="./resources/2501.05205v4.pdf" class="button is-normal is-rounded">
+                                    <a href="https://openaccess.thecvf.com/content/CVPR2025/html/Ke_Discovering_Hidden_Visual_Concepts_Beyond_Linguistic_Input_in_Infant_Learning_CVPR_2025_paper.html" class="button is-normal is-rounded">
                                         <span class="icon">
                                             <i class="fas fa-file-pdf"></i>
                                         </span>
@@ -211,8 +211,8 @@
                                 <div class="contribution-content">
                                     <h4>Key Finding</h4>
                                     <p>
-                                        Computational multimodality models' visual representation develops beyond linguistic input, similar to <b>real infants</b>.
-                                        Through 'neuron labeling', we identified specific neurons that encode visual concepts that are not present 
+                                        Infant model's visual representations develop beyond linguistic input, similar to <b>real infants</b>.
+                                        Through 'neuron labeling', we identified specific neurons inside the infant model's vision encoder that hide visual concepts are <b>not presented</b>  
                                         in the model's training vocabulary.
                                     </p>
                                 </div>
@@ -224,23 +224,39 @@
                                 <div class="contribution-content">
                                     <h4>Method</h4> -->
                                     <p>
-                                       
+                                        We leverage CLIP-Dissect <span class="citation" data-ref="oikarinen2023" style="font-size: 0.7em;">[2]</span> to 'label' each neuron with corresponding semantic concepts, thus discovering many visual concepts.
 
-                                        We leverage CLIP-Dissect <span class="citation" data-ref="oikarinen2023" style="font-size: 0.7em;">[2]</span> to 'label' each neuron with corresponding semantic concepts, thus discovered many visual concepts.
+                                        These concepts are categorized as <strong>in-vocabulary</strong> or <strong>out-of-vocabulary</strong> based on whether they appeared in the infant's linguistic input or not.
 
-                                        These concepts are categorized as <strong>in-vocabulary</strong> or <strong>out-of-vocabulary</strong> by whehter they appeared in infant's linguistic input or not.
-
-                                        Many <em>out-of-vocabulary</em> visual concepts emerge in specific neurons, demonstrating visual learning 
-                                                                                beyond linguistic supervision.
+                                        Many <em>out-of-vocabulary</em> visual concepts emerge in specific neurons, demonstrating visual learning beyond linguistic supervision.
                                     </p>
-                                    <p>
-                                        From a cognitive perspective, we rate concepts using <strong>Age of Acquisition (AoA)</strong> <span class="citation" data-ref="kuperman2012" style="font-size: 0.7em;">[3]</span>, estimating when will these concepts acquired(e.g. simple patterns like ball acquired earilier, while calculator bit complex, is later).
-                                    </p>
+                                    
+                                    <div class="method-figure">
+                                        <div class="columns is-multiline">
+                                            <div class="column is-6">
+                                                <div class="figure-container" style="text-align: center;">
+                                                    <img src="./static/images/clip-dissect.png" alt="CLIP-Dissect Method" style="width: 100%; height: auto;">
+                                                    <p class="figure-caption">Neuron Labeling Vision Encoder (e.g. This neuron is sensitve to 'rug' visual concept)</p>
+                                                </div>
+                                            </div>
+                                            <div class="column is-6">
+                                                <div class="figure-container" style="text-align: center;">
+                                                    <img src="./static/images/iv_oov.png" alt="In-vocabulary vs Out-of-vocabulary Concepts" style="width: 85%; height: auto;">
+                                                    <p class="figure-caption">In-vocabulary and Out-of-vocabulary</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                         
                         <div class="column is-12">
                             <div class="contribution-card">
                                 <div class="contribution-content">
                                     <h4 style="text-align: center;">AoA Ranking of Discovered Concepts in Infant Model's Representation</h4>
+                                                                        <p>
+                                        From a cognitive perspective, we rate concepts using <strong>Age of Acquisition (AoA)</strong> <span class="citation" data-ref="kuperman2012" style="font-size: 0.7em;">[3]</span>, estimating when these concepts will be acquired (e.g., simple patterns like "ball" are acquired earlier, while more complex concepts like "calculator" are acquired later).
+                                    </p>
+                        
                                     <div class="method-figure">
                                         <div class="figure-container" style="text-align: center;">
                                             <img src="./static/images/AoA.jpg" alt="AoA Analysis" style="width: 80%; height: auto;">
@@ -404,18 +420,22 @@
         <div class="container is-max-desktop">
             <div class="content-section fade-in fade-in-on-scroll">
                 <h2 class="section-title">BibTeX</h2>
+                🥳 Thank you for your interest in our work! For more details, please check our paper. If our work is helpful, please considering cite the following:
                 <div class="bibtex-container">
-                    Thank you for your interest in our work! For more details, please check our paper. If our work is helpful, please considering cite the following:
-                    <pre><code>@inproceedings{ke2025discovering,
-  author    = {Xueyi Ke and Satoshi Tsutsui and Yayun Zhang and Bihan Wen},
-  title     = {Discovering Hidden Visual Concepts Beyond Linguistic Input in Infant Learning},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-  year      = {2025},
-  note      = {To appear}
+                   
+                    <pre><code>@InProceedings{Ke_2025_CVPR,
+    author    = {Ke, Xueyi and Tsutsui, Satoshi and Zhang, Yayun and Wen, Bihan},
+    title     = {Discovering Hidden Visual Concepts Beyond Linguistic Input in Infant Learning},
+    booktitle = {Proceedings of the Computer Vision and Pattern Recognition Conference (CVPR)},
+    month     = {June},
+    year      = {2025},
+    pages     = {4343-4352}
 }</code></pre>
                 </div>
             </div>
+            
         </div>
+
     </section>
 
     <!-- References Section -->

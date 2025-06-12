@@ -937,66 +937,75 @@ p {
     color: #5357bb;
 }
 
-/* Method and Figure Styling */
-.method-figure {
-    margin: 2rem 0;
+/* Unified Figure Styling */
+.figure-container,
+.method-figure,
+.analysis-figure {
+    width: 100%;
+    margin: 0.5rem 0;
+    text-align: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    transition: none;
+}
+
+.figure-container:hover,
+.method-figure:hover,
+.analysis-figure:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Figure titles */
+.figure-container h4,
+.method-figure h4,
+.analysis-figure h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
     text-align: center;
 }
 
-.figure-container {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.figure-container:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-.figure-container img {
+/* Unified image styling for all figures */
+.figure-container img,
+.method-figure img,
+.analysis-figure img {
+    width: 100%;
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+    border: none;
+    box-shadow: none;
+    padding: 1rem;
 }
 
-.figure-caption {
-    margin-top: 1rem;
+.figure-container img:hover,
+.method-figure img:hover,
+.analysis-figure img:hover {
+    transform: scale(1.02);
+}
+
+/* Figure captions */
+.figure-caption,
+.analysis-figure p {
+    margin-top: 0.2rem;
     font-size: 0.9rem;
     color: #666;
     line-height: 1.5;
-    text-align: left;
-    font-style: italic;
-}
-
-.analysis-figure {
     text-align: center;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-    margin-bottom: 1rem;
+    font-style: italic;
+    padding: 0 1rem;
 }
 
-.analysis-figure:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-.analysis-figure img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.analysis-figure p {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: #666;
-    font-weight: 500;
+/* Remove any column-based layouts for figures */
+.columns .analysis-figure {
+    width: 100%;
+    margin-bottom: 0.2rem;
 }
 
 /* Responsive Design */

@@ -224,39 +224,28 @@
                                 <div class="contribution-content">
                                     <h4>Method</h4> -->
                                     <p>
-                                        Many <em>out-of-vocabulary</em> visual concepts emerge in specific neurons, demonstrating visual learning 
-                                        beyond linguistic supervision.
+                                       
 
-                                        We leverage CLIP-Dissect <span class="citation" data-ref="oikarinen2023" style="font-size: 0.7em;">[2]</span> to 'label' each neuron with corresponding semantic concepts.
-                                        Visual concepts are categorized as <strong>in-vocabulary</strong> or <strong>out-of-vocabulary</strong>.
-                                        We rate concepts using <strong>Age of Acquisition (AoA)</strong> from a cognitive perspective.
-                                    </p>
-                                <!-- </div>
-                            </div>
-                        </div>
-                         -->
-                        <!-- <div class="column is-6">
-                            <div class="contribution-card">
-                                <div class="contribution-content">
-                                    <h4>Results</h4>
-                                    <p>
+                                        We leverage CLIP-Dissect <span class="citation" data-ref="oikarinen2023" style="font-size: 0.7em;">[2]</span> to 'label' each neuron with corresponding semantic concepts, thus discovered many visual concepts.
+
+                                        These concepts are categorized as <strong>in-vocabulary</strong> or <strong>out-of-vocabulary</strong> by whehter they appeared in infant's linguistic input or not.
+
                                         Many <em>out-of-vocabulary</em> visual concepts emerge in specific neurons, demonstrating visual learning 
-                                        beyond linguistic supervision. This finding bridges cognitive science and computer vision, showing that 
-                                        artificial systems can mirror biological learning patterns.
+                                                                                beyond linguistic supervision.
                                     </p>
-                                </div>
-                            </div>
-                        </div> -->
+                                    <p>
+                                        From a cognitive perspective, we rate concepts using <strong>Age of Acquisition (AoA)</strong> <span class="citation" data-ref="kuperman2012" style="font-size: 0.7em;">[3]</span>, estimating when will these concepts acquired(e.g. simple patterns like ball acquired earilier, while calculator bit complex, is later).
+                                    </p>
                         
                         <div class="column is-12">
                             <div class="contribution-card">
                                 <div class="contribution-content">
-                                    <h4>Visual Analysis</h4>
+                                    <h4 style="text-align: center;">AoA Ranking of Discovered Concepts in Infant Model's Representation</h4>
                                     <div class="method-figure">
-                                        <div class="figure-container">
-                                            <img src="./resources/aoa_figure_placeholder.png" alt="AoA Analysis" style="width: 100%; height: auto;">
+                                        <div class="figure-container" style="text-align: center;">
+                                            <img src="./static/images/AoA.jpg" alt="AoA Analysis" style="width: 80%; height: auto;">
                                             <p class="figure-caption">
-                                                <strong>Figure:</strong> Complex patterns in out-of-vocabulary concepts suggest visual learning beyond text supervision.
+                                                Complex patterns in out-of-vocabulary concepts suggest visual learning beyond text supervision.
                                             </p>
                                         </div>
                                     </div>
@@ -278,53 +267,57 @@
                     <div class="columns is-multiline">
                         <div class="column is-12">
                             <div class="contribution-card contribution-2">
-                                <div class="contribution-number">2</div>
                                 <div class="contribution-content">
                                     <h4>Key Finding</h4>
                                     <p>
-                                        We leverage neurons from representation of the infant model into a training-free classification framework 
-                                        leading to significantly improved performance. Single neurons can effectively classify images without 
-                                        additional training, demonstrating the rich representational structure learned by the infant model.
+                                        We leverage neurons discovered from the infant model's representation to develop a training-free classification framework 
+                                        that significantly improves performance. Our approach demonstrates that single neurons can effectively classify images without 
+                                        additional training, revealing the rich representational structure learned by the infant model through discovered visual concepts.
                                     </p>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="column is-6">
-                            <div class="contribution-card">
-                                <div class="contribution-content">
-                                    <h4>Method</h4>
-                                    <p>
-                                        We develop a novel framework that identifies specific neurons encoding visual concepts and uses them directly 
-                                        for classification. The approach involves: (1) Neuron selection based on concept alignment, 
-                                        (2) Activation threshold optimization, and (3) Direct classification using neuron responses.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="column is-6">
-                            <div class="contribution-card">
-                                <div class="contribution-content">
-                                    <h4>Results</h4>
-                                    <p>
-                                        The framework shows significant improvement over baseline methods, proving that the learned representations 
-                                        contain sufficient semantic information for direct classification tasks. This approach reveals the quality 
-                                        and interpretability of the infant model's internal representations.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
+
+
                         <div class="column is-12">
                             <div class="contribution-card">
                                 <div class="contribution-content">
-                                    <h4>Classification Framework</h4>
+                                    <h4>Training-Free Classification Framework</h4>
+                                    <p>
+                                        Our training-free neuron-based classification framework leverages discovered visual concepts to enable 
+                                        image classification without additional training. 
+                                    </p>
+                                    
                                     <div class="method-figure">
                                         <div class="figure-container">
-                                            <img src="./resources/classification_framework_placeholder.png" alt="Classification Framework" style="width: 100%; height: auto;">
+                                            <img src="static/images/neuron_classifier.jpg" alt="Neuron classifier">
+                                            <p class="figure-caption">Overview of our training-free neuron-based classification framework.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="column is-12">
+                            <div class="contribution-card">
+                                <div class="contribution-content">
+                                    <h4>Classification Performance Results</h4>
+
+                                    
+                                    <p>
+                                        Our <strong>NeuronClassifier</strong> approach leverages neurons discovered in the representation to enable 
+                                        broader recognition capabilities, particularly demonstrating significant improvements in CVCL performance 
+                                        (in  <strong>bold</strong>). 
+                                    </p>
+                                    
+                                    <div class="method-figure">
+                                        <div class="figure-container" style="text-align: center;">
+                                            <img src="static/images/resutls_table.png" alt="Neuron classifier tbl results" style="width: 80%; height: auto;">
                                             <p class="figure-caption">
-                                                <strong>Figure:</strong> Our training-free neuron-based classification framework leverages discovered visual concepts for zero-shot classification tasks.
+                                “Vanilla” refers to classification based on image-text similarity. “❌” denotes cases
+                                                where direct classification is not possible due to missing text encoder or need fine-tuning. “All” represents the
+                                                combined performance on both in- and out-of-vocabulary.
                                             </p>
                                         </div>
                                     </div>
@@ -346,39 +339,12 @@
                     <div class="columns is-multiline">
                         <div class="column is-12">
                             <div class="contribution-card contribution-3">
-                                <div class="contribution-number">3</div>
                                 <div class="contribution-content">
                                     <h4>Key Finding</h4>
                                     <p>
-                                        General representations (CLIP, ResNet) show differences in abstract concepts but share similar low-level patterns.
-                                        Through comprehensive analysis using Net Dissect and CKA, we compare learned representations 
-                                        across different model architectures, revealing both similarities and differences in how visual concepts are encoded.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="column is-6">
-                            <div class="contribution-card">
-                                <div class="contribution-content">
-                                    <h4>Method</h4>
-                                    <p>
-                                        We employ two complementary analysis methods: <strong>Net Dissect Analysis</strong> quantifies the emergence 
-                                        of interpretable visual concepts across different layers and models. <strong>CKA Matrix Analysis</strong> 
-                                        measures representational similarity between models and layers.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="column is-6">
-                            <div class="contribution-card">
-                                <div class="contribution-content">
-                                    <h4>Results</h4>
-                                    <p>
-                                        The analysis shows that general representations exhibit significant differences in the final layers 
-                                        (abstract concepts) while sharing similar representations in lower layers (simple patterns). The infant model 
-                                        shows unique characteristics in its representation structure compared to traditional computer vision models.
+                                        Our analysis reveals that general representations (CLIP, ImageNet models) 
+                                        exhibit significant differences from the infant model (CVCL) in the final layers (abstract concepts) while 
+                                        sharing similar representations in lower layers (simple patterns).
                                     </p>
                                 </div>
                             </div>
@@ -387,20 +353,40 @@
                         <div class="column is-12">
                             <div class="contribution-card">
                                 <div class="contribution-content">
-                                    <h4>Comparative Analysis</h4>
-                                    <div class="columns">
-                                        <div class="column is-6">
-                                            <div class="analysis-figure">
-                                                <img src="./resources/net_dissect_placeholder.png" alt="Net Dissect Analysis" style="width: 100%; height: auto;">
-                                                <p style="text-align: center; margin-top: 10px;">Net Dissect Analysis</p>
-                                            </div>
-                                        </div>
-                                        <div class="column is-6">
-                                            <div class="analysis-figure">
-                                                <img src="./resources/cka_matrix_placeholder.png" alt="CKA Matrix Analysis" style="width: 100%; height: auto;">
-                                                <p style="text-align: center; margin-top: 10px;">CKA Matrix Analysis</p>
-                                            </div>
-                                        </div>
+                                    <h4>CKA Similarity Analysis</h4>
+                                    <p>
+                                        We first employ <strong>Centered Kernel Alignment (CKA)</strong> to measure layer-wise representational similarity 
+                                        between different models. Using the ImageNet validation set as input, we quantitatively analyze how similar 
+                                        the learned representations are across different architectures. The results show that CVCL exhibits similarity 
+                                        to CLIP-RN50 and ResNeXt50 in the shallow layers (lower-level features) but diverges significantly in the final 
+                                        layer (higher-level features). Notably, Layer 4 of CVCL shows very low similarity to all layers of both 
+                                        common models, suggesting unique high-level representations in the infant model.
+                                    </p>
+                                    
+                                    <div class="analysis-figure">
+                                        <img src="./static/images/cka.png" alt="CKA Matrix Analysis">
+                                        <p class="figure-caption">CKA similarity matrices comparing CVCL with CLIP-RN50 and ResNeXt50 models.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="column is-12">
+                            <div class="contribution-card">
+                                <div class="contribution-content">
+                                    <h4>Net Dissect Analysis</h4>
+                                    <p>
+                                        Next, we apply <strong>Net Dissect Analysis</strong> to quantify the emergence of interpretable 
+                                        visual concepts across different layers. The number of unique concepts indicates the richness of encoded representation.
+                                        Our analysis reveals that neurons in deeper model layers capture increasingly complex concepts. Early layers primarily 
+                                        detect lower-level features like color and texture, while higher-level concepts such as objects and scenes emerge 
+                                        in deeper layers. CVCL exhibits fewer visual concepts than the ImageNet model, especially for higher-level 
+                                        visual concepts (e.g., objects and scenes).
+                                    </p>
+                                    
+                                    <div class="analysis-figure">
+                                        <img src="static/images/net-dissection.png" alt="Net Dissect Analysis">
+                                        <p class="figure-caption">Net Dissect Analysis showing concept emergence across different layers and models.</p>
                                     </div>
                                 </div>
                             </div>
@@ -419,6 +405,7 @@
             <div class="content-section fade-in fade-in-on-scroll">
                 <h2 class="section-title">BibTeX</h2>
                 <div class="bibtex-container">
+                    Thank you for your interest in our work! For more details, please check our paper. If our work is helpful, please considering cite the following:
                     <pre><code>@inproceedings{ke2025discovering,
   author    = {Xueyi Ke and Satoshi Tsutsui and Yayun Zhang and Bihan Wen},
   title     = {Discovering Hidden Visual Concepts Beyond Linguistic Input in Infant Learning},
@@ -454,6 +441,14 @@
                 
                 <div class="reference-item" id="reference-kuperman2012">
                     <div class="reference-id">[3]</div>
+                    <div class="back-to-text" onclick="scrollBackToText('kuperman2012')"></div>
+                    <p class="reference-text">
+                        <strong>Kuperman, V., Stadthagen-Gonzalez, H., & Brysbaert, M.</strong> (2012). Age-of-acquisition ratings for 30,000 English words. <em>Behavior research methods</em>, 44, 978-990.
+                    </p>
+                </div>
+
+                <div class="reference-item" id="reference-kuperman2012">
+                    <div class="reference-id">[4]</div>
                     <div class="back-to-text" onclick="scrollBackToText('kuperman2012')"></div>
                     <p class="reference-text">
                         <strong>Kuperman, V., Stadthagen-Gonzalez, H., & Brysbaert, M.</strong> (2012). Age-of-acquisition ratings for 30,000 English words. <em>Behavior research methods</em>, 44, 978-990.
@@ -612,12 +607,14 @@
             });
         });
 
-        // Image modal functionality
+        // Image modal functionality for all figures
         const imageModal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
-        const comparisonImages = document.querySelectorAll(".model-comparison-box img");
+        
+        // Select all clickable images (comparison images and all figure images)
+        const clickableImages = document.querySelectorAll(".model-comparison-box img, .figure-container img, .method-figure img, .analysis-figure img");
 
-        comparisonImages.forEach(img => {
+        clickableImages.forEach(img => {
             img.addEventListener("click", function() {
                 imageModal.classList.add("show");
                 modalImg.src = this.src;

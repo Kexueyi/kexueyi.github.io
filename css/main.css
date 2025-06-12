@@ -13,6 +13,55 @@ body {
 }
 
 
+/* Add this to your main.css or create a new CSS file */
+.phd-opportunity-banner {
+  background: linear-gradient(135deg, #ffe6e6, #fff0f0);
+  border: 2px solid #ff4444;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.phd-opportunity-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff4444, #ff6666, #ff4444);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.phd-text {
+  color: #cc2222;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+  font-size: 1.05em;
+  line-height: 1.4;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .phd-opportunity-banner {
+    padding: 10px 12px;
+    margin: 6px 0;
+  }
+  
+  .phd-text {
+    font-size: 1em;
+  }
+}
+
 .container {
   max-width: 1200px;
   margin: 60px auto 0;

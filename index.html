@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/modal.css">
   <meta name="referrer" content="no-referrer">
 </head>
 
@@ -281,6 +282,12 @@ year={2024}
       </tr>
   </table>
 
+  <div id="imageModal" class="modal">
+    <div class="modal-wrapper">
+      <img class="modal-content" id="modalImg">
+    </div>
+  </div>
+
   <div style="text-align: center; margin: 20px auto; max-width: 860px; color: grey; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 20px;">
     <span style="font-size: 0.9em;">Adapted from this <a href="https://jonbarron.info" style="text-decoration: none; color: grey; font-size: 1em; transition: color 0.2s ease;" onmouseover="this.style.color='#666'" onmouseout="this.style.color='inherit'">template</a></span>
   </div>
@@ -293,6 +300,7 @@ year={2024}
   <script src="js/navbar.js"></script>
   <script src="js/theme.js"> </script>
   <script src="js/footer.js"></script>
+  <script src="js/modal.js"></script>
 
 </body>
 

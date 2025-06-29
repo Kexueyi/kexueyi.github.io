@@ -13,10 +13,8 @@
     <!-- Fonts - Updated to match transformer-circuits style -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
     
-    <!-- Bulma CSS -->
-    <link rel="stylesheet" href="./static/css/bulma.min.css">
-    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <!-- Minimal Bulma CSS - Only used classes -->
+    <link rel="stylesheet" href="./static/css/bulma-minimal.css">
     <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     
@@ -502,7 +500,7 @@
                 </p>
                 <div class="attribution">
                     <p>
-                        Design elements inspired by <a href="https://transformer-circuits.pub/" target="_blank">Transformer Circuits Thread</a> and <a href="https://nerfies.github.io/" target="_blank">Nerfies</a> .
+                        Design elements inspired by <a href="https://transformer-circuits.pub/" target="_blank">Transformer Circuits Thread</a> and <a href="https://nerfies.github.io/" target="_blank">Nerfies</a>.
                     </p>
                 </div>
             </div>
@@ -518,8 +516,6 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./static/js/fontawesome.all.min.js"></script>
-    <script src="./static/js/bulma-carousel.min.js"></script>
-    <script src="./static/js/bulma-slider.min.js"></script>
     
     <script>
         // Top navigation activation and section highlighting
@@ -695,50 +691,50 @@
         }
 
         // Method section toggle functionality
-        function toggleMethodSection(sectionId) {
-            const details = document.getElementById(sectionId);
-            const icon = document.getElementById('icon-' + sectionId);
+        // function toggleMethodSection(sectionId) {
+        //     const details = document.getElementById(sectionId);
+        //     const icon = document.getElementById('icon-' + sectionId);
             
-            if (details.style.display === 'none' || details.style.display === '') {
-                details.style.display = 'block';
-                icon.classList.add('rotated');
-            } else {
-                details.style.display = 'none';
-                icon.classList.remove('rotated');
-            }
-        }
+        //     if (details.style.display === 'none' || details.style.display === '') {
+        //         details.style.display = 'block';
+        //         icon.classList.add('rotated');
+        //     } else {
+        //         details.style.display = 'none';
+        //         icon.classList.remove('rotated');
+        //     }
+        // }
 
         // Result section toggle functionality
-        function toggleResultSection(sectionId) {
-            const details = document.getElementById(sectionId);
-            const icon = document.getElementById('icon-' + sectionId);
+        // function toggleResultSection(sectionId) {
+        //     const details = document.getElementById(sectionId);
+        //     const icon = document.getElementById('icon-' + sectionId);
             
-            if (details.style.display === 'none' || details.style.display === '') {
-                details.style.display = 'block';
-                icon.classList.add('rotated');
-            } else {
-                details.style.display = 'none';
-                icon.classList.remove('rotated');
-            }
-        }
+        //     if (details.style.display === 'none' || details.style.display === '') {
+        //         details.style.display = 'block';
+        //         icon.classList.add('rotated');
+        //     } else {
+        //         details.style.display = 'none';
+        //         icon.classList.remove('rotated');
+        //     }
+        // }
 
-        // Initialize first method section as expanded
-        document.addEventListener('DOMContentLoaded', function() {
-            const firstMethodDetails = document.getElementById('method-1');
-            const firstMethodIcon = document.getElementById('icon-method-1');
-            const firstResultDetails = document.getElementById('result-1');
-            const firstResultIcon = document.getElementById('icon-result-1');
+        // // Initialize first method section as expanded
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const firstMethodDetails = document.getElementById('method-1');
+        //     const firstMethodIcon = document.getElementById('icon-method-1');
+        //     const firstResultDetails = document.getElementById('result-1');
+        //     const firstResultIcon = document.getElementById('icon-result-1');
             
-            if (firstMethodDetails) {
-                firstMethodDetails.style.display = 'block';
-                firstMethodIcon.classList.add('rotated');
-            }
+        //     if (firstMethodDetails) {
+        //         firstMethodDetails.style.display = 'block';
+        //         firstMethodIcon.classList.add('rotated');
+        //     }
             
-            if (firstResultDetails) {
-                firstResultDetails.style.display = 'block';
-                firstResultIcon.classList.add('rotated');
-            }
-        });
+        //     if (firstResultDetails) {
+        //         firstResultDetails.style.display = 'block';
+        //         firstResultIcon.classList.add('rotated');
+        //     }
+        // });
 
         // BibTeX copy functionality
         function copyBibtex() {

@@ -23,14 +23,36 @@
 .publication-image {
   flex-shrink: 0;
   width: 230px; /* Fixed width */
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  transform: translateZ(0);
 }
 
 .publication-image img {
   width: 100%;
   height: auto; /* Auto height based on aspect ratio */
   display: block;
-  border-radius: 8px;
+  transition: transform 0.3s ease;
   /* border: 1px solid #e5e7eb; */
+}
+
+.publication-image:hover img {
+  transform: scale(1.05);
+}
+
+.publication-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 98%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .publication-content {

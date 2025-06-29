@@ -574,11 +574,11 @@ p {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.reference-item.highlight {
+/* .reference-item.highlight {
     background: #fff3cd;
     border-color: #ffc107;
     animation: highlight-fade 2s ease-out;
-}
+} */
 
 @keyframes highlight-fade {
     0% { background: #fff3cd; }

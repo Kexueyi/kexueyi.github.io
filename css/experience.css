@@ -1,110 +1,208 @@
-.experience-container {
+/* Dual-column layout */
+.dual-timeline {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 3rem;
     width: 100%;
 }
 
-.experience-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 0;
-    padding: 0.7rem;
+.timeline-column {
+    min-width: 0;
 }
 
+.timeline-title {
+    margin: 0 0 1rem 0;
+    font-weight: 700;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-h2);
+    color: var(--text-primary);
+}
+
+/* Timeline line — gray, fading */
+.timeline {
+    position: relative;
+    padding-left: 20px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    bottom: 4px;
+    width: 1.5px;
+    border-radius: 1px;
+    background: linear-gradient(
+        to bottom,
+        rgba(140, 140, 140, 0.35) 0%,
+        rgba(140, 140, 140, 0.08) 100%
+    );
+}
+
+[data-theme="dark"] .timeline::before {
+    background: linear-gradient(
+        to bottom,
+        rgba(160, 160, 160, 0.3) 0%,
+        rgba(160, 160, 160, 0.06) 100%
+    );
+}
+
+/* Timeline item */
+.timeline-item {
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+/* Dot — centered on line */
+/* Line center = left 4px + 0.75px = 4.75px from .timeline edge
+   Item starts at 20px (padding-left)
+   6px dot center at 4.75px → dot left = 4.75 - 3 - 20 = -18.25px ≈ -18px */
+.timeline-dot {
+    position: absolute;
+    left: -18px;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    z-index: 1;
+    background: rgba(160, 160, 160, 0.4);
+}
+
+[data-theme="dark"] .timeline-dot {
+    background: rgba(160, 160, 160, 0.3);
+}
+
+/* Current (first) node — accent color, slightly larger */
+.timeline-item:first-child .timeline-dot {
+    width: 8px;
+    height: 8px;
+    left: -19px;
+    top: 9px;
+}
+
+.timeline-work .timeline-item:first-child .timeline-dot {
+    background: rgba(59, 130, 246, 0.65);
+    box-shadow: 0 0 0 2.5px rgba(59, 130, 246, 0.12);
+}
+
+.timeline-edu .timeline-item:first-child .timeline-dot {
+    background: rgba(16, 185, 129, 0.65);
+    box-shadow: 0 0 0 2.5px rgba(16, 185, 129, 0.12);
+}
+
+[data-theme="dark"] .timeline-work .timeline-item:first-child .timeline-dot {
+    background: rgba(96, 165, 250, 0.7);
+    box-shadow: 0 0 0 2.5px rgba(96, 165, 250, 0.15);
+}
+
+[data-theme="dark"] .timeline-edu .timeline-item:first-child .timeline-dot {
+    background: rgba(52, 211, 153, 0.7);
+    box-shadow: 0 0 0 2.5px rgba(52, 211, 153, 0.15);
+}
+
+/* Past items — fade text slightly */
+.timeline-item:not(:first-child) .experience-content h3 {
+    color: var(--text-secondary);
+}
+
+.timeline-item:not(:first-child) .experience-content .experience-title {
+    color: var(--text-tertiary);
+}
+
+.timeline-item:not(:first-child) .experience-logo img {
+    opacity: 0.7;
+}
+
+/* Header: logo + text */
+.timeline-header {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo */
 .experience-logo {
-    flex: 0 0 55px;
-    margin-right: 1.75rem;
-    /* 增加间距到 1.5rem */
+    flex: 0 0 46px;
+    margin-right: 0.85rem;
 }
 
 .experience-logo img {
-    width: 60px;
-    /* 设置图片宽度 */
-    height: 60px;
-    /* 设置图片高度 */
+    width: 46px;
+    height: 46px;
     object-fit: contain;
+    transition: opacity 0.2s ease;
 }
 
-/* 为阿里巴巴logo添加特定样式 */
-/* .experience-logo img[alt="Alibaba Logo"] {
-    object-fit: cover;
-    object-position: center;
-    padding: 10px;
-    background-color: white;
-    border-radius: 8px;
-} */
-
+/* Content */
 .experience-content {
     flex: 1;
     min-width: 0;
-    /* 防止内容溢出 */
-    padding-right: 5rem;
-    /* 添加右边距 */
-}
-
-/* 机构名称和时间在同一行 */
-.experience-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.3rem;
 }
 
 .experience-content h3 {
     margin: 0;
     color: var(--text-primary);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
-}
-
-.experience-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    line-height: 1.3;
+    transition: color 0.2s ease;
 }
 
 .experience-title {
-    margin: 0;
-    color: var(--text-primary);
+    margin: 1px 0 0;
+    color: var(--text-secondary);
     font-size: 13px;
-    font-weight: 500; /* 增加权重使其更突出 */
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 .experience-duration {
-    margin: 0;
+    margin: 2px 0 0;
     color: var(--text-tertiary);
-    font-size: 12.5px;
+    font-size: 12px;
     font-style: italic;
 }
 
 .experience-location {
-    margin: 0;
+    margin: 1px 0 0;
     color: var(--text-tertiary);
-    font-size: 12.5px;
+    font-size: 12px;
 }
 
-/* 移动端响应式设计 */
+/* Dark mode Tsinghua logo */
+[data-theme="dark"] .experience-logo img[alt="Tsinghua Logo"] {
+    filter: brightness(1.8);
+}
+
+/* Mobile: stack vertically */
 @media (max-width: 768px) {
-    .experience-container {
+    .dual-timeline {
         grid-template-columns: 1fr;
+        gap: 1.2rem;
     }
 
-    .experience-item {
-        flex-direction: row;
+    .timeline {
+        padding-left: 18px;
+    }
+
+    .timeline-dot {
+        left: -16px;
+    }
+
+    .timeline-item:first-child .timeline-dot {
+        left: -17px;
     }
 
     .experience-logo {
-        width: 60px;
-        margin: 0 1.75rem 0 0;
+        flex: 0 0 40px;
+        margin-right: 0.7rem;
     }
-}
 
-.experience-section-title {
-    color: var(--text-primary);
-    font-size: 18px;
-    font-weight: 600;
-    margin: 1.5rem 0 1rem 0;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-color);
+    .experience-logo img {
+        width: 40px;
+        height: 40px;
+    }
 }

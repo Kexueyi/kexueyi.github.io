@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Ke Xueyi - Misc & Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="images/favicon/heart_container.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/text.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/gallery.css">
+
+  <!-- protection  -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="pinterest" content="nopin">
+  <meta property="og:type" content="website">
+  <meta name="copyright" content="© 2026 Xueyi Ke">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://kexueyi.github.io;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <!-- 添加更多图片保护相关 meta 标签 -->
+  <meta name="robots" content="noarchive, noimageindex, nofollow">
+  <meta name="googlebot-image" content="noindex">
+  <meta name="msapplication-config" content="none">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="canonical" href="https://kexueyi.com/gallery.html">
+
+  <script>
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target.tagName === 'IMG' || e.target.closest('.gallery-item')) {
+        e.preventDefault();
+        return false;
+      }
+    });
+    
+    // 禁用开发者工具快捷键
+    document.addEventListener('keydown', (e) => {
+      if (
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+        (e.ctrlKey && e.key === 'u')
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    });
+  </script>
+
+</head>
+
+
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Xueyi Ke</a>
+      <div class="nav-links">
+        <a href="index.html#research" class="nav-link">Research</a>
+        <a href="index.html#experience" class="nav-link">Experience</a>
+        <a href="index.html#education" class="nav-link">Education</a>
+        <a href="gallery.html" class="nav-link active">Misc</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Misc -->
+    <p class="misc-text">
+      Outside of research, I love 📷 photography, 🏋️ gym, 🏊 swimming, 🤿 scuba diving, ⛰️ mountain climbing, 🏎️ go-kart racing, 🎵 R&B (Frank Ocean, Daniel Caesar), 🏁 F1.
+    </p>
+
+    <!-- Gallery -->
+    <div class="section-header">
+      <h2>Photography</h2>
+      <p>Some moments I captured through my naive lens.</p>
+    </div>
+
+    <footer class="page-footer">
+      © 2026 Xueyi Ke. All rights reserved. Unauthorized use prohibited.
+    </footer>
+
+    <div class="gallery" id="gallery" style="display: flex; flex-wrap: wrap; gap: 20px;">
+      <!-- Images will be loaded dynamically via JavaScript -->
+    </div>
+
+  </div>
+
+  <div class="footer-bar">
+    <span>© 2026 Xueyi Ke. All rights reserved. Unauthorized use prohibited. </span>
+    <span id="last-updated"></span>
+  </div>
+
+  <script src="js/gallery.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/footer.js"></script>
+
+</body>
+</html>

@@ -16,8 +16,8 @@
 /* Publication Component */
 .publication {
   display: flex;
-  gap: 0.7rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
 }
 
 .publication-image {

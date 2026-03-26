@@ -4,6 +4,10 @@
 @import 'theme.css';
 @import 'gallery.css'; */
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding-top: 50px;  /* for nav bar */
@@ -114,3 +118,196 @@ body {
 body {
   margin-bottom: 50px;
 }
+
+.footer-sep {
+  opacity: 0.4;
+  margin: 0 2px;
+}
+
+.footer-link {
+  color: inherit !important;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.footer-link:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: inherit !important;
+}
+
+/* Page wrapper */
+.page-wrapper {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Intro section — flex replaces table */
+.intro-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.intro-cell {
+  flex: 1;
+  min-width: 0;
+}
+
+.avatar-cell {
+  flex: 0 0 35%;
+  max-width: 35%;
+  text-align: center;
+}
+
+/* Content sections */
+.content-section {
+  margin-top: 3rem;
+  padding: 0;
+}
+
+.content-section + .content-section {
+  margin-top: 4.5rem;
+}
+
+.content-section h2 {
+  margin-bottom: 0.4rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .page-wrapper {
+    padding: 0 12px;
+  }
+
+  .intro-section {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .intro-cell {
+    width: 100%;
+  }
+
+  .avatar-cell {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .avatar-container {
+    margin: 0 auto;
+  }
+
+  .avatar {
+    width: 130px !important;
+    height: 130px !important;
+  }
+
+  .name {
+    font-size: 28px;
+  }
+
+  .chinese-name {
+    font-size: 20px;
+  }
+
+  .name-container::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .contact-links {
+    gap: 4px 2px;
+    font-size: 13px;
+  }
+
+  .contact-link svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Navbar mobile */
+  .nav-container {
+    padding: 0.7rem 1rem;
+  }
+
+  .nav-links {
+    gap: 0.7rem;
+  }
+
+  .nav-link {
+    font-size: 0.78rem;
+  }
+
+  .nav-logo {
+    font-size: 0.9rem;
+  }
+
+  /* Publication mobile */
+  .publication {
+    flex-direction: column;
+  }
+
+  .publication-image {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* Visitors mobile */
+  .visitors-section {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-links {
+    font-size: 12px;
+  }
+
+  .dual-timeline {
+    gap: 1rem;
+  }
+}
+
+/* Page load fade-in */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-wrapper {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+/* Anchor scroll offset for fixed navbar */
+[id] {
+  scroll-margin-top: 65px;
+}
+
+/* Academic Service */
+.service-list {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin: 0.3rem 0 0;
+}
+
+/* Visitors — compact */
+.visitors-section {
+  text-align: center;
+  margin-top: 4.5rem;
+  padding: 0 16px;
+}
+

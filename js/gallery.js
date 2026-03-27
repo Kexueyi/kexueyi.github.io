@@ -65,16 +65,12 @@ const gallery = {
   loadImages(images) {
     const columnHeights = new Array(this.columns.length).fill(0);
 
+    // Phase 1: preload all images to get aspect ratios, then compute layout
     const imagePromises = images.map(image => {
       return new Promise((resolve) => {
         const img = new Image();
         img.src = image.src;
-        img.onload = () => {
-          resolve({
-            ...image,
-            aspectRatio: img.naturalHeight / img.naturalWidth,
-          });
-        };
+        img.onload = () => resolve({ ...image, aspectRatio: img.naturalHeight / img.naturalWidth });
         img.onerror = () => resolve(null);
       });
     });
@@ -82,11 +78,17 @@ const gallery = {
     Promise.all(imagePromises).then(loadedImages => {
       loadedImages = loadedImages.filter(img => img !== null);
 
-      loadedImages.forEach(image => {
-        const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+      // Compute fixed layout: assign each image to its column
+      const assignments = loadedImages.map(image => {
+        const colIdx = columnHeights.indexOf(Math.min(...columnHeights));
+        columnHeights[colIdx] += image.aspectRatio;
+        return { image, colIdx };
+      });
 
+      // Phase 2: create placeholders, then reveal each as it loads
+      assignments.forEach(({ image, colIdx }) => {
         const item = document.createElement('div');
-        item.className = 'gallery-item';
+        item.className = 'gallery-item gallery-item-loading';
 
         item.innerHTML = `
           <img src="${image.src}" alt="${image.title}" loading="lazy" decoding="async">
@@ -96,8 +98,14 @@ const gallery = {
           </div>
         `;
 
-        this.columns[shortestColumnIndex].appendChild(item);
-        columnHeights[shortestColumnIndex] += image.aspectRatio;
+        this.columns[colIdx].appendChild(item);
+
+        const img = item.querySelector('img');
+        if (img.complete) {
+          item.classList.remove('gallery-item-loading');
+        } else {
+          img.onload = () => item.classList.remove('gallery-item-loading');
+        }
 
         item.addEventListener('click', () => this.showImage(image.src, image.title, image.location));
       });

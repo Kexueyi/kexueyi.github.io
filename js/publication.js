@@ -6,7 +6,7 @@ export class Publication {
     return `
       <div class="publication">
         <div class="publication-image">
-          <img src="${data.image || 'images/publications/placeholder.jpg'}" alt="${data.title}">
+          <img src="${data.image || 'images/publications/placeholder.jpg'}" alt="${data.title}" loading="lazy" decoding="async">
         </div>
         <div class="publication-content">
           ${this.createHeader(data)}

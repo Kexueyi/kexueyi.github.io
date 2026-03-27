@@ -180,7 +180,7 @@ year={2024}
                           <div class="timeline-dot timeline-dot-work"></div>
                           <div class="timeline-header">
                             <div class="experience-logo">
-                              <img src="images/logo/Nanyang_Technological_University_coat_of_arms_vector.svg.png" alt="NTU Logo">
+                              <img src="images/logo/Nanyang_Technological_University_coat_of_arms_vector.svg.png" alt="NTU Logo" loading="lazy">
                             </div>
                             <div class="experience-content">
                               <h3>Nanyang Technological University</h3>
@@ -195,7 +195,7 @@ year={2024}
                           <div class="timeline-dot timeline-dot-work"></div>
                           <div class="timeline-header">
                             <div class="experience-logo">
-                              <img src="images/logo/alibaba-group-logo-png_seeklogo-332895.png" alt="Alibaba Logo">
+                              <img src="images/logo/alibaba-group-logo-png_seeklogo-332895.png" alt="Alibaba Logo" loading="lazy">
                             </div>
                             <div class="experience-content">
                               <h3>Alibaba Group</h3>
@@ -210,7 +210,7 @@ year={2024}
                           <div class="timeline-dot timeline-dot-work"></div>
                           <div class="timeline-header">
                             <div class="experience-logo">
-                              <img src="images/logo/Tsinghua_University_Logo.svg.png" alt="Tsinghua Logo">
+                              <img src="images/logo/Tsinghua_University_Logo.svg.png" alt="Tsinghua Logo" loading="lazy">
                             </div>
                             <div class="experience-content">
                               <h3>Tsinghua University</h3>
@@ -233,7 +233,7 @@ year={2024}
                           <div class="timeline-dot timeline-dot-edu"></div>
                           <div class="timeline-header">
                             <div class="experience-logo">
-                              <img src="images/logo/Nanyang_Technological_University_coat_of_arms_vector.svg.png" alt="NTU Logo">
+                              <img src="images/logo/Nanyang_Technological_University_coat_of_arms_vector.svg.png" alt="NTU Logo" loading="lazy">
                             </div>
                             <div class="experience-content">
                               <h3>Nanyang Technological University</h3>
@@ -248,7 +248,7 @@ year={2024}
                           <div class="timeline-dot timeline-dot-edu"></div>
                           <div class="timeline-header">
                             <div class="experience-logo">
-                              <img src="images/logo/Wuhan_University_Logo.png" alt="WHU Logo">
+                              <img src="images/logo/Wuhan_University_Logo.png" alt="WHU Logo" loading="lazy">
                             </div>
                             <div class="experience-content">
                               <h3>Wuhan University</h3>
@@ -296,6 +296,24 @@ year={2024}
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", {origin:"https://cal.com"});
     Cal("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+  </script>
+
+  <!-- Lazy image reveal -->
+  <script>
+    function revealImages() {
+      document.querySelectorAll('img[loading="lazy"]:not(.loaded)').forEach(img => {
+        if (img.complete) {
+          img.classList.add('loaded');
+        } else {
+          img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
+        }
+      });
+    }
+    // Run on load and observe for dynamically added images
+    document.addEventListener('DOMContentLoaded', () => {
+      revealImages();
+      new MutationObserver(revealImages).observe(document.body, { childList: true, subtree: true });
+    });
   </script>
 
   <script src="js/navbar.js"></script>

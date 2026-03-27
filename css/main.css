@@ -286,17 +286,48 @@ img[loading="lazy"].loaded {
   opacity: 1;
 }
 
-/* Skeleton shimmer placeholder */
-.img-placeholder {
-  background: linear-gradient(90deg, var(--border-color) 25%, transparent 50%, var(--border-color) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 8px;
+/* Loading placeholder for images */
+img[loading="lazy"]:not(.loaded) {
+  min-height: 40px;
+  position: relative;
 }
 
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+img[loading="lazy"]:not(.loaded)::after {
+  content: "";
+}
+
+/* Wrapper approach — shimmer + loading text */
+.img-loading-wrap {
+  position: relative;
+  display: inline-block;
+  min-height: 40px;
+  min-width: 40px;
+}
+
+.img-loading-wrap::before {
+  content: "loading";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-family: var(--font-primary);
+  letter-spacing: 1.5px;
+  color: var(--text-tertiary);
+  background: var(--bg-primary);
+  border-radius: 8px;
+  animation: pulse 1.5s ease-in-out infinite;
+  z-index: 0;
+}
+
+.img-loading-wrap.loaded::before {
+  display: none;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
 }
 
 /* Page load fade-in */

@@ -298,18 +298,31 @@ year={2024}
     Cal("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
   </script>
 
-  <!-- Lazy image reveal -->
+  <!-- Lazy image reveal with loading placeholder -->
   <script>
     function revealImages() {
       document.querySelectorAll('img[loading="lazy"]:not(.loaded)').forEach(img => {
-        if (img.complete) {
+        // Wrap with loading placeholder if not already wrapped
+        if (!img.parentElement.classList.contains('img-loading-wrap')) {
+          const wrap = document.createElement('span');
+          wrap.className = 'img-loading-wrap';
+          img.parentElement.insertBefore(wrap, img);
+          wrap.appendChild(img);
+        }
+
+        const wrap = img.parentElement;
+
+        if (img.complete && img.naturalHeight > 0) {
           img.classList.add('loaded');
+          wrap.classList.add('loaded');
         } else {
-          img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
+          img.addEventListener('load', () => {
+            img.classList.add('loaded');
+            wrap.classList.add('loaded');
+          }, { once: true });
         }
       });
     }
-    // Run on load and observe for dynamically added images
     document.addEventListener('DOMContentLoaded', () => {
       revealImages();
       new MutationObserver(revealImages).observe(document.body, { childList: true, subtree: true });

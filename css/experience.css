@@ -57,6 +57,10 @@
     padding-bottom: 0;
 }
 
+.timeline-item:last-child .timeline-dot {
+    top: 50%;
+}
+
 /* Dot — centered on line */
 /* Line center = left 4px + 0.75px = 4.75px from .timeline edge
    Item starts at 20px (padding-left)
@@ -64,7 +68,8 @@
 .timeline-dot {
     position: absolute;
     left: -18px;
-    top: 10px;
+    top: calc(50% - 0.75rem);
+    transform: translateY(-50%);
     width: 6px;
     height: 6px;
     border-radius: 50%;
@@ -81,7 +86,8 @@
     width: 8px;
     height: 8px;
     left: -19px;
-    top: 9px;
+    top: calc(50% - 0.75rem);
+    transform: translateY(-50%);
 }
 
 .timeline-work .timeline-item:first-child .timeline-dot {

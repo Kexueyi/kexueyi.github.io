@@ -64,52 +64,59 @@ const gallery = {
 
   loadImages(images) {
     const columnHeights = new Array(this.columns.length).fill(0);
+    const defaultRatio = 1.3; // default aspect ratio for placeholders
 
-    // Phase 1: preload all images to get aspect ratios, then compute layout
-    const imagePromises = images.map(image => {
-      return new Promise((resolve) => {
-        const img = new Image();
-        img.src = image.src;
-        img.onload = () => resolve({ ...image, aspectRatio: img.naturalHeight / img.naturalWidth });
-        img.onerror = () => resolve(null);
-      });
+    // Distribute images to columns using estimated heights
+    const assignments = images.map(image => {
+      const colIdx = columnHeights.indexOf(Math.min(...columnHeights));
+      columnHeights[colIdx] += defaultRatio;
+      return { image, colIdx };
     });
 
-    Promise.all(imagePromises).then(loadedImages => {
-      loadedImages = loadedImages.filter(img => img !== null);
+    // Create all placeholder items immediately
+    const items = assignments.map(({ image, colIdx }) => {
+      const item = document.createElement('div');
+      item.className = 'gallery-item gallery-item-placeholder';
 
-      // Compute fixed layout: assign each image to its column
-      const assignments = loadedImages.map(image => {
-        const colIdx = columnHeights.indexOf(Math.min(...columnHeights));
-        columnHeights[colIdx] += image.aspectRatio;
-        return { image, colIdx };
-      });
+      item.innerHTML = `
+        <div class="gallery-placeholder-shimmer"></div>
+        <img alt="${image.title}" decoding="async">
+        <div class="gallery-item-info">
+          <div class="gallery-item-title">${image.title}</div>
+          <div class="gallery-item-location">${image.location}</div>
+        </div>
+      `;
 
-      // Phase 2: create placeholders, then reveal each as it loads
-      assignments.forEach(({ image, colIdx }) => {
-        const item = document.createElement('div');
-        item.className = 'gallery-item gallery-item-loading';
+      this.columns[colIdx].appendChild(item);
+      item.addEventListener('click', () => this.showImage(image.src, image.title, image.location));
 
-        item.innerHTML = `
-          <img src="${image.src}" alt="${image.title}" loading="lazy" decoding="async">
-          <div class="gallery-item-info">
-            <div class="gallery-item-title">${image.title}</div>
-            <div class="gallery-item-location">${image.location}</div>
-          </div>
-        `;
-
-        this.columns[colIdx].appendChild(item);
-
-        const img = item.querySelector('img');
-        if (img.complete) {
-          item.classList.remove('gallery-item-loading');
-        } else {
-          img.onload = () => item.classList.remove('gallery-item-loading');
-        }
-
-        item.addEventListener('click', () => this.showImage(image.src, image.title, image.location));
-      });
+      return { item, image };
     });
+
+    // Load images one by one in sequence
+    let i = 0;
+    const loadNext = () => {
+      if (i >= items.length) return;
+      const { item, image } = items[i];
+      const img = item.querySelector('img');
+      i++;
+
+      img.onload = () => {
+        item.classList.remove('gallery-item-placeholder');
+        item.classList.add('gallery-item-revealed');
+        loadNext();
+      };
+      img.onerror = () => {
+        item.remove();
+        loadNext();
+      };
+      img.src = image.src;
+    };
+
+    // Start 3 parallel loaders for faster throughput
+    loadNext();
+    loadNext();
+    loadNext();
   },
 
   createModal() {

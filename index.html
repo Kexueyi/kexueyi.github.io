@@ -334,6 +334,25 @@ year={2024}
   <script src="js/footer.js"></script>
   <script src="js/modal.js"></script>
 
+  <!-- Prefetch gallery images so they load instantly when user navigates to Misc -->
+  <script src="js/gallery.js"></script>
+  <script>
+    (function() {
+      var idle = window.requestIdleCallback || function(cb) { setTimeout(cb, 1000); };
+      idle(function() {
+        if (typeof gallery !== 'undefined' && gallery.images) {
+          gallery.images.forEach(function(img) {
+            var link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.as = 'image';
+            link.href = img.src;
+            document.head.appendChild(link);
+          });
+        }
+      });
+    })();
+  </script>
+
 </body>
 
 </html>

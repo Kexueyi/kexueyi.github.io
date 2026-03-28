@@ -51,11 +51,9 @@
 
 .gallery-item img {
   width: 100%;
-  height: auto; /* 改为 auto 以保持图片原始比例 */
+  height: auto;
   display: block;
-  transition: opacity 0.5s ease, transform 0.3s ease;
-  opacity: 0;  
-  animation: fadeIn 0.3s ease forwards; 
+  transition: transform 0.3s ease;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -130,17 +128,57 @@
   white-space: nowrap;
 }
 
-/* 添加初始加载时的最小高度占位 */
-.gallery-item:not(:has(img[complete])) {
-  min-height: 100px;
+/* Shimmer placeholder while image is loading */
+.gallery-item-placeholder {
+  min-height: 200px;
+  position: relative;
+}
+
+.gallery-placeholder-shimmer {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
   background: linear-gradient(
     90deg,
-    #f0f0f0 0%,
-    #f8f8f8 50%,
-    #f0f0f0 100%
+    var(--shimmer-base, #e8e8e8) 0%,
+    var(--shimmer-highlight, #f5f5f5) 40%,
+    var(--shimmer-base, #e8e8e8) 80%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+  animation: shimmer 1.5s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Dark theme shimmer colors */
+[data-theme="dark"] .gallery-placeholder-shimmer {
+  --shimmer-base: #2a2a2a;
+  --shimmer-highlight: #3a3a3a;
+}
+
+/* Hide shimmer once image is revealed */
+.gallery-item-revealed .gallery-placeholder-shimmer {
+  display: none;
+}
+
+/* Reveal animation */
+.gallery-item-placeholder img {
+  opacity: 0;
+}
+
+.gallery-item-revealed img {
+  opacity: 0;
+  animation: galleryReveal 0.5s ease forwards;
+}
+
+@keyframes galleryReveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* transpaerent DIV cover */
@@ -158,40 +196,9 @@
   z-index: 1;
 }
 
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.5s ease, transform 0.3s ease;
-  opacity: 0;  
-  animation: fadeIn 0.3s ease forwards; 
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-drag: none;
-  -moz-user-drag: none;
-  -ms-user-drag: none;
-}
-
-.gallery-item img.loaded {
-  opacity: 1;
-}
-
-/* Progressive reveal */
-.gallery-item-loading {
-  opacity: 0;
-  transform: translateY(8px);
-}
 
 .gallery-item {
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-@keyframes fadeIn { 
-  from { opacity: 0; }
-  to { opacity: 1; }
+  transition: transform 0.4s ease;
 }
 
 @keyframes shimmer {

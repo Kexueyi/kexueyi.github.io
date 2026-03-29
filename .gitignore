@@ -1,4 +1,6 @@
 images/gallery
+images/gallery_original
+scripts/.fonts
 gallery.html
 netlify.toml
 .DS_Store

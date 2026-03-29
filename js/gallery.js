@@ -1,33 +1,39 @@
 const gallery = {
+  // Optional fields: camera, lens, film (shown on lightbox hover)
   images: [
-    { src: 'images/gallery/000117640002.jpg', title: 'Natural Chimney', location: 'Bromo, Indonesia' },
-    { src: 'images/gallery/000117640014.jpg', title: 'Natural Chimney', location: 'Bromo, Indonesia' },
-    { src: 'images/gallery/000117640033_1.jpg', title: 'Ocean Bonsai', location: 'Nusa Lembongan, Indonesia' },
-    { src: 'images/gallery/000117640034.jpg', title: 'Ocean Bonsai', location: 'Nusa Lembongan, Indonesia' },
-    { src: 'images/gallery/000117640022.jpg', title: 'Foggy Mountain', location: 'Bromo, Indonesia' },
-    { src: 'images/gallery/000053.JPG', title: 'Cloud Ruins', location: 'Yuanmingyuan, Beijing, China' },
-    { src: 'images/gallery/000049.JPG', title: 'Ruins', location: 'Yuanmingyuan, Beijing, China' },
-    { src: 'images/gallery/000050.JPG', title: 'Dashuifa', location: 'Yuanmingyuan, Beijing, China' },
-    { src: 'images/gallery/000064.JPG', title: 'Golden Fish', location: 'Yiheyuan, Beijing, China' },
-    { src: 'images/gallery/000070.JPG', title: 'Arch', location: 'Forbidden City, Beijing, China' },
-    { src: 'images/gallery/000067.JPG', title: 'End Gate', location: 'Forbidden City, Beijing, China' },
-    { src: 'images/gallery/000040.JPG', title: 'Volkswagen Beetle', location: 'Haji Lane, Singapore' },
-    { src: 'images/gallery/000005.JPG', title: 'Luminous Bazaar', location: 'Haji Lane, Singapore' },
-    { src: 'images/gallery/001009810037.JPG', title: 'The Other Side', location: 'Gaylang, Singapore' },
-    { src: 'images/gallery/001299740030.jpg', title: 'Wheels', location: 'Whampoa, Singapore' },
-    { src: 'images/gallery/001299740023.jpg', title: 'Sunset', location: 'Tuas, Singapore' },
-    { src: 'images/gallery/001299740021.jpg', title: 'Now Playing', location: 'Tuas, Singapore' },
-    { src: 'images/gallery/001299740017.jpg', title: 'Blue Hour', location: 'Tuas, Singapore' },
-    { src: 'images/gallery/00F80A73-16F7-457E-A485-5F7E53895F45.JPG', title: 'Youth', location: 'Wuhan University, China' },
-    { src: 'images/gallery/003_0301.jpg', title: 'Sunrise', location: 'Wuhan University, China' },
-    { src: 'images/gallery/deb4f229et1946f6eb2ed0c2a61d639a.JPG', title: 'Dorm', location: 'Wuhan University, China' },
-    { src: 'images/gallery/246BC05C-ABF4-49BD-8ABD-BAEE5DB8CB93.JPEG', title: 'Meow?', location: 'Wuhan, China' },
-    { src: 'images/gallery/F43C5961-23F4-4775-84CF-272E8EE51931.JPEG', title: 'Tipsy', location: 'Wuhan University, China' },
-    { src: 'images/gallery/ffecf9e2ai4189cd7295f03aa5721b08.JPG', title: "Craftsman's spirit", location: 'Wuhan, China' },
-    { src: 'images/gallery/c42ff6d78t3c66cd49d30ca383680b11.JPG', title: 'Memories', location: 'Wuhan, China' },
-    { src: 'images/gallery/d430e75f0l966c2ceb73ff478b7dce43.JPG', title: 'Afternoon', location: 'Wuhan, China' },
-    { src: 'images/gallery/IMG_3891.JPG', title: 'Cherry blossom', location: 'Wuhan University, China' },
-    { src: 'images/gallery/IMG_3890.JPG', title: 'Cherry blossom', location: 'Wuhan University, China' },
+    { src: 'images/gallery/000117640002.jpg', title: 'Natural Chimney', location: 'Bromo, Indonesia', camera: 'Nikon F3', lens:"35-135mm f2.8", film: 'Fuji Provia 100' },
+    { src: 'images/gallery/000117640014.jpg', title: 'Natural Chimney', location: 'Bromo, Indonesia', camera: 'Nikon F3', lens:"35-135mm f2.8", film: 'Fuji Provia 100' },
+    { src: 'images/gallery/000117640033_1.jpg', title: 'Ocean Bonsai', location: 'Nusa Lembongan, Indonesia', camera: 'Nikon F3', lens:"35-135mm f2.8", film: 'Fuji Provia 100' },
+    { src: 'images/gallery/000117640034.jpg', title: 'Ocean Bonsai', location: 'Nusa Lembongan, Indonesia', camera: 'Nikon F3', lens:"35-135mm f2.8", film: 'Fuji Provia 100' },
+    { src: 'images/gallery/000117640022.jpg', title: 'Foggy Mountain', location: 'Bromo, Indonesia', camera: 'Nikon F3', lens:"35-135mm f2.8", film: 'Fuji Provia 100' },
+    
+    { src: 'images/gallery/000053.JPG', title: 'Cloud Ruins', location: 'Yuanmingyuan, Beijing, China', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    { src: 'images/gallery/000049.JPG', title: 'Ruins', location: 'Yuanmingyuan, Beijing, China', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    { src: 'images/gallery/000050.JPG', title: 'Dashuifa', location: 'Yuanmingyuan, Beijing, China', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    { src: 'images/gallery/000064.JPG', title: 'Golden Fish', location: 'Yiheyuan, Beijing, China', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    { src: 'images/gallery/000070.JPG', title: 'Arch', location: 'Forbidden City, Beijing, China', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    { src: 'images/gallery/000067.JPG', title: 'End Gate', location: 'Forbidden City, Beijing, China', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    
+    { src: 'images/gallery/000040.JPG', title: 'Volkswagen Beetle', location: 'Haji Lane, Singapore', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    { src: 'images/gallery/000005.JPG', title: 'Luminous Bazaar', location: 'Haji Lane, Singapore', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    { src: 'images/gallery/001009810037.JPG', title: 'The Other Side', location: 'Gaylang, Singapore', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    { src: 'images/gallery/001299740030.jpg', title: 'Wheels', location: 'Whampoa, Singapore', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    { src: 'images/gallery/001299740023.jpg', title: 'Sunset', location: 'Tuas, Singapore', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    { src: 'images/gallery/001299740021.jpg', title: 'Now Playing', location: 'Tuas, Singapore', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    { src: 'images/gallery/001299740017.jpg', title: 'Blue Hour', location: 'Tuas, Singapore', camera: 'Nikon F3', lens:"50mm f1.8", film: 'Kodak Ultramax 400' },
+    
+    { src: 'images/gallery/00F80A73-16F7-457E-A485-5F7E53895F45.JPG', title: 'Youth', location: 'Wuhan University, China', camera: 'Nikon F3', lens:"50mm f1.8"},
+    { src: 'images/gallery/003_0301.jpg', title: 'Sunrise', location: 'Wuhan University, China', camera: 'Nikon F3', lens:"50mm f1.8"},
+    { src: 'images/gallery/deb4f229et1946f6eb2ed0c2a61d639a.JPG', title: 'Dorm', location: 'Wuhan University, China', camera: 'Nikon F3', lens:"50mm f1.8"},
+    { src: 'images/gallery/246BC05C-ABF4-49BD-8ABD-BAEE5DB8CB93.JPEG', title: 'Meow?', location: 'Wuhan, China', camera: 'Nikon F3', lens:"50mm f1.8" },
+    { src: 'images/gallery/F43C5961-23F4-4775-84CF-272E8EE51931.JPEG', title: 'Tipsy', location: 'Wuhan University, China', camera: 'Nikon F3', lens:"50mm f1.8" },
+    { src: 'images/gallery/ffecf9e2ai4189cd7295f03aa5721b08.JPG', title: "Craftsman's spirit", location: 'Wuhan, China', camera: 'Nikon F3', lens:"50mm f1.8" },
+    { src: 'images/gallery/c42ff6d78t3c66cd49d30ca383680b11.JPG', title: 'Memories', location: 'Wuhan, China', camera: 'Nikon F3', lens:"50mm f1.8" },
+    { src: 'images/gallery/d430e75f0l966c2ceb73ff478b7dce43.JPG', title: 'Afternoon', location: 'Wuhan, China', camera: 'Nikon F3', lens:"50mm f1.8" },
+    { src: 'images/gallery/IMG_3891.JPG', title: 'Cherry blossom', location: 'Wuhan University, China', camera: 'Nikon F3', lens:"50mm f1.8" },
+    { src: 'images/gallery/IMG_3890.JPG', title: 'Cherry blossom', location: 'Wuhan University, China', camera: 'Nikon F3', lens:"50mm f1.8" },
+    { src: 'images/gallery/IMG_1757.JPG', title: 'Jump Right Here', location: 'Lingbo Gate, Wuhan University, China', camera: 'Nikon F3', lens:"50mm f1.8" },
+
   ],
 
   init() {
@@ -88,7 +94,7 @@ const gallery = {
       `;
 
       this.columns[colIdx].appendChild(item);
-      item.addEventListener('click', () => this.showImage(image.src, image.title, image.location));
+      item.addEventListener('click', () => this.showImage(image));
 
       return { item, image };
     });
@@ -127,8 +133,11 @@ const gallery = {
         <div class="modal-image-container">
           <img class="modal-content">
           <div class="modal-info-bar">
-            <div class="modal-info-title"></div>
-            <div class="modal-info-location"></div>
+            <div class="modal-info-main">
+              <div class="modal-info-title"></div>
+              <div class="modal-info-location"></div>
+            </div>
+            <div class="modal-info-gear"></div>
           </div>
         </div>
       </div>
@@ -150,16 +159,23 @@ const gallery = {
     document.body.appendChild(this.modal);
   },
 
-  showImage(src, title, location) {
+  showImage(image) {
     const img = this.modal.querySelector('.modal-content');
     const titleEl = this.modal.querySelector('.modal-info-title');
     const locationEl = this.modal.querySelector('.modal-info-location');
+    const gearEl = this.modal.querySelector('.modal-info-gear');
     const preloadImg = new Image();
 
     preloadImg.onload = () => {
-      img.src = src;
-      titleEl.textContent = title || '';
-      locationEl.textContent = location || '';
+      img.src = image.src;
+      titleEl.textContent = image.title || '';
+      locationEl.textContent = image.location || '';
+
+      // Build gear info: "Camera · Lens · Film"
+      const parts = [image.camera, image.lens, image.film].filter(Boolean);
+      gearEl.textContent = parts.join('  ·  ');
+      gearEl.style.display = parts.length ? '' : 'none';
+
       this.modal.classList.add('active');
 
       requestAnimationFrame(() => {
@@ -170,10 +186,10 @@ const gallery = {
     };
 
     preloadImg.onerror = () => {
-      console.error('Image failed to load:', src);
+      console.error('Image failed to load:', image.src);
     };
 
-    preloadImg.src = src;
+    preloadImg.src = image.src;
   },
 
   hideImage() {

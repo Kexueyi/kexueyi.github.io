@@ -311,6 +311,12 @@
   transform: translateY(0);
 }
 
+.modal-info-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
 .modal-info-title {
   color: #ffffff;
   font-size: 16px;
@@ -324,7 +330,37 @@
   margin-top: 2px;
 }
 
+.modal-info-gear {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  text-align: right;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
 
+
+
+/* Copyright line on lightbox image */
+.modal-image-container::after {
+  content: "\00A9  2026 Xueyi Ke. All rights reserved.";
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.modal.active .modal-image-container::after {
+  opacity: 1;
+  transition: opacity 0.3s ease 0.3s;
+}
 
 /* 添加动画效果 */
 @keyframes watermarkFloat {

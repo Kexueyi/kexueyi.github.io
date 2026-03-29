@@ -15,17 +15,37 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 ORIGINAL_DIR = os.path.join(os.path.dirname(__file__), '..', 'images', 'gallery_original')
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'images', 'gallery')
 CENTER_TEXT = '© Xueyi Ke'
-BOTTOM_TEXT = '© 2026 Xueyi Ke. All rights reserved.'
 MAX_SIZE = 1600
-JPEG_QUALITY = 85
-CENTER_OPACITY = 40   # 0-255, subtle centered watermark
-BOTTOM_OPACITY = 110  # slightly more visible, like the old CSS rgba(255,255,255,0.5)
+JPEG_QUALITY = 95
+TILE_OPACITY = 35     # 0-255, subtle tiled layer for anti-removal
+CENTER_OPACITY = 70   # 0-255, visible centered watermark as deterrent
+
+# Cache for downloaded font
+FONT_DIR = os.path.join(os.path.dirname(__file__), '.fonts')
+NUNITO_PATH = os.path.join(FONT_DIR, 'Nunito-Regular.ttf')
+NUNITO_URL = 'https://github.com/googlefonts/nunito/raw/main/fonts/variable/Nunito%5Bwght%5D.ttf'
+
+
+def ensure_nunito():
+    """Download Nunito font if not cached."""
+    if os.path.exists(NUNITO_PATH):
+        return NUNITO_PATH
+    os.makedirs(FONT_DIR, exist_ok=True)
+    print('Downloading Nunito font...')
+    import urllib.request
+    urllib.request.urlretrieve(NUNITO_URL, NUNITO_PATH)
+    return NUNITO_PATH
 
 
 def get_font(size):
-    """Try system fonts, fall back to default."""
-    for path in ['/System/Library/Fonts/Helvetica.ttc',
-                 '/System/Library/Fonts/SFNSMono.ttf']:
+    """Use Nunito to match site font, fall back to system rounded fonts."""
+    try:
+        return ImageFont.truetype(NUNITO_PATH, size)
+    except (OSError, IOError):
+        pass
+    for path in ['/System/Library/Fonts/Supplemental/Arial Rounded Bold.ttf',
+                 '/System/Library/Fonts/Supplemental/Avenir Next.ttc',
+                 '/System/Library/Fonts/Helvetica.ttc']:
         try:
             return ImageFont.truetype(path, size)
         except (OSError, IOError):
@@ -34,43 +54,74 @@ def get_font(size):
 
 
 def add_watermark(img):
-    """Add centered watermark + bottom copyright line."""
-    watermark = Image.new('RGBA', img.size, (0, 0, 0, 0))
-    draw = ImageDraw.Draw(watermark)
+    """Add subtle adaptive tiled watermark + visible centered watermark."""
+    ref = max(img.width, img.height)
+    tile_font_size = max(10, ref // 90)
+    tile_font = get_font(tile_font_size)
 
-    # --- Centered watermark ---
-    center_size = max(16, img.width // 30)
-    center_font = get_font(center_size)
-
-    bbox = draw.textbbox((0, 0), CENTER_TEXT, font=center_font)
-    tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
-    cx = (img.width - tw) // 2
-    cy = (img.height - th) // 2
-
-    draw.text((cx + 1, cy + 1), CENTER_TEXT, font=center_font,
-              fill=(0, 0, 0, CENTER_OPACITY // 2))
-    draw.text((cx, cy), CENTER_TEXT, font=center_font,
-              fill=(255, 255, 255, CENTER_OPACITY))
-
-    # --- Bottom copyright line ---
-    bottom_size = max(11, img.width // 80)
-    bottom_font = get_font(bottom_size)
-
-    bbox = draw.textbbox((0, 0), BOTTOM_TEXT, font=bottom_font)
-    bw, bh = bbox[2] - bbox[0], bbox[3] - bbox[1]
-    bx = (img.width - bw) // 2
-    by = img.height - bh - max(8, img.height // 80)
-
-    draw.text((bx + 1, by + 1), BOTTOM_TEXT, font=bottom_font,
-              fill=(0, 0, 0, BOTTOM_OPACITY // 2))
-    draw.text((bx, by), BOTTOM_TEXT, font=bottom_font,
-              fill=(255, 255, 255, BOTTOM_OPACITY))
-
-    # Composite
     if img.mode != 'RGBA':
         img = img.convert('RGBA')
-    watermarked = Image.alpha_composite(img, watermark)
-    return watermarked.convert('RGB')
+
+    # --- Layer 1: Subtle adaptive tiled watermark (anti-removal) ---
+    temp = ImageDraw.Draw(Image.new('RGBA', (1, 1)))
+    bbox = temp.textbbox((0, 0), CENTER_TEXT, font=tile_font)
+    tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    gap_x = tw * 2.5
+    gap_y = th * 8
+
+    diag = int((img.width ** 2 + img.height ** 2) ** 0.5) + 200
+    white_tile = Image.new('RGBA', (diag, diag), (0, 0, 0, 0))
+    black_tile = Image.new('RGBA', (diag, diag), (0, 0, 0, 0))
+    wd = ImageDraw.Draw(white_tile)
+    bd = ImageDraw.Draw(black_tile)
+
+    y = 0
+    row = 0
+    while y < diag:
+        x = int(-gap_x / 2) if row % 2 else 0
+        while x < diag:
+            wd.text((x + 1, y + 1), CENTER_TEXT, font=tile_font,
+                    fill=(0, 0, 0, TILE_OPACITY // 3))
+            wd.text((x, y), CENTER_TEXT, font=tile_font,
+                    fill=(255, 255, 255, TILE_OPACITY))
+            bd.text((x + 1, y + 1), CENTER_TEXT, font=tile_font,
+                    fill=(255, 255, 255, TILE_OPACITY // 4))
+            bd.text((x, y), CENTER_TEXT, font=tile_font,
+                    fill=(0, 0, 0, TILE_OPACITY))
+            x += int(gap_x)
+        y += int(gap_y)
+        row += 1
+
+    white_tile = white_tile.rotate(35, resample=Image.BICUBIC, expand=False)
+    black_tile = black_tile.rotate(35, resample=Image.BICUBIC, expand=False)
+    crop_x = (white_tile.width - img.width) // 2
+    crop_y = (white_tile.height - img.height) // 2
+    white_tile = white_tile.crop((crop_x, crop_y, crop_x + img.width, crop_y + img.height))
+    black_tile = black_tile.crop((crop_x, crop_y, crop_x + img.width, crop_y + img.height))
+
+    blur_radius = max(20, ref // 40)
+    mask = img.convert('L').filter(ImageFilter.GaussianBlur(blur_radius))
+    adaptive_wm = Image.composite(black_tile, white_tile, mask)
+    img = Image.alpha_composite(img, adaptive_wm)
+
+    # --- Layer 2: Visible centered watermark (deterrent) ---
+    center_size = max(14, ref // 50)
+    center_font = get_font(center_size)
+    center_layer = Image.new('RGBA', img.size, (0, 0, 0, 0))
+    cd = ImageDraw.Draw(center_layer)
+
+    bbox = cd.textbbox((0, 0), CENTER_TEXT, font=center_font)
+    ctw, cth = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    cx = (img.width - ctw) // 2
+    cy = (img.height - cth) // 2
+
+    cd.text((cx + 1, cy + 1), CENTER_TEXT, font=center_font,
+            fill=(0, 0, 0, CENTER_OPACITY // 2))
+    cd.text((cx, cy), CENTER_TEXT, font=center_font,
+            fill=(255, 255, 255, CENTER_OPACITY))
+
+    img = Image.alpha_composite(img, center_layer)
+    return img.convert('RGB')
 
 
 def process_image(filename):
@@ -114,6 +165,7 @@ def main():
         return
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+    ensure_nunito()
 
     all_files = [f for f in os.listdir(ORIGINAL_DIR)
                  if f.lower().endswith(('.jpg', '.jpeg', '.png'))]

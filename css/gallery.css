@@ -324,27 +324,6 @@
   margin-top: 2px;
 }
 
-/* Copyright line on image */
-.modal-image-container::after {
-  content: "© 2026 Xueyi Ke. All rights reserved.";
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.5);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.modal.active .modal-image-container::after {
-  opacity: 1;
-  transition: opacity 0.3s ease 0.3s;
-}
 
 
 /* 添加动画效果 */

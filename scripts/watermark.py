@@ -14,38 +14,57 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 ORIGINAL_DIR = os.path.join(os.path.dirname(__file__), '..', 'images', 'gallery_original')
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'images', 'gallery')
-WATERMARK_TEXT = '© Xueyi Ke'
+CENTER_TEXT = '© Xueyi Ke'
+BOTTOM_TEXT = '© 2026 Xueyi Ke. All rights reserved.'
 MAX_SIZE = 1600
 JPEG_QUALITY = 85
-OPACITY = 40  # 0-255, lower = more subtle
+CENTER_OPACITY = 40   # 0-255, subtle centered watermark
+BOTTOM_OPACITY = 110  # slightly more visible, like the old CSS rgba(255,255,255,0.5)
+
+
+def get_font(size):
+    """Try system fonts, fall back to default."""
+    for path in ['/System/Library/Fonts/Helvetica.ttc',
+                 '/System/Library/Fonts/SFNSMono.ttf']:
+        try:
+            return ImageFont.truetype(path, size)
+        except (OSError, IOError):
+            continue
+    return ImageFont.load_default()
 
 
 def add_watermark(img):
-    """Add centered semi-transparent watermark with shadow."""
+    """Add centered watermark + bottom copyright line."""
     watermark = Image.new('RGBA', img.size, (0, 0, 0, 0))
     draw = ImageDraw.Draw(watermark)
 
-    # Scale font size relative to image width
-    font_size = max(16, img.width // 30)
-    try:
-        font = ImageFont.truetype('/System/Library/Fonts/Helvetica.ttc', font_size)
-    except (OSError, IOError):
-        try:
-            font = ImageFont.truetype('/System/Library/Fonts/SFNSMono.ttf', font_size)
-        except (OSError, IOError):
-            font = ImageFont.load_default()
+    # --- Centered watermark ---
+    center_size = max(16, img.width // 30)
+    center_font = get_font(center_size)
 
-    # Get text bounding box
-    bbox = draw.textbbox((0, 0), WATERMARK_TEXT, font=font)
-    text_w = bbox[2] - bbox[0]
-    text_h = bbox[3] - bbox[1]
-    x = (img.width - text_w) // 2
-    y = (img.height - text_h) // 2
+    bbox = draw.textbbox((0, 0), CENTER_TEXT, font=center_font)
+    tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    cx = (img.width - tw) // 2
+    cy = (img.height - th) // 2
 
-    # Draw shadow
-    draw.text((x + 1, y + 1), WATERMARK_TEXT, font=font, fill=(0, 0, 0, OPACITY // 2))
-    # Draw watermark text
-    draw.text((x, y), WATERMARK_TEXT, font=font, fill=(255, 255, 255, OPACITY))
+    draw.text((cx + 1, cy + 1), CENTER_TEXT, font=center_font,
+              fill=(0, 0, 0, CENTER_OPACITY // 2))
+    draw.text((cx, cy), CENTER_TEXT, font=center_font,
+              fill=(255, 255, 255, CENTER_OPACITY))
+
+    # --- Bottom copyright line ---
+    bottom_size = max(11, img.width // 80)
+    bottom_font = get_font(bottom_size)
+
+    bbox = draw.textbbox((0, 0), BOTTOM_TEXT, font=bottom_font)
+    bw, bh = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    bx = (img.width - bw) // 2
+    by = img.height - bh - max(8, img.height // 80)
+
+    draw.text((bx + 1, by + 1), BOTTOM_TEXT, font=bottom_font,
+              fill=(0, 0, 0, BOTTOM_OPACITY // 2))
+    draw.text((bx, by), BOTTOM_TEXT, font=bottom_font,
+              fill=(255, 255, 255, BOTTOM_OPACITY))
 
     # Composite
     if img.mode != 'RGBA':

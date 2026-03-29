@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.publication-image img').forEach(img => {
         img.addEventListener('click', function() {
             imageModal.classList.add('active');
-            modalImg.src = this.src;
+            // Use high-res version if available
+            modalImg.src = this.dataset.full || this.src;
             modalImg.classList.add('modal-content-active');
         });
     });

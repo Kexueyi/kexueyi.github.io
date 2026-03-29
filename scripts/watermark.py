@@ -96,12 +96,21 @@ def main():
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    files = [f for f in os.listdir(ORIGINAL_DIR)
-             if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
+    all_files = [f for f in os.listdir(ORIGINAL_DIR)
+                 if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
 
-    print(f'Processing {len(files)} images...\n')
+    # Only process images that don't already exist in output
+    new_files = [f for f in all_files
+                 if not os.path.exists(os.path.join(OUTPUT_DIR, f))]
 
-    for f in sorted(files):
+    if not new_files:
+        print('No new images to process. All originals already have watermarked versions.')
+        print('Tip: delete an image from images/gallery/ to re-process it.')
+        return
+
+    print(f'Found {len(new_files)} new images (skipping {len(all_files) - len(new_files)} existing)...\n')
+
+    for f in sorted(new_files):
         process_image(f)
 
     print(f'\nDone! Watermarked images saved to {OUTPUT_DIR}')

@@ -1,11 +1,5 @@
 :root {
-  /* Define icon content */
-  --icon-project: '🌐';  /* Globe for project page */
-  --icon-code: '💻';     /* Computer for code */
-  --icon-paper: '📖';    /* Paper for PDF */
-  --icon-cite: '"';     /* Books for citation */
   --font-size-paperlink: 12px;
-  --font-size-linkicon: 10px;
 
   --font-size-papertitle: 14.5px;
   --font-size-author: 13.5px;
@@ -200,38 +194,11 @@
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-/* Icon styles for different link types */
-.paper-link[data-type="project"]::before,
-.paper-link[data-type="paper"]::before,
-.paper-link[data-type="cite"]::before {
-  margin-right: 4px;
-  font-size: var(--font-size-linkicon);
-  line-height: 1;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.paper-link[data-type="project"]::before {
-  content: var(--icon-project);
-}
-
-/* GitHub icon for code link (inline SVG) */
-.paper-link[data-type="code"] svg {
+/* Inline SVG icons in link buttons */
+.paper-link svg {
   vertical-align: middle;
   margin-right: 4px;
-}
-
-.paper-link[data-type="paper"]::before {
-  content: var(--icon-paper);
-}
-
-.paper-link[data-type="cite"]::before {
-  content: var(--icon-cite);
-  font-size: 1rem;
-  font-weight: bold;
-  margin-right: 0.3rem;
-  margin-left: 0.1rem;
-  color: #6d85c4;
+  flex-shrink: 0;
 }
 
 /* Responsive Design */

@@ -201,9 +201,8 @@
 }
 
 /* Icon styles for different link types */
-.paper-link[data-type="project"]::before, 
-.paper-link[data-type="code"]::before, 
-.paper-link[data-type="paper"]::before, 
+.paper-link[data-type="project"]::before,
+.paper-link[data-type="paper"]::before,
 .paper-link[data-type="cite"]::before {
   margin-right: 4px;
   font-size: var(--font-size-linkicon);
@@ -216,8 +215,10 @@
   content: var(--icon-project);
 }
 
-.paper-link[data-type="code"]::before {
-  content: var(--icon-code);
+/* GitHub icon for code link (inline SVG) */
+.paper-link[data-type="code"] svg {
+  vertical-align: middle;
+  margin-right: 4px;
 }
 
 .paper-link[data-type="paper"]::before {

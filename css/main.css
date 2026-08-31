@@ -354,11 +354,31 @@ img[loading="lazy"]:not(.loaded)::after {
   scroll-margin-top: 65px;
 }
 
-/* Academic Service */
+/* Academic Service — venues as chips, matching the research topics, so
+   the two list-like sections read as the same kind of thing. */
 .service-list {
   color: var(--text-secondary);
   font-size: 14px;
   margin: 0.3rem 0 0;
+}
+
+.service-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-left: 0.7rem;
+  margin-top: 0.7rem;
+}
+
+.service-role {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.service-venues {
+  margin: 0;
 }
 
 /* Visitors — compact */
@@ -482,17 +502,11 @@ img[loading="lazy"]:not(.loaded)::after {
   margin-left: 0;
 }
 
-/* Visitors map frame — the widget renders at a fixed size, so the only
-   styling available is the frame around it. */
+/* Visitors map — no frame; the widget carries its own edges. */
 .visitors-map {
   display: inline-block;
   max-width: 100%;
-  padding: 6px;
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  background: var(--bg-subtle);
   line-height: 0;
-  overflow: hidden;
 }
 
 .visitors-map img,
@@ -502,4 +516,25 @@ img[loading="lazy"]:not(.loaded)::after {
   max-width: 100%;
   height: auto;
   border-radius: 6px;
+}
+
+
+/* ---------------------------------------------------------------
+   Finishing touches
+   --------------------------------------------------------------- */
+
+::selection {
+  background: var(--accent-bg);
+  color: var(--accent-hover);
+}
+
+/* A single visible focus style for keyboard users, in the accent colour.
+   :focus-visible only, so a mouse click never draws a ring. */
+a:focus-visible,
+button:focus-visible,
+.paper-link:focus-visible,
+.topic-tags li:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
 }

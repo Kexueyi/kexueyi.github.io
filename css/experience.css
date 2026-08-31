@@ -68,24 +68,26 @@
     opacity: 0.7;
 }
 
-/* The current entry is marked on its tile instead of a rail dot: a tinted
-   ring plus a slightly larger mark. Scale, not width, so the 46px layout
-   box is unchanged and every row's text stays aligned. */
-.timeline-item.is-current .experience-logo,
-.timeline-item:first-child:not(.is-past) .experience-logo {
-    border-color: var(--accent-border);
-    box-shadow: 0 0 0 3px var(--accent-bg);
+/* The current entry is marked on its date text rather than with a ring or
+   a rail dot, so nothing is drawn around the logo. Colour matches each
+   column's section rule: blue for work, gold for education. */
+.timeline-work .timeline-item.is-current .experience-duration,
+.timeline-work .timeline-item:first-child:not(.is-past) .experience-duration {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 600;
 }
 
-.timeline-edu .timeline-item.is-current .experience-logo,
-.timeline-edu .timeline-item:first-child:not(.is-past) .experience-logo {
-    border-color: var(--amber-border);
-    box-shadow: 0 0 0 3px var(--amber-bg);
+.timeline-edu .timeline-item.is-current .experience-duration,
+.timeline-edu .timeline-item:first-child:not(.is-past) .experience-duration {
+    color: var(--amber-hover);
+    font-style: normal;
+    font-weight: 600;
 }
 
 .timeline-item.is-current .experience-logo img,
 .timeline-item:first-child:not(.is-past) .experience-logo img {
-    transform: scale(1.06);
+    transform: scale(1.03);
 }
 
 /* Header: logo + text */
@@ -94,24 +96,15 @@
     align-items: center;
 }
 
-/* Logo tile */
+/* Logo — bare, no frame */
 .experience-logo {
     flex: 0 0 46px;
-    height: 46px;
-    margin-right: 0.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    box-sizing: border-box;
-    transition: border-color 0.22s ease, box-shadow 0.22s ease;
+    margin-right: 0.85rem;
 }
 
 .experience-logo img {
-    width: 32px;
-    height: 32px;
+    width: 46px;
+    height: 46px;
     object-fit: contain;
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -166,12 +159,11 @@
 
     .experience-logo {
         flex: 0 0 40px;
-        height: 40px;
         margin-right: 0.7rem;
     }
 
     .experience-logo img {
-        width: 28px;
-        height: 28px;
+        width: 40px;
+        height: 40px;
     }
 }

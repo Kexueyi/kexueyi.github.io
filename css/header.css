@@ -6,7 +6,10 @@
 
 .avatar {
     border-radius: 50%;
-    box-shadow: 2px 4px 3px rgba(48, 52, 50, 0.2);
+    /* A soft, centred shadow plus a hairline ring. The old offset drop
+       shadow read as a pasted-on cutout at this size. */
+    box-shadow: 0 6px 20px var(--shadow-color),
+                0 0 0 1px var(--border-color);
     width: 220px;
     height: 220px;
     object-fit: cover; 

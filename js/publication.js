@@ -19,7 +19,11 @@ export class Publication {
   static createHeader({ conference, year, title, links, image, imageFull }) {
     const primaryLink = links.webpage || links.project || links.paper || '#';
     const shortYear = year.toString().slice(-2); // Get last 2 digits
-    const venueTag = `${conference}&nbsp;'${shortYear}`;
+    // A preprint has no publication year to claim, so the tag is just the
+    // label; the year still shows in the venue line below.
+    const venueTag = conference === 'Preprint'
+      ? conference
+      : `${conference}&nbsp;'${shortYear}`;
 
     return `
       <div class="paper-header">
@@ -58,23 +62,34 @@ export class Publication {
       .filter(p => p.querySelector('.teaser'));
     if (!papers.length) return;
 
-    let timer;
+    let timer = null;
+    let active = null;
+
     const retire = () => {
       clearTimeout(timer);
+      timer = null;
+      if (active) {
+        active.classList.remove('hint-on');
+        active.removeEventListener('mouseleave', retire);
+        active = null;
+      }
       try { sessionStorage.setItem(KEY, '1'); } catch (e) { /* private mode */ }
-      papers.forEach(p => {
-        p.classList.remove('hint-on');
-        p.removeEventListener('mouseenter', reveal);
-      });
     };
 
     function reveal() {
-      this.classList.add('hint-on');
-      // Retire shortly after it has been seen, so it never nags.
+      // Detach every listener up front. Only the paper actually under the
+      // cursor is ever marked, and moving to a second paper cannot light it
+      // up while the first one's hint is still running.
+      papers.forEach(p => p.removeEventListener('mouseenter', reveal));
+
+      active = this;
+      active.classList.add('hint-on');
+      // Gone when the pointer leaves, or shortly after, whichever is first.
+      active.addEventListener('mouseleave', retire, { once: true });
       timer = setTimeout(retire, 2600);
     }
 
-    papers.forEach(p => p.addEventListener('mouseenter', reveal, { once: true }));
+    papers.forEach(p => p.addEventListener('mouseenter', reveal));
   }
   
 

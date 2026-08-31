@@ -18,110 +18,38 @@
     color: var(--text-primary);
 }
 
-/* Timeline line — gray, fading */
+/* ---------------------------------------------------------------
+   Entries are hairline-separated rows with a bordered logo tile,
+   rather than a dotted rail. The rail spent horizontal width on
+   decoration in a 350px column and repeated information the dates
+   already carry; the tile gives each institution a stable anchor and
+   lets the text start further left.
+   --------------------------------------------------------------- */
 .timeline {
     position: relative;
-    padding-left: 20px;
+    padding-left: 0;
 }
 
-.timeline::before {
-    content: "";
-    position: absolute;
-    left: 4px;
-    top: 4px;
-    bottom: 4px;
-    width: 1.5px;
-    border-radius: 1px;
-    background: linear-gradient(
-        to bottom,
-        rgba(140, 140, 140, 0.35) 0%,
-        rgba(140, 140, 140, 0.08) 100%
-    );
-}
+.timeline::before { content: none; }
 
-[data-theme="dark"] .timeline::before {
-    background: linear-gradient(
-        to bottom,
-        rgba(160, 160, 160, 0.3) 0%,
-        rgba(160, 160, 160, 0.06) 100%
-    );
-}
+.timeline-dot { display: none; }
 
-/* Timeline item */
+/* Timeline item — a hairline-separated row */
 .timeline-item {
     position: relative;
-    padding-bottom: 1.5rem;
+    padding: 0.7rem 0.55rem;
+    margin: 0 -0.55rem;
+    border-radius: 10px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.22s ease;
 }
 
 .timeline-item:last-child {
-    padding-bottom: 0;
+    border-bottom: 0;
 }
 
-.timeline-item:last-child .timeline-dot {
-    top: 50%;
-}
-
-/* Dot — centered on line */
-/* Line center = left 4px + 0.75px = 4.75px from .timeline edge
-   Item starts at 20px (padding-left)
-   6px dot center at 4.75px → dot left = 4.75 - 3 - 20 = -18.25px ≈ -18px */
-.timeline-dot {
-    position: absolute;
-    left: -18px;
-    top: calc(50% - 0.75rem);
-    transform: translateY(-50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    z-index: 1;
-    background: rgba(160, 160, 160, 0.4);
-}
-
-[data-theme="dark"] .timeline-dot {
-    background: rgba(160, 160, 160, 0.3);
-}
-
-/* ---------------------------------------------------------------
-   Current vs. past timeline entries
-
-   The first item in a timeline is treated as "current" by default.
-   Add class "is-past" to an item to demote it (e.g. a role that has
-   ended while still being the most recent one). Add "is-current" to
-   promote a non-first item.
-   --------------------------------------------------------------- */
-
-/* Current node — accent color, slightly larger */
-.timeline-item.is-current .timeline-dot,
-.timeline-item:first-child:not(.is-past) .timeline-dot {
-    width: 8px;
-    height: 8px;
-    left: -19px;
-    top: calc(50% - 0.75rem);
-    transform: translateY(-50%);
-}
-
-.timeline-work .timeline-item.is-current .timeline-dot,
-.timeline-work .timeline-item:first-child:not(.is-past) .timeline-dot {
-    background: rgba(74, 107, 150, 0.75);
-    box-shadow: 0 0 0 2.5px rgba(74, 107, 150, 0.14);
-}
-
-.timeline-edu .timeline-item.is-current .timeline-dot,
-.timeline-edu .timeline-item:first-child:not(.is-past) .timeline-dot {
-    background: rgba(107, 142, 111, 0.8);
-    box-shadow: 0 0 0 2.5px rgba(107, 142, 111, 0.16);
-}
-
-[data-theme="dark"] .timeline-work .timeline-item.is-current .timeline-dot,
-[data-theme="dark"] .timeline-work .timeline-item:first-child:not(.is-past) .timeline-dot {
-    background: rgba(145, 176, 214, 0.8);
-    box-shadow: 0 0 0 2.5px rgba(145, 176, 214, 0.16);
-}
-
-[data-theme="dark"] .timeline-edu .timeline-item.is-current .timeline-dot,
-[data-theme="dark"] .timeline-edu .timeline-item:first-child:not(.is-past) .timeline-dot {
-    background: rgba(150, 178, 148, 0.8);
-    box-shadow: 0 0 0 2.5px rgba(150, 178, 148, 0.16);
+.timeline-item:hover {
+    background-color: var(--bg-subtle);
 }
 
 /* Past items — fade text and logo slightly */
@@ -140,12 +68,24 @@
     opacity: 0.7;
 }
 
-/* Current item's logo reads slightly larger. Uses transform rather than
-   width/height so the 46px layout box is unchanged — text baselines and
-   every row's alignment stay exactly where they were. */
+/* The current entry is marked on its tile instead of a rail dot: a tinted
+   ring plus a slightly larger mark. Scale, not width, so the 46px layout
+   box is unchanged and every row's text stays aligned. */
+.timeline-item.is-current .experience-logo,
+.timeline-item:first-child:not(.is-past) .experience-logo {
+    border-color: var(--accent-border);
+    box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.timeline-edu .timeline-item.is-current .experience-logo,
+.timeline-edu .timeline-item:first-child:not(.is-past) .experience-logo {
+    border-color: var(--amber-border);
+    box-shadow: 0 0 0 3px var(--amber-bg);
+}
+
 .timeline-item.is-current .experience-logo img,
 .timeline-item:first-child:not(.is-past) .experience-logo img {
-    transform: scale(1.03);
+    transform: scale(1.06);
 }
 
 /* Header: logo + text */
@@ -154,15 +94,24 @@
     align-items: center;
 }
 
-/* Logo */
+/* Logo tile */
 .experience-logo {
     flex: 0 0 46px;
-    margin-right: 0.85rem;
+    height: 46px;
+    margin-right: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-sizing: border-box;
+    transition: border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
 .experience-logo img {
-    width: 46px;
-    height: 46px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -215,25 +164,14 @@
         gap: 1.2rem;
     }
 
-    .timeline {
-        padding-left: 18px;
-    }
-
-    .timeline-dot {
-        left: -16px;
-    }
-
-    .timeline-item:first-child .timeline-dot {
-        left: -17px;
-    }
-
     .experience-logo {
         flex: 0 0 40px;
+        height: 40px;
         margin-right: 0.7rem;
     }
 
     .experience-logo img {
-        width: 40px;
-        height: 40px;
+        width: 28px;
+        height: 28px;
     }
 }

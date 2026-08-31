@@ -394,14 +394,15 @@ img[loading="lazy"]:not(.loaded)::after {
   bottom: 0.18em;
   width: 3px;
   border-radius: 2px;
-  background: var(--accent);
-  opacity: 0.55;
+  /* Structural, not interactive — muted blue so it never reads as a link. */
+  background: var(--accent-muted);
 }
 
-/* Education column gets the sage marker its timeline dots use, so the
-   two columns stay visually distinguishable at a glance. */
+/* Education's rule uses gold so the two columns stay distinguishable
+   within the white / blue / gold / grey / black palette. */
 #education.timeline-title::before {
-  background: rgba(107, 142, 111, 0.9);
+  background: var(--amber);
+  opacity: 0.7;
 }
 
 /* Research topic chips */

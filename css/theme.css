@@ -1,26 +1,32 @@
 /* ---------------------------------------------------------------
-   Palette — warm, low-saturation neutrals with two restrained accents:
-   a muted blue for links/venues and a muted amber for teaser figures.
-   Neutrals carry a slight warm cast rather than the usual cool grey,
-   which is what keeps a text-heavy page from reading as clinical.
+   Palette — white / blue / gold / grey / black.
+
+   Two blues, deliberately split by role: --accent is the vivid blue
+   used for anything interactive (links, titles on hover, venue tags),
+   and --accent-muted is reserved for structural marks that should
+   never compete with it (section rules, rails). Gold stays exclusive
+   to teaser figures, so a gold element always means "there is a
+   picture here". Neutrals are near-neutral greys with only a trace of
+   warmth, so white reads as white.
    --------------------------------------------------------------- */
 :root {
     /* Light theme */
-    --bg-primary: #fdfcfa;
-    --bg-subtle: #f5f3ef;
-    --text-primary: #2a2724;
-    --text-secondary: #57524b;
-    --text-tertiary: #8b847a;
-    --border-color: #e7e2da;
-    --card-bg: #fdfcfa;
-    --nav-bg: rgba(253, 252, 250, 0.88);
-    --shadow-color: rgba(60, 50, 40, 0.10);
+    --bg-primary: #fdfdfc;
+    --bg-subtle: #f4f5f6;
+    --text-primary: #1f2328;
+    --text-secondary: #4c545d;
+    --text-tertiary: #848c95;
+    --border-color: #e4e6e9;
+    --card-bg: #ffffff;
+    --nav-bg: rgba(253, 253, 252, 0.88);
+    --shadow-color: rgba(31, 35, 40, 0.09);
 
     /* Accents */
-    --accent: #4a6b96;
-    --accent-hover: #3a5a85;
-    --accent-bg: #eef1f6;
-    --accent-border: #d2dae6;
+    --accent: #2070e0;
+    --accent-hover: #1849b4;
+    --accent-muted: #7e9cc4;
+    --accent-bg: #eef4fd;
+    --accent-border: #c8dbf7;
 
     --amber: #d99a00;
     --amber-hover: #b37f00;
@@ -33,21 +39,22 @@
 
 [data-theme="dark"] {
     /* Dark theme — warm charcoal, not blue-grey */
-    --bg-primary: #262420;
-    --bg-subtle: #2f2c27;
-    --text-primary: #ece9e3;
-    --text-secondary: #c6c0b6;
-    --text-tertiary: #958e83;
-    --border-color: #3b372f;
-    --card-bg: #2f2c27;
-    --nav-bg: rgba(38, 36, 32, 0.88);
-    --shadow-color: rgba(0, 0, 0, 0.4);
+    --bg-primary: #1e2126;
+    --bg-subtle: #262a30;
+    --text-primary: #e9ebed;
+    --text-secondary: #bcc2c9;
+    --text-tertiary: #8b939c;
+    --border-color: #343941;
+    --card-bg: #23272d;
+    --nav-bg: rgba(30, 33, 38, 0.88);
+    --shadow-color: rgba(0, 0, 0, 0.45);
 
     /* Accents */
-    --accent: #91b0d6;
-    --accent-hover: #abc4e4;
-    --accent-bg: rgba(145, 176, 214, 0.12);
-    --accent-border: rgba(145, 176, 214, 0.30);
+    --accent: #6ba5ff;
+    --accent-hover: #8dbcff;
+    --accent-muted: #5d7ea8;
+    --accent-bg: rgba(107, 165, 255, 0.13);
+    --accent-border: rgba(107, 165, 255, 0.32);
 
     --amber: #f2c94c;
     --amber-hover: #f8da79;

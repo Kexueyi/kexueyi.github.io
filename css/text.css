@@ -8,6 +8,7 @@
   --font-size-small: 10px;
   --chinese-font-primary: 'Zen Maru Gothic', system-ui, -apple-system, sans-serif;
 
+  /* Kept in sync with --accent in theme.css. */
   --color-link: #2070e0;
   --color-link-hover: #1849b4;
   --color-highlight: #ffffd0;

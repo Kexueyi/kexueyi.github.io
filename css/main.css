@@ -372,3 +372,97 @@ img[loading="lazy"]:not(.loaded)::after {
   padding: 0 16px;
 }
 
+
+/* ---------------------------------------------------------------
+   Small components
+   Texture on a text-heavy page should come from structure, not
+   ornament: a marker that tells you where a section starts, chips
+   that make topics scannable, and hover states that tell you what
+   is interactive. Nothing here is decorative-only.
+   --------------------------------------------------------------- */
+
+/* Section headings carry a short accent rule, so the eye finds the
+   start of a section without needing a heavier type scale. */
+.content-section > h2,
+.timeline-title {
+  position: relative;
+  padding-left: 0.7rem;
+}
+
+.content-section > h2::before,
+.timeline-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.18em;
+  bottom: 0.18em;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.55;
+}
+
+/* Education column gets the sage marker its timeline dots use, so the
+   two columns stay visually distinguishable at a glance. */
+#education.timeline-title::before {
+  background: rgba(107, 142, 111, 0.9);
+}
+
+/* Research topic chips */
+.topic-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.7rem 0 1.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.topic-tags li {
+  padding: 0.16rem 0.55rem;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.topic-tags li:hover {
+  color: var(--accent);
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+
+/* Publication rows read as one unit on hover. Negative inset margin keeps
+   the text on the same left edge it sits on at rest — no reflow. */
+.publication {
+  padding: 0.55rem 0.7rem;
+  margin-left: -0.7rem;
+  margin-right: -0.7rem;
+  border-radius: 10px;
+  transition: background-color 0.22s ease;
+}
+
+.publication:hover {
+  background-color: var(--bg-subtle);
+}
+
+/* Reading-progress hairline under the navbar */
+.scroll-progress {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  height: 2px;
+  width: 0;
+  z-index: 999;
+  background: linear-gradient(90deg, var(--accent), var(--amber));
+  opacity: 0.85;
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress { transition: none; }
+}

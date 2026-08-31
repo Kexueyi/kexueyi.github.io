@@ -42,6 +42,7 @@
       </div>
     </div>
   </nav>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <div class="page-wrapper">
     <div class="intro-section">
       <div class="intro-cell">
@@ -105,9 +106,12 @@
 
     <div class="content-section" id="research">
       <h2>Research</h2>
-      <p>
-        I'm interested in interpretability, explainability, safety &amp; security.
-      </p>
+      <ul class="topic-tags">
+        <li>Interpretability</li>
+        <li>Explainability</li>
+        <li>AI Safety</li>
+        <li>Security</li>
+      </ul>
       <div id="publications">
         <script type="module" src="js/publication.js"></script>
                     <script type="module">
@@ -373,6 +377,26 @@ year={2024}
   <script src="js/theme.js"> </script>
   <script src="js/footer.js"></script>
   <script src="js/modal.js"></script>
+
+  <script>
+    // Reading-progress hairline. rAF-throttled so scrolling stays cheap.
+    (function() {
+      var bar = document.getElementById('scrollProgress');
+      if (!bar) return;
+      var ticking = false;
+      function update() {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - doc.clientHeight;
+        bar.style.width = (max > 0 ? (doc.scrollTop / max) * 100 : 0) + '%';
+        ticking = false;
+      }
+      window.addEventListener('scroll', function() {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      window.addEventListener('resize', update, { passive: true });
+      update();
+    })();
+  </script>
 
   <!-- Prefetch the top of the Misc gallery so it opens instantly.
        gallery.js lays images out with a constant placeholder ratio, so the

@@ -4,10 +4,11 @@ import { AUTHOR_LINKS } from './data/authors.js';
 export class Publication {
   static createPublication(data) {
     return `
-      <div class="publication">
+      <div class="publication${data.image ? '' : ' publication-no-image'}">
+        ${data.image ? `
         <div class="publication-image">
-          <img src="${data.image || 'images/publications/placeholder.jpg'}" ${data.imageFull ? `data-full="${data.imageFull}"` : ''} alt="${data.title}" loading="lazy" decoding="async">
-        </div>
+          <img src="${data.image}" ${data.imageFull ? `data-full="${data.imageFull}"` : ''} alt="${data.title}" loading="lazy" decoding="async">
+        </div>` : ''}
         <div class="publication-content">
           ${this.createHeader(data)}
           ${this.createAuthors(data.authors)}

@@ -24,8 +24,7 @@ export class Publication {
     return `
       <div class="paper-header">
         ${conference ? `<span class="venue-tag">${venueTag}</span>` : ''}
-        ${image ? this.createTeaser(image, imageFull, title) : ''}
-        <a href="${primaryLink}" class="paper-title">${title}</a>
+        <a href="${primaryLink}" class="paper-title">${title}</a>${image ? this.createTeaser(image, imageFull, title) : ''}
       </div>
     `;
   }

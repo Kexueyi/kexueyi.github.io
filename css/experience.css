@@ -52,20 +52,13 @@
     background-color: var(--bg-subtle);
 }
 
-/* Past items — fade text and logo slightly */
-.timeline-item:not(:first-child):not(.is-current) .experience-content h3,
-.timeline-item.is-past .experience-content h3 {
-    color: var(--text-secondary);
-}
-
-.timeline-item:not(:first-child):not(.is-current) .experience-content .experience-title,
-.timeline-item.is-past .experience-content .experience-title {
-    color: var(--text-tertiary);
-}
-
+/* Past items — only a light touch on the logo. The headings keep their
+   normal colour: "current" is already signalled by its date text, so
+   dimming everything else was washing out entries that are still worth
+   reading. */
 .timeline-item:not(:first-child):not(.is-current) .experience-logo img,
 .timeline-item.is-past .experience-logo img {
-    opacity: 0.7;
+    opacity: 0.92;
 }
 
 /* The current entry is marked on its date text rather than with a ring or

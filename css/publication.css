@@ -78,7 +78,7 @@
    Teaser figure — a small amber icon trailing the paper title. Amber
    reads as a highlight against the blue used for links and venues,
    and only papers that have a figure show one. Hovering reveals the
-   figure at 230px; clicking opens it full size in the shared modal.
+   figure at 460px; clicking opens it full size in the shared modal.
    --------------------------------------------------------------- */
 .teaser {
   position: relative;
@@ -175,13 +175,17 @@
   position: absolute;
   top: calc(100% + 8px);
   /* Hangs leftward from the icon. The icon trails the title, so it can sit
-     near the right edge of the column; right-anchoring keeps the 230px
-     popup inside the content column at any title length or viewport width. */
+     near the right edge of the column; right-anchoring plus the max-width
+     below keeps the popover on screen at any title length or viewport. */
   right: -6px;
   z-index: 30;
   display: block;
-  width: 230px;
-  padding: 5px;
+  /* Twice the old thumbnail width. The figure is hidden until hover, so
+     there is no layout cost to showing it at a size that is actually
+     readable. */
+  width: 460px;
+  max-width: min(460px, calc(100vw - 2rem));
+  padding: 6px;
   background: var(--card-bg);
   border: 1px solid var(--amber-border);
   border-radius: 10px;
@@ -206,6 +210,12 @@
   height: auto;
   border-radius: 6px;
   cursor: zoom-in;
+}
+
+/* A narrow desktop window still has hover, so the popover shows there and
+   460px would hang off the left edge. Shrink it before that can happen. */
+@media (max-width: 680px) {
+  .teaser-pop { width: 300px; }
 }
 
 /* Touch devices have no hover: keep the icon as a plain tap-to-enlarge

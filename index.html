@@ -197,7 +197,9 @@ year={2024}
                       <h2 class="timeline-title" id="experience-heading">Experience</h2>
                       <div class="timeline timeline-work">
 
-                        <div class="timeline-item">
+                        <!-- is-past: role has ended, so it renders faded like the
+                             other finished entries even though it is still first -->
+                        <div class="timeline-item is-past">
                           <div class="timeline-dot timeline-dot-work"></div>
                           <div class="timeline-header">
                             <div class="experience-logo">
@@ -308,7 +310,9 @@ year={2024}
 
     <!-- Visitors map — compact -->
     <div class="visitors-section" id="visitors">
-      <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=67addd&w=200&t=tt&d=v1SoQ9gjmwtzioB5btKnUk0N8UzrwhR6v-cNXgRtpu4&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=000000'></script>
+      <!-- ClustrMaps is currently returning 503 from their CDN; async keeps a
+           vendor outage from delaying the rest of the page. -->
+      <script async type='text/javascript' id='clustrmaps' src='https://cdn.clustrmaps.com/map_v2.js?cl=67addd&amp;w=200&amp;t=tt&amp;d=v1SoQ9gjmwtzioB5btKnUk0N8UzrwhR6v-cNXgRtpu4&amp;co=ffffff&amp;cmo=3acc3a&amp;cmn=ff5353&amp;ct=000000'></script>
     </div>
 
   </div>
@@ -370,21 +374,30 @@ year={2024}
   <script src="js/footer.js"></script>
   <script src="js/modal.js"></script>
 
-  <!-- Prefetch gallery images so they load instantly when user navigates to Misc -->
+  <!-- Prefetch the top of the Misc gallery so it opens instantly.
+       gallery.js lays images out with a constant placeholder ratio, so the
+       masonry fills strictly round-robin across columns: with 3 columns the
+       first 3 images are row 1 and the next 3 are row 2. Taking the first 6
+       in array order therefore prefetches exactly what is above the fold,
+       in scroll order, instead of the whole 18.6 MB library. -->
   <script src="js/gallery.js"></script>
   <script>
     (function() {
+      var PREFETCH_COUNT = 6;
       var idle = window.requestIdleCallback || function(cb) { setTimeout(cb, 1000); };
       idle(function() {
-        if (typeof gallery !== 'undefined' && gallery.images) {
-          gallery.images.forEach(function(img) {
-            var link = document.createElement('link');
-            link.rel = 'prefetch';
-            link.as = 'image';
-            link.href = img.src;
-            document.head.appendChild(link);
-          });
-        }
+        if (typeof gallery === 'undefined' || !gallery.images) return;
+        // Don't spend a metered visitor's data on speculative images.
+        var conn = navigator.connection;
+        if (conn && (conn.saveData || /2g/.test(conn.effectiveType || ''))) return;
+
+        gallery.images.slice(0, PREFETCH_COUNT).forEach(function(img) {
+          var link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.as = 'image';
+          link.href = img.src;
+          document.head.appendChild(link);
+        });
       });
     })();
   </script>

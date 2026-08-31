@@ -4,11 +4,7 @@ import { AUTHOR_LINKS } from './data/authors.js';
 export class Publication {
   static createPublication(data) {
     return `
-      <div class="publication${data.image ? '' : ' publication-no-image'}">
-        ${data.image ? `
-        <div class="publication-image">
-          <img src="${data.image}" ${data.imageFull ? `data-full="${data.imageFull}"` : ''} alt="${data.title}" loading="lazy" decoding="async">
-        </div>` : ''}
+      <div class="publication">
         <div class="publication-content">
           ${this.createHeader(data)}
           ${this.createAuthors(data.authors)}
@@ -20,16 +16,33 @@ export class Publication {
     `;
   }
 
-  static createHeader({ conference, year, title, links }) {
+  static createHeader({ conference, year, title, links, image, imageFull }) {
     const primaryLink = links.webpage || links.project || links.paper || '#';
     const shortYear = year.toString().slice(-2); // Get last 2 digits
-    const venueTag = `${conference}&nbsp;'${shortYear}`; 
-    
+    const venueTag = `${conference}&nbsp;'${shortYear}`;
+
     return `
       <div class="paper-header">
         ${conference ? `<span class="venue-tag">${venueTag}</span>` : ''}
+        ${image ? this.createTeaser(image, imageFull, title) : ''}
         <a href="${primaryLink}" class="paper-title">${title}</a>
       </div>
+    `;
+  }
+
+  // Teaser figure, surfaced as a small icon next to the venue tag. Papers
+  // without a figure simply have no icon, so every entry keeps the same
+  // shape instead of some being image-less.
+  static createTeaser(image, imageFull, title) {
+    return `
+      <span class="teaser" data-full="${imageFull || image}">
+        <button type="button" class="teaser-btn" aria-label="Show teaser figure for ${title}">
+          ${this.icons.teaser}
+        </button>
+        <span class="teaser-pop" aria-hidden="true">
+          <img src="${image}" alt="Teaser figure for ${title}" loading="lazy" decoding="async">
+        </span>
+      </span>
     `;
   }
   
@@ -78,6 +91,7 @@ export class Publication {
     repo: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>',
     paper: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>',
     cite: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/></svg>',
+    teaser: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-4.35-4.35a2 2 0 0 0-2.83 0L3 21"/></svg>',
   };
 
   static createLinks({ links, bibtex }) {

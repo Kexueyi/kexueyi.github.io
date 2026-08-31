@@ -81,8 +81,18 @@
     background: rgba(160, 160, 160, 0.3);
 }
 
-/* Current (first) node — accent color, slightly larger */
-.timeline-item:first-child .timeline-dot {
+/* ---------------------------------------------------------------
+   Current vs. past timeline entries
+
+   The first item in a timeline is treated as "current" by default.
+   Add class "is-past" to an item to demote it (e.g. a role that has
+   ended while still being the most recent one). Add "is-current" to
+   promote a non-first item.
+   --------------------------------------------------------------- */
+
+/* Current node — accent color, slightly larger */
+.timeline-item.is-current .timeline-dot,
+.timeline-item:first-child:not(.is-past) .timeline-dot {
     width: 8px;
     height: 8px;
     left: -19px;
@@ -90,37 +100,52 @@
     transform: translateY(-50%);
 }
 
-.timeline-work .timeline-item:first-child .timeline-dot {
+.timeline-work .timeline-item.is-current .timeline-dot,
+.timeline-work .timeline-item:first-child:not(.is-past) .timeline-dot {
     background: rgba(59, 130, 246, 0.65);
     box-shadow: 0 0 0 2.5px rgba(59, 130, 246, 0.12);
 }
 
-.timeline-edu .timeline-item:first-child .timeline-dot {
+.timeline-edu .timeline-item.is-current .timeline-dot,
+.timeline-edu .timeline-item:first-child:not(.is-past) .timeline-dot {
     background: rgba(16, 185, 129, 0.65);
     box-shadow: 0 0 0 2.5px rgba(16, 185, 129, 0.12);
 }
 
-[data-theme="dark"] .timeline-work .timeline-item:first-child .timeline-dot {
+[data-theme="dark"] .timeline-work .timeline-item.is-current .timeline-dot,
+[data-theme="dark"] .timeline-work .timeline-item:first-child:not(.is-past) .timeline-dot {
     background: rgba(96, 165, 250, 0.7);
     box-shadow: 0 0 0 2.5px rgba(96, 165, 250, 0.15);
 }
 
-[data-theme="dark"] .timeline-edu .timeline-item:first-child .timeline-dot {
+[data-theme="dark"] .timeline-edu .timeline-item.is-current .timeline-dot,
+[data-theme="dark"] .timeline-edu .timeline-item:first-child:not(.is-past) .timeline-dot {
     background: rgba(52, 211, 153, 0.7);
     box-shadow: 0 0 0 2.5px rgba(52, 211, 153, 0.15);
 }
 
-/* Past items — fade text slightly */
-.timeline-item:not(:first-child) .experience-content h3 {
+/* Past items — fade text and logo slightly */
+.timeline-item:not(:first-child):not(.is-current) .experience-content h3,
+.timeline-item.is-past .experience-content h3 {
     color: var(--text-secondary);
 }
 
-.timeline-item:not(:first-child) .experience-content .experience-title {
+.timeline-item:not(:first-child):not(.is-current) .experience-content .experience-title,
+.timeline-item.is-past .experience-content .experience-title {
     color: var(--text-tertiary);
 }
 
-.timeline-item:not(:first-child) .experience-logo img {
+.timeline-item:not(:first-child):not(.is-current) .experience-logo img,
+.timeline-item.is-past .experience-logo img {
     opacity: 0.7;
+}
+
+/* Current item's logo reads slightly larger. Uses transform rather than
+   width/height so the 46px layout box is unchanged — text baselines and
+   every row's alignment stay exactly where they were. */
+.timeline-item.is-current .experience-logo img,
+.timeline-item:first-child:not(.is-past) .experience-logo img {
+    transform: scale(1.13);
 }
 
 /* Header: logo + text */
@@ -139,7 +164,7 @@
     width: 46px;
     height: 46px;
     object-fit: contain;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 /* Content */

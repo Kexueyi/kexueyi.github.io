@@ -74,6 +74,93 @@
   vertical-align: middle;
 }
 
+/* ---------------------------------------------------------------
+   Teaser figure — a small icon beside the venue tag. Hovering reveals
+   the figure at the same 230px width the old thumbnail column used;
+   clicking opens it full size in the shared image modal.
+   --------------------------------------------------------------- */
+.teaser {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.25rem;
+  line-height: 0;
+}
+
+.teaser-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 3px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #9aa5b1;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.teaser:hover .teaser-btn,
+.teaser-btn:focus-visible {
+  color: #3b82f6;
+  background-color: #f0f5ff;
+  border-color: #c7d2fe;
+  outline: none;
+}
+
+.teaser-pop {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 30;
+  display: block;
+  width: 230px;
+  padding: 4px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  pointer-events: none;
+}
+
+.teaser:hover .teaser-pop,
+.teaser:focus-within .teaser-pop {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.teaser-pop img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  cursor: zoom-in;
+}
+
+[data-theme="dark"] .teaser-pop {
+  background: #1f2430;
+  border-color: #374151;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .teaser:hover .teaser-btn,
+[data-theme="dark"] .teaser-btn:focus-visible {
+  color: #60a5fa;
+  background-color: rgba(96, 165, 250, 0.12);
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+/* Touch devices have no hover: keep the icon as a plain tap-to-enlarge
+   control rather than showing a popup that can never be dismissed. */
+@media (hover: none) {
+  .teaser-pop { display: none; }
+}
+
 .paper-title {
   font-size: var(--font-size-papertitle);
   font-weight: 500;

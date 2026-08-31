@@ -362,23 +362,40 @@ img[loading="lazy"]:not(.loaded)::after {
   margin: 0.3rem 0 0;
 }
 
+/* Role label beside its venues. A grid, not a flex row, so the label
+   column stays put when more roles are added and the venues wrap. */
 .service-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  column-gap: 0.85rem;
+  row-gap: 0.4rem;
   padding-left: 0.7rem;
-  margin-top: 0.7rem;
+  margin-top: 0.9rem;
 }
 
 .service-role {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 600;
-  color: var(--text-secondary);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  white-space: nowrap;
 }
 
-.service-venues {
+/* Must out-specify .topic-tags, which is defined later in this file and
+   would otherwise reimpose its 0.7rem/1.4rem margins. Those uneven
+   margins are what threw the label out of vertical alignment: centring
+   in a flex/grid row centres the margin box, not the text. */
+.service-row .service-venues {
   margin: 0;
+}
+
+@media (max-width: 560px) {
+  .service-row {
+    grid-template-columns: 1fr;
+    row-gap: 0.5rem;
+  }
 }
 
 /* Visitors — compact */

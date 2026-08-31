@@ -189,6 +189,7 @@ year={2024}
                       // Update DOM once
                       document.getElementById('publications').innerHTML = publicationsHtml;
                       Publication.initCitationPopups();
+                      Publication.initTeaserHint();
                     </script>
       </div>
     </div>
@@ -312,11 +313,15 @@ year={2024}
       <p class="service-list">Reviewer: CVPR 2026, ECCV 2026, NeurIPS 2026</p>
     </div>
 
-    <!-- Visitors map — compact -->
+    <!-- Visitors map — compact.
+         Colours and size are baked into the served map.js from the widget's
+         MapMyVisitors dashboard settings; the URL query params are ignored,
+         so styling here is limited to the frame around it. -->
     <div class="visitors-section" id="visitors">
-      <!-- ClustrMaps is currently returning 503 from their CDN; async keeps a
-           vendor outage from delaying the rest of the page. -->
-      <script async type='text/javascript' id='clustrmaps' src='https://cdn.clustrmaps.com/map_v2.js?cl=67addd&amp;w=200&amp;t=tt&amp;d=v1SoQ9gjmwtzioB5btKnUk0N8UzrwhR6v-cNXgRtpu4&amp;co=ffffff&amp;cmo=3acc3a&amp;cmn=ff5353&amp;ct=000000'></script>
+      <div class="visitors-map">
+        <script async type="text/javascript" id="mapmyvisitors"
+          src="https://mapmyvisitors.com/map.js?cl=ffffff&amp;w=300&amp;t=n&amp;d=P0VIRKi4vsRi5OyrJDGnnuY6_1zGmPM7AcZ5VcwIPrY"></script>
+      </div>
     </div>
 
   </div>

@@ -38,11 +38,43 @@ export class Publication {
         <button type="button" class="teaser-btn" aria-label="Show teaser figure for ${title}">
           ${this.icons.teaser}
         </button>
+        <span class="teaser-hint" aria-hidden="true">Preview</span>
         <span class="teaser-pop" aria-hidden="true">
           <img src="${image}" alt="Teaser figure for ${title}" loading="lazy" decoding="async">
         </span>
       </span>
     `;
+  }
+
+  // The teaser icon is easy to miss. The first time a visitor hovers a paper
+  // that has one, point it out — once per session, then never again.
+  static initTeaserHint() {
+    const KEY = 'teaserHintSeen';
+    let seen;
+    try { seen = sessionStorage.getItem(KEY); } catch (e) { seen = null; }
+    if (seen) return;
+
+    const papers = [...document.querySelectorAll('.publication')]
+      .filter(p => p.querySelector('.teaser'));
+    if (!papers.length) return;
+
+    let timer;
+    const retire = () => {
+      clearTimeout(timer);
+      try { sessionStorage.setItem(KEY, '1'); } catch (e) { /* private mode */ }
+      papers.forEach(p => {
+        p.classList.remove('hint-on');
+        p.removeEventListener('mouseenter', reveal);
+      });
+    };
+
+    function reveal() {
+      this.classList.add('hint-on');
+      // Retire shortly after it has been seen, so it never nags.
+      timer = setTimeout(retire, 2600);
+    }
+
+    papers.forEach(p => p.addEventListener('mouseenter', reveal, { once: true }));
   }
   
 

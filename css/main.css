@@ -119,13 +119,6 @@ body {
   transition: color 0.3s ease;
 }
 
-/* Ensure content doesn't get hidden behind the fixed footer. Padding, not
-   margin — a bottom margin here collapses and the last line ends up under
-   the bar once the page is scrolled all the way down. */
-.page-wrapper {
-  padding-bottom: 72px;
-}
-
 .footer-sep {
   opacity: 0.4;
   margin: 0 2px;
@@ -148,7 +141,10 @@ body {
 .page-wrapper {
   max-width: 760px;
   margin: 0 auto;
-  padding: 0 16px;
+  /* Bottom padding clears the fixed footer. It must live in this shorthand:
+     a separate padding-bottom rule earlier in the file gets reset by it.
+     Margin would not work either — it collapses. */
+  padding: 0 16px 96px;
 }
 
 /* Intro section — flex replaces table */
@@ -465,4 +461,44 @@ img[loading="lazy"]:not(.loaded)::after {
 
 @media (prefers-reduced-motion: reduce) {
   .scroll-progress { transition: none; }
+}
+
+/* ---------------------------------------------------------------
+   Section body indent
+   The accent rule shifts each heading's text 0.7rem right. Aligning
+   the body content to the same edge is what makes the indent read as
+   deliberate structure instead of a heading that sticks out.
+   --------------------------------------------------------------- */
+.content-section > #publications,
+.content-section > .topic-tags,
+.content-section > .service-list {
+  padding-left: 0.7rem;
+}
+
+/* The publication rows carry their own negative inset for the hover
+   tint, so they need the indent restored on top of it. */
+#publications .publication {
+  margin-left: 0;
+}
+
+/* Visitors map frame — the widget renders at a fixed size, so the only
+   styling available is the frame around it. */
+.visitors-map {
+  display: inline-block;
+  max-width: 100%;
+  padding: 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-subtle);
+  line-height: 0;
+  overflow: hidden;
+}
+
+.visitors-map img,
+.visitors-map canvas,
+.visitors-map iframe {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
 }

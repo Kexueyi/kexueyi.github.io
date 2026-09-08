@@ -238,6 +238,17 @@
   /*   color: #0e38ab; */
 }
 
+/* One line on what the work is, under the link row. Sized between the author
+   line and the venue line so it reads as prose without competing with the
+   title. */
+.paper-summary {
+  margin: 0.55rem 0 0;
+  max-width: 62ch;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
 /* Authors Section */
 .authors {
   font-size: var(--font-size-author);

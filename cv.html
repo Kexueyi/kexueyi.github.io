@@ -72,13 +72,13 @@
         <div class="cv-info">
             <span id="cv-update-date"></span>
         </div>
-        <iframe src="documents/CV-KeXueyi.pdf" class="cv-viewer"></iframe>
+        <iframe src="documents/CV_Xueyi.pdf" class="cv-viewer"></iframe>
     </div>
     
     <script>
         async function showCVInfo() {
             try {
-                const response = await fetch('documents/CV-KeXueyi.pdf', { method: 'HEAD' });
+                const response = await fetch('documents/CV_Xueyi.pdf', { method: 'HEAD' });
                 if (!response.ok) throw new Error('CV file not found');
                 
                 const lastModified = response.headers.get('last-modified');

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function updateCVInfo() {
         try {
-            const response = await fetch('documents/CV-KeXueyi.pdf', { method: 'HEAD' });
+            const response = await fetch('documents/CV_Xueyi.pdf', { method: 'HEAD' });
             if (!response.ok) throw new Error('CV file not found');
             
             const lastModified = response.headers.get('last-modified');

@@ -36,6 +36,54 @@ Past entries fade their heading, role and logo. Logos keep a fixed 46px layout
 box — the slight size bump on the current entry uses `transform: scale()`, never
 `width`, so every row's text stays on the same baseline across both columns.
 
+## Research areas
+
+Three named directions, each with one line of scope, replacing the keyword
+chips that used to sit under **Research**. Chips named fields; these name what
+the work actually is, and the three together are meant to read as one map —
+future direction first, past accumulation still visible.
+
+- Laid out as **columns**, not a stacked list. Stacked, whichever area is first
+  reads as the primary one; side by side they carry equal weight.
+- The columns are a grid with two explicit rows (heading, description) that each
+  `<li>` adopts through `grid-template-rows: subgrid`. Without it, a heading
+  that wraps to two lines drops only its own description and the three fall out
+  of alignment.
+- The hairline is a **separator**, so `li + li` carries it and the first column
+  has none — its text stays flush with the section heading above it.
+- Below 760px the whole thing reverts to plain blocks: nothing left to align,
+  and a vertical rule beside a stacked entry separates nothing.
+
+## Selected Research
+
+The publication list is its own section with its own heading, ahead of
+Experience, rather than a tail on the Research section. Ordered by **prominence,
+not date** — the first-author CVPR paper leads, so a visitor scanning the page
+hits it before the co-authored work. Each entry carries a one-line `summary`
+under the link row saying what the work does.
+
+Papers only. Work without a paper belongs in **Projects** below; an
+"ongoing / no links yet" row in this list reads as a thinner publication rather
+than as a different kind of thing.
+
+## Projects
+
+Named work that is not a paper — currently the VLA interpretability work and
+PassGPT, both carried over from the CV so the two documents say the same thing.
+Reverse chronological here, since there is no venue to rank them by.
+
+Deliberately quieter than a publication row: a name, the years, and a line of
+description. No venue tag, no link buttons, nothing clickable, so the section
+never competes with Selected Research above it.
+
+- Name left, years hard right on a shared baseline — the years are the one part
+  a scanner wants without reading, so they get their own column instead of
+  trailing the name.
+- Descriptions cap at `62ch`, which is also what keeps a long line from running
+  into the years column.
+- Below 560px the head stacks; side by side, a long name and its years collide
+  well before the column runs out.
+
 ## Teaser figures
 
 Papers with a figure show a small gold pill after the title; papers without show

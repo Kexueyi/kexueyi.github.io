@@ -10,7 +10,7 @@ export class Publication {
           ${this.createAuthors(data.authors)}
           ${this.createVenueInfo(data)}
           ${this.createLinks(data)}
-          ${data.abstract ? `<p class="abstract">${data.abstract}</p>` : ''}
+          ${data.summary ? `<p class="paper-summary">${data.summary}</p>` : ''}
         </div>
       </div>
     `;

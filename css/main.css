@@ -469,6 +469,139 @@ img[loading="lazy"]:not(.loaded)::after {
   border-color: var(--accent-border);
 }
 
+/* ---------------------------------------------------------------
+   Research areas
+   Three named directions with a line of scope each, replacing the
+   bare keyword chips. Columns rather than a stacked list: side by
+   side they read as one map of the work, and no single area gets
+   the emphasis that being first in a vertical list confers.
+   Separated by hairlines only — a card each would be three boxes
+   on a page that has none elsewhere.
+   --------------------------------------------------------------- */
+.research-areas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Two explicit rows — heading, then description — that every column shares
+     via subgrid below. Without them a heading wrapping to two lines pushes
+     only its own description down and the three fall out of alignment. */
+  grid-template-rows: auto auto;
+  column-gap: 1.6rem;
+  row-gap: 0.35rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.research-areas > li {
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+}
+
+/* The rule separates columns rather than decorating each one, so the first
+   column has none — its text stays on the section's left edge, flush with
+   the heading above it. */
+.research-areas > li + li {
+  padding-left: 1.6rem;
+  border-left: 1px solid var(--border-color);
+}
+
+.research-areas h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.research-areas p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* One column below the point where three would force the descriptions into
+   two-word lines. Stacked, there is nothing left for subgrid to align and a
+   vertical rule beside each entry separates nothing, so both go. */
+@media (max-width: 760px) {
+  .research-areas,
+  .research-areas > li {
+    display: block;
+  }
+
+  .research-areas > li + li {
+    margin-top: 1.2rem;
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .research-areas h3 {
+    margin-bottom: 0.35rem;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Projects
+   Named work that is not a paper. Deliberately quieter than a
+   publication row: a name, the years it ran, and a line on what it
+   was. No venue tag, no link buttons, nothing to click — so it
+   never competes with Selected Research above it.
+   --------------------------------------------------------------- */
+.project-list {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-list > li + li {
+  margin-top: 1.5rem;
+}
+
+/* Name left, years hard right on the same baseline. The years are the
+   one piece a scanner wants to find without reading, so they get their
+   own column rather than trailing the name. */
+.project-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.project-list h3 {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-primary);
+}
+
+.project-period {
+  flex-shrink: 0;
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.project-list p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Side by side, a long name and its years collide before the column runs
+   out. Stack them and let the years sit under the name. */
+@media (max-width: 560px) {
+  .project-head {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+}
+
 /* Publication rows read as one unit on hover. Negative inset margin keeps
    the text on the same left edge it sits on at rest — no reflow. */
 .publication {
@@ -509,6 +642,8 @@ img[loading="lazy"]:not(.loaded)::after {
    --------------------------------------------------------------- */
 .content-section > #publications,
 .content-section > .topic-tags,
+.content-section > .research-areas,
+.content-section > .project-list,
 .content-section > .service-list {
   padding-left: 0.7rem;
 }
